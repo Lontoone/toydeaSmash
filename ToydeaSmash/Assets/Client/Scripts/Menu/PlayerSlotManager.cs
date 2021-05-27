@@ -21,8 +21,11 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
 
     //When player enter. Add player slot
     public void GenerateSlot(LocalPlayerProperty _data) {
+
         PlayerSlot _slot = Instantiate(slot_prefab, slot_pos[_current_player_count].position,Quaternion.identity);
+
         _slot.SetUpPlayer(_current_player_count);
+
         _current_player_count++;
 
     }

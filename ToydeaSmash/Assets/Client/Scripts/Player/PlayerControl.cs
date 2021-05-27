@@ -16,6 +16,10 @@ public class PlayerControl : MonoBehaviour
 
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
+    public string jump_axis_name = "Jump";                //default
+
+    public Head head;
+    public Body body;
 
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
@@ -48,15 +52,40 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround -= ResetJumpCount;
     }
 
-    public void SetUp(LocalPlayerProperty _data) {
+    public void SetUp(LocalPlayerProperty _data, int _i)
+    {
+        Head _newHead =
+            Instantiate(
+                Head.LoadHead(_data.playerProperty[CustomPropertyCode.HEAD_CDOE] as string).gameObject,
+                head.transform.position,
+                Quaternion.identity,
+                head.transform.parent
+                ).GetComponent<Head>();
+        Body _newBody =
+            Instantiate(
+                Body.LoadBody(_data.playerProperty[CustomPropertyCode.BODY_CODE] as string).gameObject,
+                body.transform.position,
+                Quaternion.identity,
+                body.transform.parent
+                ).GetComponent<Body>();
 
+        Destroy(head);
+        Destroy(body);
+
+        head = _newHead;
+        body = _newBody;
+
+        horizontal_axis_name = "h" + _i.ToString();
+        vertical_axis_name = "v" + _i.ToString();
+        jump_axis_name = "j" + _i.ToString();
     }
 
     private void Update()
     {
         //跳躍
         //if (Input.GetKeyDown(KeyCode.Space) && (listeners.isGrounded || jump_count < 1))
-        if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
+        //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
+        if (Input.GetAxisRaw(jump_axis_name)>0 && (jump_count < 2))
         {
 
             if (jump_count == 0)
@@ -110,7 +139,8 @@ public class PlayerControl : MonoBehaviour
             return;
         }
         //else if (Mathf.Abs(rigid.velocity.x) > 1f) //移動
-        else if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.15f) //移動
+        //else if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.15f) //移動
+        else if (Mathf.Abs(Input.GetAxis(horizontal_axis_name)) > 0.15f) //移動
         {
             Debug.Log("add walk " + listeners.isGrounded);
             actionController.AddAction(walk);
@@ -136,7 +166,8 @@ public class PlayerControl : MonoBehaviour
 
     public void Move()
     {
-        rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigid.velocity.y);
+        //rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigid.velocity.y);
+        rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
         //左右翻轉:
         if (rigid.velocity.x > 0)
         {

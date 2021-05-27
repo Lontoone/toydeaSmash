@@ -41,7 +41,7 @@ public class LocalRoomManager : MonoBehaviour
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
         players.Add(_local);
-
+        Debug.Log("player i  count  "+players.Count);
         //add slot 
         if (OnLocalPlayerAdded != null)
         {
@@ -52,13 +52,21 @@ public class LocalRoomManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadScene)
     {
         //if in game play
-        if (scene.name=="GamePlay") {
+        if (scene.name == "GamePlay")
+        {
             //generate player
             Debug.Log(" Create player!");
-            //for each playerData=>
+
+            //for each playerData=> Gernerate local multiplayer
+            for (int i = 0; i < players.Count; i++)
+            {
+                PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
+                Debug.Log("player i " + i);
+                _player.SetUp(players[i], i);
+
+            }
 
             //  Load Player from resources
-
             //
 
         }

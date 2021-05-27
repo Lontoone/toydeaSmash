@@ -20,7 +20,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     int current_team = 0;
     int current_head = 0;
-    int current_weapon = 0;
+    int current_body = 0;
     Player thisPlayer;
 
     public GameObject head;
@@ -29,8 +29,8 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     //PhotonView pv;
     public GameObject btn_group;
 
-    public GameObject[] heads;
-    public GameObject[] weapons;
+    //public GameObject[] heads;
+    //public GameObject[] weapons;
 
     public void Start()
     {
@@ -38,10 +38,10 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         //hide btns if is not mine.
         //if (!pv.IsMine)
 
-        if (heads_res.Length < 1)
-            heads_res = Resources.LoadAll<Head>("Prefab/Head");
-        if (body_res.Length < 1)
-            body_res = Resources.LoadAll<Body>("Prefab/Body");
+        //if (heads_res.Length < 1)
+        heads_res = Resources.LoadAll<Head>("Prefab/Head");
+        //if (body_res.Length < 1)
+        body_res = Resources.LoadAll<Body>("Prefab/Body");
 
         Debug.Log(heads_res.Length);
     }
@@ -80,7 +80,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
             //set team
             SetTeam((int)_data);
         }
-        else if (changedProps.TryGetValue(CustomPropertyCode.WEAPON_CODE, out _data))
+        else if (changedProps.TryGetValue(CustomPropertyCode.BODY_CODE, out _data))
         {
             //set weapon
             SetWeapon((int)_data);
@@ -102,13 +102,13 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     }
     public void Weapon_btn(int _opt)
     {
-        current_weapon = Mathf.Clamp(current_weapon + _opt, 0, weapons.Length - 1);
+        current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length- 1);
         //SendCP(CustomPropertyCode.WEAPON_CODE, current_weapon); //TODO: use event to send data
-        SetWeapon(current_weapon);
+        SetWeapon(current_body);
     }
     public void Head_btn(int _opt)
     {
-        current_head = Mathf.Clamp(current_head + _opt, 0, heads.Length - 1);
+        current_head = Mathf.Clamp(current_head + _opt, 0, heads_res.Length - 1);
         //SendCP(CustomPropertyCode.HEAD_CDOE, current_head);  //TODO: use event to send data
         SetHead(current_head);
     }
@@ -124,20 +124,27 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     void SetHead(int _index)
     {
-        heads[current_head].SetActive(false);
+        //heads[current_head].SetActive(false);
         current_head = _index;
-        heads[current_head].SetActive(true);
+        GameObject _new_head = Instantiate(heads_res[current_head], head.transform.position, Quaternion.identity, head.transform.parent).gameObject;
+        Destroy(head);
+        head = _new_head;
 
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
+        //heads[current_head].SetActive(true);
+
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
 
     }
     void SetWeapon(int _index)
     {
-        weapons[current_weapon].SetActive(false);
-        current_weapon = _index;
-        weapons[current_weapon].SetActive(true);
+        //weapons[current_weapon].SetActive(false);
+        //weapons[current_weapon].SetActive(true);
+        current_body = _index;
+        GameObject _new_body = Instantiate(body_res[current_body], body.transform.position, Quaternion.identity, head.transform.parent).gameObject;
+        Destroy(body);
+        body = _new_body;
 
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.WEAPON_CODE, current_weapon);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_body].name);
 
     }
 
