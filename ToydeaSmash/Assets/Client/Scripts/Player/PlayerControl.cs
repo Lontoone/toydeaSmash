@@ -16,10 +16,12 @@ public class PlayerControl : MonoBehaviour
 
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
-    public string jump_axis_name = "Jump";                //default
+    //public string jump_axis_name = "Jump";                //default
+    public KeyCode jump_key;
 
     public Head head;
     public Body body;
+    SpriteRenderer head_sp, body_sp;
 
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
@@ -29,6 +31,7 @@ public class PlayerControl : MonoBehaviour
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
         animator = gameObject.GetComponent<Animator>();
         actionController = gameObject.GetComponent<ActionController>();
+
 
         hitable = gameObject.GetComponent<HitableObj>();
         actionController.eActionQueueCleared += AddDefault;
@@ -69,26 +72,38 @@ public class PlayerControl : MonoBehaviour
                 body.transform.parent
                 ).GetComponent<Body>();
 
-        Destroy(head);
-        Destroy(body);
+        Destroy(head.gameObject);
+        Destroy(body.gameObject);
 
         head = _newHead;
         body = _newBody;
 
+        head_sp = head.GetComponent<SpriteRenderer>();
+        body_sp = body.GetComponent<SpriteRenderer>();
+
+
         horizontal_axis_name = "h" + _i.ToString();
         vertical_axis_name = "v" + _i.ToString();
-        jump_axis_name = "j" + _i.ToString();
+        //jump_axis_name = "j" + _i.ToString();
+        jump_key = CustomPropertyCode.JumpKeys[_i];
 
         //set team Layer
         gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_CODE]);
+
+        int _team_code = (int)_data.playerProperty[CustomPropertyCode.TEAM_CODE];
+        Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
+
+        //set team color        
+        head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+        body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
     }
 
     private void Update()
     {
         //跳躍
-        //if (Input.GetKeyDown(KeyCode.Space) && (listeners.isGrounded || jump_count < 1))
         //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
-        if (Input.GetAxisRaw(jump_axis_name) > 0 && (jump_count < 2))
+        //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
+        if (Input.GetKeyDown(jump_key) && (jump_count < 2))
         {
 
             if (jump_count == 0)
@@ -174,15 +189,27 @@ public class PlayerControl : MonoBehaviour
         //左右翻轉:
         if (rigid.velocity.x > 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            transform.eulerAngles = new Vector3(0, 180, 0);
             //sp.flipX = false;
         }
         else if (rigid.velocity.x < 0)
         {
             //sp.flipX = true;
-            transform.eulerAngles = new Vector3(0, 180, 0);
-
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
+        //.sprite = head.spriteMask.GetSprite("Walk");
+        //body_sp.sprite = body.spriteMask.GetSprite("Walk");
+
+        head.PlayAnimatiom("Walk");
+        body.PlayAnimatiom("Walk");
+
+    }
+
+    public void Idle()
+    {
+
+        head.PlayAnimatiom("Idle");
+        body.PlayAnimatiom("Idle");
     }
 
     void Hurt()

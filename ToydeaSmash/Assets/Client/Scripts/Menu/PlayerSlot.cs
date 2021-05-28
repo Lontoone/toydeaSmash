@@ -18,6 +18,8 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public static Head[] heads_res;
     public static Body[] body_res;
 
+    public Color[] teamColors = new Color[] { Color.red, Color.white, Color.green };
+
     int current_team = 0;
     int current_head = 0;
     int current_body = 0;
@@ -44,6 +46,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     {
         player_index = _index;
         InitPropertyDict();
+        InitMererial();
     }
     //online
     public void SetUpPlayer(Player _p) //call from player slot manager
@@ -66,6 +69,23 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_head].name);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
+
+        SetTeam(0);
+    }
+    void InitMererial()
+    {
+        /*
+        //create head and body metarial
+        Material head_mat = new Material(Shader.Find("Unlit/SpriteMask"));
+        Material body_mat = new Material(Shader.Find("Unlit/SpriteMask"));
+        //load mask sprite from resources
+        head.GetComponent<SpriteRenderer>().material = head_mat;
+        body.GetComponent<SpriteRenderer>().material = body_mat;
+
+        head_mat.SetTexture("_Mask", Head.LoadMask(heads_res[current_head].name).texture);
+        body_mat.SetTexture("_Mask", Body.LoadMask(body_res[current_body].name).texture);
+
+        Debug.Log("Mask " + body_res[current_body].name);*/
 
     }
 
@@ -119,12 +139,13 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     void SetTeam(int _index)
     {
-        current_team = _index;
+        current_team = Mathf.Clamp(_index, 0, CustomPropertyCode.TEAM_CODE.Length - 1);
 
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
 
         //TODO: Set UI
-
+        head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
+        body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
 
     }
 

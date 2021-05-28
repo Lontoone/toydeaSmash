@@ -15,6 +15,7 @@
 		Pass
 		{
 			ZWrite Off
+			Cull Off
 			Blend SrcAlpha OneMinusSrcAlpha
 
 
@@ -60,7 +61,7 @@
 				fixed4 main_col = tex2D(_MainTex, i.uv);
 				fixed4 mask_color = tex2D(_Mask,i.uv);
 
-				// fixed4 res= main_col* (1-mask_color.z) + mask_color* mask_color.z * i.color; 
+				//fixed4 res= main_col* (1 - mask_color.z) + mask_color * mask_color.z * i.color; 
 				fixed4 res = main_col * (1 - mask_color.a) + mask_color * mask_color.a * i.color;
 
 				return res;
