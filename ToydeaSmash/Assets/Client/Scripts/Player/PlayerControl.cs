@@ -78,6 +78,9 @@ public class PlayerControl : MonoBehaviour
         horizontal_axis_name = "h" + _i.ToString();
         vertical_axis_name = "v" + _i.ToString();
         jump_axis_name = "j" + _i.ToString();
+
+        //set team Layer
+        gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_CODE]);
     }
 
     private void Update()
@@ -85,7 +88,7 @@ public class PlayerControl : MonoBehaviour
         //跳躍
         //if (Input.GetKeyDown(KeyCode.Space) && (listeners.isGrounded || jump_count < 1))
         //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
-        if (Input.GetAxisRaw(jump_axis_name)>0 && (jump_count < 2))
+        if (Input.GetAxisRaw(jump_axis_name) > 0 && (jump_count < 2))
         {
 
             if (jump_count == 0)

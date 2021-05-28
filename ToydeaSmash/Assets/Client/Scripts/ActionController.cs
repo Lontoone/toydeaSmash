@@ -111,6 +111,8 @@ public class ActionController : MonoBehaviour
 
             //執行完
             Debug.Log("Action Done: " + currentAction.description);
+            if (currentAction.callbackEvent != null)
+                currentAction.callbackEvent.Invoke();
             //currentAction = null;
 
 
@@ -258,6 +260,7 @@ public class ActionController : MonoBehaviour
         public float gap_time = 0.5f;
         //public Action action;
         public UnityEngine.Events.UnityEvent action;
+        public UnityEngine.Events.UnityEvent callbackEvent;
         public int priority = 0;//優先度
         public bool force = false; //可以斷別人?
         public float duration; //執行時間

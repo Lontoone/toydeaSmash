@@ -29,19 +29,12 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     //PhotonView pv;
     public GameObject btn_group;
 
-    //public GameObject[] heads;
-    //public GameObject[] weapons;
-
-    public void Start()
+    public void Awake()
     {
-        //pv = GetComponent<PhotonView>();
-        //hide btns if is not mine.
-        //if (!pv.IsMine)
-
-        //if (heads_res.Length < 1)
-        heads_res = Resources.LoadAll<Head>("Prefab/Head");
-        //if (body_res.Length < 1)
-        body_res = Resources.LoadAll<Body>("Prefab/Body");
+        if (heads_res == null)
+            heads_res = Resources.LoadAll<Head>("Prefab/Head");
+        if (body_res == null)
+            body_res = Resources.LoadAll<Body>("Prefab/Body");
 
         Debug.Log(heads_res.Length);
     }
@@ -50,6 +43,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public void SetUpPlayer(int _index)
     {
         player_index = _index;
+        InitPropertyDict();
     }
     //online
     public void SetUpPlayer(Player _p) //call from player slot manager
@@ -62,6 +56,16 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         {
             btn_group.SetActive(false);
         }
+
+    }
+
+    void InitPropertyDict()
+    {
+
+        //dict init
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_head].name);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
 
     }
 
@@ -102,7 +106,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     }
     public void Weapon_btn(int _opt)
     {
-        current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length- 1);
+        current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length - 1);
         //SendCP(CustomPropertyCode.WEAPON_CODE, current_weapon); //TODO: use event to send data
         SetWeapon(current_body);
     }
@@ -118,27 +122,27 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         current_team = _index;
 
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
+
         //TODO: Set UI
+
 
     }
 
     void SetHead(int _index)
     {
-        //heads[current_head].SetActive(false);
+
         current_head = _index;
         GameObject _new_head = Instantiate(heads_res[current_head], head.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(head);
         head = _new_head;
 
-        //heads[current_head].SetActive(true);
 
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
 
     }
     void SetWeapon(int _index)
     {
-        //weapons[current_weapon].SetActive(false);
-        //weapons[current_weapon].SetActive(true);
+
         current_body = _index;
         GameObject _new_body = Instantiate(body_res[current_body], body.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(body);

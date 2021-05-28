@@ -57,7 +57,7 @@ public class LocalRoomManager : MonoBehaviour
             //generate player
             Debug.Log(" Create player!");
 
-            //for each playerData=> Gernerate local multiplayer
+            //for each playerData=> Gernerate local multiplayer with id
             for (int i = 0; i < players.Count; i++)
             {
                 PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
@@ -66,8 +66,6 @@ public class LocalRoomManager : MonoBehaviour
 
             }
 
-            //  Load Player from resources
-            //
 
         }
     }

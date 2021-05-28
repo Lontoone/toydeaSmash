@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7923640692456162594}
-  - component: {fileID: 7923640692456162595}
   - component: {fileID: 7923640692456162524}
   - component: {fileID: 7923640692456162525}
   - component: {fileID: 7923640692456162592}
   - component: {fileID: 7923640692456162593}
   - component: {fileID: 7923640692456162599}
+  - component: {fileID: 7421235546513670264}
+  - component: {fileID: 8613946847290611853}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -39,22 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7923640692456162595
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923640692456162526}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &7923640692456162524
 Rigidbody2D:
   serializedVersion: 4
@@ -114,6 +99,9 @@ MonoBehaviour:
     action:
       m_PersistentCalls:
         m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 0
     force: 0
     duration: 10
@@ -139,6 +127,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 1
     force: 1
     duration: 0.3
@@ -150,6 +141,9 @@ MonoBehaviour:
     is_in_gap_time_lock: 0
     gap_time: 0.25
     action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
       m_PersistentCalls:
         m_Calls: []
     priority: 99
@@ -177,6 +171,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 5
     force: 1
     duration: 3
@@ -202,6 +199,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 6
     force: 1
     duration: 1
@@ -215,6 +215,9 @@ MonoBehaviour:
     action:
       m_PersistentCalls:
         m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 8
     force: 1
     duration: 3
@@ -226,6 +229,9 @@ MonoBehaviour:
     is_in_gap_time_lock: 0
     gap_time: 0.05
     action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
       m_PersistentCalls:
         m_Calls: []
     priority: 10
@@ -253,6 +259,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
     priority: 11
     force: 1
     duration: 0.15
@@ -261,6 +270,7 @@ MonoBehaviour:
     time_out_counter: 0
   horizontal_axis_name: Horizontal
   vertical_axis_name: Vertical
+  jump_axis_name: Jump
   head: {fileID: 5013481930462347707}
   body: {fileID: 280873003112801225}
   jump_count: 2
@@ -283,6 +293,9 @@ MonoBehaviour:
     is_in_gap_time_lock: 0
     gap_time: 0.5
     action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
       m_PersistentCalls:
         m_Calls: []
     priority: 0
@@ -310,7 +323,106 @@ MonoBehaviour:
     m_Bits: 256
   footPositon: {fileID: 7923640694361667545}
   isGrounded: 0
-  touch_ground_radious: 0.05
+  touch_ground_radious: 0.1
+--- !u!114 &7421235546513670264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923640692456162526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e961b8b286fb4b98754d48f262917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  up_attack:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  down_attack:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  dash:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  current_Attack_collider: {fileID: 0}
+  attackCollider: {fileID: 0}
+  up_attackCollider: {fileID: 0}
+  down_attackCollider: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!70 &8613946847290611853
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923640692456162526}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.17068887}
+  m_Size: {x: 1.060355, y: 1.9766877}
+  m_Direction: 0
 --- !u!1 &7923640692734189660
 GameObject:
   m_ObjectHideFlags: 0
