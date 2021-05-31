@@ -330,9 +330,9 @@ MonoBehaviour:
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
-    priority: 10
+    priority: 49
     force: 1
-    duration: 0.15
+    duration: 0.2
     isLoop: 0
     timeOut: 1
     time_out_counter: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    priority: 5
+    priority: 50
     force: 1
     duration: 0.25
     isLoop: 0

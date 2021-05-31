@@ -18,7 +18,7 @@ MonoBehaviour:
   - animation_name: Walk
     spriteSheet: {fileID: 4562889470339263287, guid: ba9602efbb154184cbfd30a814c67d8e, type: 3}
   - animation_name: Jumping
-    spriteSheet: {fileID: 1868206907324288905, guid: 02056048dadeeb6418fb6f5007218f48, type: 3}
+    spriteSheet: {fileID: -5084915562461301856, guid: fd88595af32ad494c89000f09a96a9ae, type: 3}
   - animation_name: Jump-End
     spriteSheet: {fileID: -5084915562461301856, guid: fd88595af32ad494c89000f09a96a9ae, type: 3}
   - animation_name: Jump Falling
