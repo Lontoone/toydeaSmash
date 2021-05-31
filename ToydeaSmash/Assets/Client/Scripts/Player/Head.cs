@@ -53,7 +53,9 @@ public class Head : MonoBehaviour
         if (spriteMask != null && (_temp_sprite_name != name))
         {
             _temp_sprite_name = name;
-            _sprite_mat.SetTexture("_Mask", spriteMask.GetSprite(name).texture);
+            Sprite _sp = spriteMask.GetSprite(name);
+            if (_sp != null)
+                _sprite_mat.SetTexture("_Mask", _sp.texture);
         }
         animator.Play(name);
     }

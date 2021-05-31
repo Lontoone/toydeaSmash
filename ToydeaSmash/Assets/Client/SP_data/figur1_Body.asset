@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pairs:
   - animation_name: Idle
-    spriteSheet: {fileID: 21300000, guid: 50b3c4764901b994db66c064b7645823, type: 3}
+    spriteSheet: {fileID: -4905426060563047824, guid: c6caf17f789abb9498d14614711f62bc, type: 3}
   - animation_name: Walk
-    spriteSheet: {fileID: 7128050740444210438, guid: 0b57bde021a2b9a4680dce8093b14b9d, type: 3}
+    spriteSheet: {fileID: -6611792403087013849, guid: e4f123aa0d1d27a4d85c2e0dd45981d5, type: 3}
+  - animation_name: Jump-Start
+    spriteSheet: {fileID: -6611792403087013849, guid: e4f123aa0d1d27a4d85c2e0dd45981d5, type: 3}

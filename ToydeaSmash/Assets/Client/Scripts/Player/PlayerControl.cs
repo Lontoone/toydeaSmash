@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
     //public string jump_axis_name = "Jump";                //default
-    public KeyCode jump_key;
+    public KeyCode jump_key=KeyCode.Space;
 
     public Head head;
     public Body body;
@@ -101,11 +101,11 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         //跳躍
-        //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
+        if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
         //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
-        if (Input.GetKeyDown(jump_key) && (jump_count < 2))
+        //if (Input.GetKeyDown(jump_key) && (jump_count < 2))
         {
-
+            Debug.Log("jump");
             if (jump_count == 0)
             {
 
@@ -210,6 +210,26 @@ public class PlayerControl : MonoBehaviour
 
         head.PlayAnimatiom("Idle");
         body.PlayAnimatiom("Idle");
+    }
+
+    public void Jump_start() {
+
+        head.PlayAnimatiom("Jump-Start");
+        body.PlayAnimatiom("Jump-Start");
+    }
+    public void Jumping()
+    {
+
+        head.PlayAnimatiom("Jumping");
+        body.PlayAnimatiom("Jumping");
+    }
+    public void Falling() {
+        head.PlayAnimatiom("Jumping Falling");
+        body.PlayAnimatiom("Jumping Falling");
+    }
+    public void Jump_End() {
+        head.PlayAnimatiom("Falling");
+        body.PlayAnimatiom("Falling");
     }
 
     void Hurt()
