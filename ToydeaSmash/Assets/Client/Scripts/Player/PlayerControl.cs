@@ -216,6 +216,8 @@ public class PlayerControl : MonoBehaviour
 
         head.PlayAnimatiom("Jump-Start");
         body.PlayAnimatiom("Jump-Start");
+
+        Effect("Jump Smoke", "jump smoke");
     }
     public void Jumping()
     {
@@ -231,7 +233,11 @@ public class PlayerControl : MonoBehaviour
         head.PlayAnimatiom("Falling");
         body.PlayAnimatiom("Falling");
     }
-
+    void Effect(string _gc_key, string _clip_name) {
+        GameObject _effect = GCManager.Instantiate(_gc_key);
+        _effect.GetComponent<Animator>().Play(_clip_name);
+        _effect.transform.position = listeners.footPositon.transform.position;
+    }
     void Hurt()
     {
         if (hitable.isHitable)
