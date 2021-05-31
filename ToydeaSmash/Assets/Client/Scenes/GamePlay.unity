@@ -1196,7 +1196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash_force
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash.isLoop
@@ -1223,12 +1223,20 @@ PrefabInstance:
       value: Dash
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: jump_end.duration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1263,6 +1271,22 @@ PrefabInstance:
       value: Walk_animation
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 572551202}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Stop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerControl, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -1271,11 +1295,19 @@ PrefabInstance:
       value: PlayerControl, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControl, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162594, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
