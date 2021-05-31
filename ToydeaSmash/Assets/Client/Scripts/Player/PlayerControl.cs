@@ -46,6 +46,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (listeners != null)
             listeners.eOnTouchGround += ResetJumpCount;
+
+        listeners.eOnTouchGround += OnJumpEnd;
     }
     private void OnDestroy()
     {
@@ -57,6 +59,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (listeners != null)
             listeners.eOnTouchGround -= ResetJumpCount;
+
+        listeners.eOnTouchGround -= OnJumpEnd;
     }
 
     public void SetUp(LocalPlayerProperty _data, int _i)
@@ -195,6 +199,11 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    void OnJumpEnd()
+    {
+        actionController.AddAction(jump_end);
+    }
+
 
     public void Move()
     {
@@ -251,8 +260,8 @@ public class PlayerControl : MonoBehaviour
     }
     public void Jump_End()
     {
-        head.PlayAnimatiom("Falling");
-        body.PlayAnimatiom("Falling");
+        head.PlayAnimatiom("Jump-End");
+        body.PlayAnimatiom("Jump-End");
     }
 
     public void Dash()
