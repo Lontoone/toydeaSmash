@@ -320,7 +320,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 10
     force: 1
-    duration: 0.1
+    duration: 0.05
     isLoop: 0
     timeOut: 1
     time_out_counter: 0
@@ -373,12 +373,56 @@ MonoBehaviour:
           m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Stop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     priority: 5
     force: 1
     duration: 0.25
     isLoop: 0
     timeOut: 1
+    time_out_counter: 0
+  duck:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  stop:
+    description: 
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls: []
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 0
+    force: 0
+    duration: 0
+    isLoop: 1
+    timeOut: 0
     time_out_counter: 0
   horizontal_axis_name: Horizontal
   vertical_axis_name: Vertical
@@ -386,7 +430,7 @@ MonoBehaviour:
   dash_key: 304
   head: {fileID: 5013481930462347707}
   body: {fileID: 280873003112801225}
-  dash_force: 500
+  dash_force: 1000
   jump_count: 2
 --- !u!114 &7923640692456162593
 MonoBehaviour:
