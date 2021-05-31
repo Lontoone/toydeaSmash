@@ -139,6 +139,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Walk_animation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -340,11 +352,41 @@ MonoBehaviour:
     isLoop: 0
     timeOut: 1
     time_out_counter: 0
+  dash:
+    description: Dash
+    is_in_gap_time_lock: 0
+    gap_time: 0.25
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Dash
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 5
+    force: 1
+    duration: 0.25
+    isLoop: 0
+    timeOut: 1
+    time_out_counter: 0
   horizontal_axis_name: Horizontal
   vertical_axis_name: Vertical
   jump_key: 0
+  dash_key: 304
   head: {fileID: 5013481930462347707}
   body: {fileID: 280873003112801225}
+  dash_force: 500
   jump_count: 2
 --- !u!114 &7923640692456162593
 MonoBehaviour:
@@ -569,7 +611,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -5651572511072010179, guid: 21f8ced2663cea841a67badcbac24413, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.37647057, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

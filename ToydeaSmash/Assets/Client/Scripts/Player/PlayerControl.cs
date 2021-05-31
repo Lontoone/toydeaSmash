@@ -12,16 +12,19 @@ public class PlayerControl : MonoBehaviour
     PhysicsControlListeners listeners;
     HitableObj hitable;
     ActionController actionController;
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump;
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash;
 
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
     //public string jump_axis_name = "Jump";                //default
-    public KeyCode jump_key=KeyCode.Space;
+    public KeyCode jump_key = KeyCode.Space;
+    public KeyCode dash_key = KeyCode.LeftShift;
 
     public Head head;
     public Body body;
     SpriteRenderer head_sp, body_sp;
+
+    public float dash_force = 15;
 
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
@@ -86,6 +89,8 @@ public class PlayerControl : MonoBehaviour
         vertical_axis_name = "v" + _i.ToString();
         //jump_axis_name = "j" + _i.ToString();
         jump_key = CustomPropertyCode.JumpKeys[_i];
+        dash_key = CustomPropertyCode.DashKyes[_i];
+
 
         //set team Layer
         gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_CODE]);
@@ -123,11 +128,19 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("jump count" + jump_count);
             //jump_count++;
         }
+
+        //Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            actionController.AddAction(dash);
+        }
+
     }
     public void AddJumpForce()
     {
 
         rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+        
         Debug.Log("jump force " + rigid.velocity);
     }
     void AddDefault()
@@ -200,10 +213,11 @@ public class PlayerControl : MonoBehaviour
         //.sprite = head.spriteMask.GetSprite("Walk");
         //body_sp.sprite = body.spriteMask.GetSprite("Walk");
 
-    
+
     }
 
-    public void Walk_animation() {
+    public void Walk_animation()
+    {
         head.PlayAnimatiom("Walk");
         body.PlayAnimatiom("Walk");
     }
@@ -215,7 +229,8 @@ public class PlayerControl : MonoBehaviour
         body.PlayAnimatiom("Idle");
     }
 
-    public void Jump_start() {
+    public void Jump_start()
+    {
 
         head.PlayAnimatiom("Jump-Start");
         body.PlayAnimatiom("Jump-Start");
@@ -228,15 +243,28 @@ public class PlayerControl : MonoBehaviour
         head.PlayAnimatiom("Jumping");
         body.PlayAnimatiom("Jumping");
     }
-    public void Falling() {
+    public void Falling()
+    {
         head.PlayAnimatiom("Jumping Falling");
         body.PlayAnimatiom("Jumping Falling");
     }
-    public void Jump_End() {
+    public void Jump_End()
+    {
         head.PlayAnimatiom("Falling");
         body.PlayAnimatiom("Falling");
     }
-    void Effect(string _gc_key, string _clip_name) {
+
+    public void Dash()
+    {
+
+        //rigid.velocity = new Vector2(dash_force, rigid.velocity.y);
+        rigid.AddForce(dash_force * -transform.right);
+        head.PlayAnimatiom("Dash");
+        body.PlayAnimatiom("Dash");
+    }
+
+    void Effect(string _gc_key, string _clip_name)
+    {
         GameObject _effect = GCManager.Instantiate(_gc_key);
         _effect.GetComponent<Animator>().Play(_clip_name);
         _effect.transform.position = listeners.footPositon.transform.position;
