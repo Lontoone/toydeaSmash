@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: b00ffbe21aa0d4146ae685f2e25c3e48
+guid: 522c77bc9828ab248978454dbecd8b91
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7638573337624746830
-    second: kei_heal_alpha_0
+      213: -7893401869731021886
+    second: kei_duck_body_alpha_0
   - first:
-      213: 6036387746820066459
-    second: kei_heal_alpha_1
+      213: -2862412378324312288
+    second: kei_duck_body_alpha_1
   - first:
-      213: 2017610828638695600
-    second: kei_heal_alpha_2
+      213: -4589066693914668319
+    second: kei_duck_body_alpha_2
   - first:
-      213: -3829367440980883246
-    second: kei_heal_alpha_3
+      213: -5177673781830868259
+    second: kei_duck_body_alpha_3
   - first:
-      213: -6390910582146873744
-    second: kei_heal_alpha_4
+      213: 4416646120656797259
+    second: kei_duck_body_alpha_4
   - first:
-      213: 4102367462477792341
-    second: kei_heal_alpha_5
+      213: 6538536936268725980
+    second: kei_duck_body_alpha_5
   - first:
-      213: -4846080526309868493
-    second: kei_heal_alpha_6
+      213: 5910661861373142552
+    second: kei_duck_body_alpha_6
   - first:
-      213: -6057585493757668902
-    second: kei_heal_alpha_7
+      213: 9092770107516705264
+    second: kei_duck_body_alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kei_heal_alpha_0
+      name: kei_duck_body_alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b46b1435065ef590800000000000000
-      internalID: -7638573337624746830
+      spriteID: 2cb374d02d0057290800000000000000
+      internalID: -7893401869731021886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_1
+      name: kei_duck_body_alpha_1
       rect:
         serializedVersion: 2
         x: 48
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9c0bbf6cae85c350800000000000000
-      internalID: 6036387746820066459
+      spriteID: 02f5c4d8b1ba648d0800000000000000
+      internalID: -2862412378324312288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_2
+      name: kei_duck_body_alpha_2
       rect:
         serializedVersion: 2
         x: 96
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b0bdffdb5efffb10800000000000000
-      internalID: 2017610828638695600
+      spriteID: 1e2d3a2e72c5050c0800000000000000
+      internalID: -4589066693914668319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_3
+      name: kei_duck_body_alpha_3
       rect:
         serializedVersion: 2
         x: 144
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d843ede99a5bdac0800000000000000
-      internalID: -3829367440980883246
+      spriteID: dd22e1fb0253528b0800000000000000
+      internalID: -5177673781830868259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_4
+      name: kei_duck_body_alpha_4
       rect:
         serializedVersion: 2
         x: 192
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 076c9df9facee47a0800000000000000
-      internalID: -6390910582146873744
+      spriteID: b4efa501f341b4d30800000000000000
+      internalID: 4416646120656797259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_5
+      name: kei_duck_body_alpha_5
       rect:
         serializedVersion: 2
         x: 240
@@ -232,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5540c1bc8798ee830800000000000000
-      internalID: 4102367462477792341
+      spriteID: cde711d63bc8dba50800000000000000
+      internalID: 6538536936268725980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_6
+      name: kei_duck_body_alpha_6
       rect:
         serializedVersion: 2
         x: 288
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33cbc5cdf634fbcb0800000000000000
-      internalID: -4846080526309868493
+      spriteID: 816689a95a3e60250800000000000000
+      internalID: 5910661861373142552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_heal_alpha_7
+      name: kei_duck_body_alpha_7
       rect:
         serializedVersion: 2
         x: 336
@@ -274,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad1d30086122feba0800000000000000
-      internalID: -6057585493757668902
+      spriteID: 0f9d2dabc32003e70800000000000000
+      internalID: 9092770107516705264
       vertices: []
       indices: 
       edges: []

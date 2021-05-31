@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 69b1932150ca4e147a7588fa8e222efb
+guid: 02056048dadeeb6418fb6f5007218f48
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6199739213006796300
-    second: kei_Jumpend_alpha_0
+      213: 1868206907324288905
+    second: kei_jump_start_head_alpha_0
   - first:
-      213: -2123362461135876256
-    second: kei_Jumpend_alpha_1
+      213: -6224580393578091447
+    second: kei_jump_start_head_alpha_1
   - first:
-      213: -904814008376291585
-    second: kei_Jumpend_alpha_2
+      213: 1165270989575785302
+    second: kei_jump_start_head_alpha_2
   - first:
-      213: -1773684715461373075
-    second: kei_Jumpend_alpha_3
+      213: -1488556781351827414
+    second: kei_jump_start_head_alpha_3
   - first:
-      213: -8465302765066391773
-    second: kei_Jumpend_alpha_4
+      213: 3968794767516970363
+    second: kei_jump_start_head_alpha_4
   - first:
-      213: 4425964500425755545
-    second: kei_Jumpend_alpha_5
+      213: -284802162950959632
+    second: kei_jump_start_head_alpha_5
   - first:
-      213: -2400864155560765220
-    second: kei_Jumpend_alpha_6
+      213: -4998437509354940493
+    second: kei_jump_start_head_alpha_6
   - first:
-      213: 4322859793046199303
-    second: kei_Jumpend_alpha_7
+      213: 5319793305664212791
+    second: kei_jump_start_head_alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_0
+      name: kei_jump_start_head_alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c06745377f5e90650800000000000000
-      internalID: 6199739213006796300
+      spriteID: 98fcef5b8443de910800000000000000
+      internalID: 1868206907324288905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_1
+      name: kei_jump_start_head_alpha_1
       rect:
         serializedVersion: 2
         x: 48
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06fc896771d4882e0800000000000000
-      internalID: -2123362461135876256
+      spriteID: 94caaec7c19dd99a0800000000000000
+      internalID: -6224580393578091447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_2
+      name: kei_jump_start_head_alpha_2
       rect:
         serializedVersion: 2
         x: 96
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe0fea04747173f0800000000000000
-      internalID: -904814008376291585
+      spriteID: 65b8bb88acfdb2010800000000000000
+      internalID: 1165270989575785302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_3
+      name: kei_jump_start_head_alpha_3
       rect:
         serializedVersion: 2
         x: 144
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d63926f062b9267e0800000000000000
-      internalID: -1773684715461373075
+      spriteID: a28868b7e75975be0800000000000000
+      internalID: -1488556781351827414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_4
+      name: kei_jump_start_head_alpha_4
       rect:
         serializedVersion: 2
         x: 192
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32fe51c7cf3358a80800000000000000
-      internalID: -8465302765066391773
+      spriteID: b7d274040ddf31730800000000000000
+      internalID: 3968794767516970363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_5
+      name: kei_jump_start_head_alpha_5
       rect:
         serializedVersion: 2
         x: 240
@@ -232,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99bcd5c634f2c6d30800000000000000
-      internalID: 4425964500425755545
+      spriteID: 0fd8b0611fd2c0cf0800000000000000
+      internalID: -284802162950959632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_6
+      name: kei_jump_start_head_alpha_6
       rect:
         serializedVersion: 2
         x: 288
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd815d555ca6eaed0800000000000000
-      internalID: -2400864155560765220
+      spriteID: 3b719ee619bf1aab0800000000000000
+      internalID: -4998437509354940493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Jumpend_alpha_7
+      name: kei_jump_start_head_alpha_7
       rect:
         serializedVersion: 2
         x: 336
@@ -274,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70c565a0412edfb30800000000000000
-      internalID: 4322859793046199303
+      spriteID: 73fcd9673d3b3d940800000000000000
+      internalID: 5319793305664212791
       vertices: []
       indices: 
       edges: []

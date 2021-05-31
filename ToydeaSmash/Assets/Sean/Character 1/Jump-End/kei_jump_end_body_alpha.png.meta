@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: e4f123aa0d1d27a4d85c2e0dd45981d5
+guid: 47ab05ceffbca8f4793c57ace51994f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6611792403087013849
-    second: kei_walk_alpha_0
+      213: 9113378100381289102
+    second: kei_jump_end_body_alpha_0
   - first:
-      213: 5168246961898511576
-    second: kei_walk_alpha_1
+      213: 217053700136558250
+    second: kei_jump_end_body_alpha_1
   - first:
-      213: 6423723240642836245
-    second: kei_walk_alpha_2
+      213: 5807385907846084322
+    second: kei_jump_end_body_alpha_2
   - first:
-      213: -7745588152537900151
-    second: kei_walk_alpha_3
+      213: -5947795395288812104
+    second: kei_jump_end_body_alpha_3
   - first:
-      213: 6603025445143139038
-    second: kei_walk_alpha_4
+      213: -163977203740459491
+    second: kei_jump_end_body_alpha_4
   - first:
-      213: -3149247298471671335
-    second: kei_walk_alpha_5
+      213: -588858170193227376
+    second: kei_jump_end_body_alpha_5
   - first:
-      213: 4941121547822337951
-    second: kei_walk_alpha_6
+      213: 8461163889070381053
+    second: kei_jump_end_body_alpha_6
   - first:
-      213: 5274395895564097515
-    second: kei_walk_alpha_7
+      213: -1475203879213827458
+    second: kei_jump_end_body_alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kei_walk_alpha_0
+      name: kei_jump_end_body_alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7284f5517d13e34a0800000000000000
-      internalID: -6611792403087013849
+      spriteID: e8a0d09f819397e70800000000000000
+      internalID: 9113378100381289102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_1
+      name: kei_jump_end_body_alpha_1
       rect:
         serializedVersion: 2
         x: 48
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dcd373ba3d49b740800000000000000
-      internalID: 5168246961898511576
+      spriteID: aaed2d5b031230300800000000000000
+      internalID: 217053700136558250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_2
+      name: kei_jump_end_body_alpha_2
       rect:
         serializedVersion: 2
         x: 96
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 517ffe5c046a52950800000000000000
-      internalID: 6423723240642836245
+      spriteID: 2e676ced6baf79050800000000000000
+      internalID: 5807385907846084322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_3
+      name: kei_jump_end_body_alpha_3
       rect:
         serializedVersion: 2
         x: 144
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98b1187fc94228490800000000000000
-      internalID: -7745588152537900151
+      spriteID: 8b53b1bc99f257da0800000000000000
+      internalID: -5947795395288812104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_4
+      name: kei_jump_end_body_alpha_4
       rect:
         serializedVersion: 2
         x: 192
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed25f9478a8a2ab50800000000000000
-      internalID: 6603025445143139038
+      spriteID: d1eb9cb1a9f69bdf0800000000000000
+      internalID: -163977203740459491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_5
+      name: kei_jump_end_body_alpha_5
       rect:
         serializedVersion: 2
         x: 240
@@ -232,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d9ccb87440ab44d0800000000000000
-      internalID: -3149247298471671335
+      spriteID: 091db863d94f3d7f0800000000000000
+      internalID: -588858170193227376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_6
+      name: kei_jump_end_body_alpha_6
       rect:
         serializedVersion: 2
         x: 288
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9f8af95ed3629440800000000000000
-      internalID: 4941121547822337951
+      spriteID: df7176a5ab71c6570800000000000000
+      internalID: 8461163889070381053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_walk_alpha_7
+      name: kei_jump_end_body_alpha_7
       rect:
         serializedVersion: 2
         x: 336
@@ -274,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be750ef3f1b623940800000000000000
-      internalID: 5274395895564097515
+      spriteID: e7a7e2843e5078be0800000000000000
+      internalID: -1475203879213827458
       vertices: []
       indices: 
       edges: []

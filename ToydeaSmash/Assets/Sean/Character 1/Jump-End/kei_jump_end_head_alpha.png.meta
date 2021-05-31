@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: ff9b43eedb561194c8e37ad63adaeb73
+guid: fd88595af32ad494c89000f09a96a9ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8327272688848864245
-    second: kei_dash_alpha_0
+      213: -5084915562461301856
+    second: kei_jump_end_head_alpha_0
   - first:
-      213: -2836983677224853114
-    second: kei_dash_alpha_1
+      213: -260801653785468533
+    second: kei_jump_end_head_alpha_1
   - first:
-      213: -1679054562839397090
-    second: kei_dash_alpha_2
+      213: -5646824622587210293
+    second: kei_jump_end_head_alpha_2
   - first:
-      213: 221733931094266040
-    second: kei_dash_alpha_3
+      213: -6984993445838007568
+    second: kei_jump_end_head_alpha_3
   - first:
-      213: -5570760427216361952
-    second: kei_dash_alpha_4
+      213: 4038780063499006886
+    second: kei_jump_end_head_alpha_4
   - first:
-      213: 7584260082424150672
-    second: kei_dash_alpha_5
+      213: -1929298040799531129
+    second: kei_jump_end_head_alpha_5
   - first:
-      213: -3076122898192671095
-    second: kei_dash_alpha_6
+      213: -5382044261774916575
+    second: kei_jump_end_head_alpha_6
   - first:
-      213: -6204593812227099764
-    second: kei_dash_alpha_7
+      213: 8776793855289781183
+    second: kei_jump_end_head_alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kei_dash_alpha_0
+      name: kei_jump_end_head_alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f306a6046a609370800000000000000
-      internalID: 8327272688848864245
+      spriteID: 0a373aaac30ce69b0800000000000000
+      internalID: -5084915562461301856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_1
+      name: kei_jump_end_head_alpha_1
       rect:
         serializedVersion: 2
         x: 48
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6816e65606201a8d0800000000000000
-      internalID: -2836983677224853114
+      spriteID: b8168451742716cf0800000000000000
+      internalID: -260801653785468533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_2
+      name: kei_jump_end_head_alpha_2
       rect:
         serializedVersion: 2
         x: 96
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1d757765ccc2b8e0800000000000000
-      internalID: -1679054562839397090
+      spriteID: bc592c58ce272a1b0800000000000000
+      internalID: -5646824622587210293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_3
+      name: kei_jump_end_head_alpha_3
       rect:
         serializedVersion: 2
         x: 144
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b05685e5d1c31300800000000000000
-      internalID: 221733931094266040
+      spriteID: 0f2d4661871501f90800000000000000
+      internalID: -6984993445838007568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_4
+      name: kei_jump_end_head_alpha_4
       rect:
         serializedVersion: 2
         x: 192
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02627f618eea0b2b0800000000000000
-      internalID: -5570760427216361952
+      spriteID: 6a3b9c2c111ac0830800000000000000
+      internalID: 4038780063499006886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_5
+      name: kei_jump_end_head_alpha_5
       rect:
         serializedVersion: 2
         x: 240
@@ -232,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09af011ac54b04960800000000000000
-      internalID: 7584260082424150672
+      spriteID: 78f694c57a1c935e0800000000000000
+      internalID: -1929298040799531129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_6
+      name: kei_jump_end_head_alpha_6
       rect:
         serializedVersion: 2
         x: 288
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98ed7c7a58a6f45d0800000000000000
-      internalID: -3076122898192671095
+      spriteID: 1240a7b52432f45b0800000000000000
+      internalID: -5382044261774916575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_dash_alpha_7
+      name: kei_jump_end_head_alpha_7
       rect:
         serializedVersion: 2
         x: 336
@@ -274,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c83fd961dcad4e9a0800000000000000
-      internalID: -6204593812227099764
+      spriteID: fbbe06b828f6dc970800000000000000
+      internalID: 8776793855289781183
       vertices: []
       indices: 
       edges: []
