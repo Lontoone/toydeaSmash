@@ -1197,7 +1197,7 @@ PrefabInstance:
     - target: {fileID: 5013481930462347707, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: spriteMask
       value: 
-      objectReference: {fileID: 11400000, guid: 60b4fd3e41dbdd444b24e668c890d400, type: 2}
+      objectReference: {fileID: 11400000, guid: a2e7891f494d2b74f98925bbf302e6b6, type: 2}
     - target: {fileID: 7923640692456162526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1220,7 +1220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: jump_start.action.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: falling.action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1389,7 +1389,7 @@ PrefabInstance:
     - target: {fileID: 7923640692734189730, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1952302217132557809, guid: 39511f6714c2c9c428317bdd79fc8f69, type: 3}
+      objectReference: {fileID: -5651572511072010179, guid: 21f8ced2663cea841a67badcbac24413, type: 3}
     - target: {fileID: 7923640692734189731, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1409,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 7923640694212822131, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7328343264786807801, guid: 0b124c98d478d734baa6994a0717442e, type: 3}
+      objectReference: {fileID: -6333854343528573851, guid: aaf1819839bbb0a4193d8573a1b04ce6, type: 3}
     - target: {fileID: 8423634940559796069, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_Controller
       value: 

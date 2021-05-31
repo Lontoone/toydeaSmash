@@ -7,6 +7,6 @@ public class GC_AutoRegister : MonoBehaviour
     public string KEY = "";
     public void Awake()
     {
-        GCManager.RegisterObject(KEY, this);
+        GCManager.RegisterObject(KEY, gameObject);
     }
 }

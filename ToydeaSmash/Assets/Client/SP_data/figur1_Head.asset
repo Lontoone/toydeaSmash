@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a37fa2de8fe4e4ea313a7b9077c9a6, type: 3}
-  m_Name: figur1_Body
+  m_Name: figur1_Head
   m_EditorClassIdentifier: 
   pairs:
   - animation_name: Idle
-    spriteSheet: {fileID: 8196672461186856224, guid: 069580ecebdca66429475751e3bb2d52, type: 3}
+    spriteSheet: {fileID: -8091764412231461008, guid: a992460ad1f10484eb43778de0b35421, type: 3}
   - animation_name: Walk
     spriteSheet: {fileID: -6611792403087013849, guid: e4f123aa0d1d27a4d85c2e0dd45981d5, type: 3}
   - animation_name: Jump-Start
