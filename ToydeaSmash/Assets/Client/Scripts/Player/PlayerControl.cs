@@ -12,7 +12,8 @@ public class PlayerControl : MonoBehaviour
     PhysicsControlListeners listeners;
     HitableObj hitable;
     ActionController actionController;
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash;
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop;
+
 
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
@@ -140,7 +141,7 @@ public class PlayerControl : MonoBehaviour
     {
 
         rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-        
+
         Debug.Log("jump force " + rigid.velocity);
     }
     void AddDefault()
@@ -261,6 +262,16 @@ public class PlayerControl : MonoBehaviour
         rigid.AddForce(dash_force * -transform.right);
         head.PlayAnimatiom("Dash");
         body.PlayAnimatiom("Dash");
+    }
+
+    public void Duck()
+    {
+
+    }
+    public void Stop()
+    {
+        actionController.AddAction(stop);
+        rigid.velocity = Vector2.zero;
     }
 
     void Effect(string _gc_key, string _clip_name)
