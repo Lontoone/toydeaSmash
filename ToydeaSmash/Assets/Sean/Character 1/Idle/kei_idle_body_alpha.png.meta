@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: c6caf17f789abb9498d14614711f62bc
+guid: 069580ecebdca66429475751e3bb2d52
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4905426060563047824
-    second: kei_Idle_Alpha_0
+      213: 8196672461186856224
+    second: kei_idle_body_alpha_0
   - first:
-      213: -1872799536285990230
-    second: kei_Idle_Alpha_1
+      213: -7984405533627375334
+    second: kei_idle_body_alpha_1
   - first:
-      213: 1616939647412395490
-    second: kei_Idle_Alpha_2
+      213: 3016414784737210111
+    second: kei_idle_body_alpha_2
   - first:
-      213: -3101883164597170884
-    second: kei_Idle_Alpha_3
+      213: -5589313372985227228
+    second: kei_idle_body_alpha_3
   - first:
-      213: 2791250008880554465
-    second: kei_Idle_Alpha_4
+      213: -913481905627539658
+    second: kei_idle_body_alpha_4
   - first:
-      213: -7243789091125048108
-    second: kei_Idle_Alpha_5
+      213: 5258512267721324001
+    second: kei_idle_body_alpha_5
   - first:
-      213: -3870905092026819057
-    second: kei_Idle_Alpha_6
+      213: -1445071746708897937
+    second: kei_idle_body_alpha_6
   - first:
-      213: -3202989870350391057
-    second: kei_Idle_Alpha_7
+      213: -6735894697593088206
+    second: kei_idle_body_alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kei_Idle_Alpha_0
+      name: kei_idle_body_alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07a123cecfc6cebb0800000000000000
-      internalID: -4905426060563047824
+      spriteID: 025f445fc2e60c170800000000000000
+      internalID: 8196672461186856224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_1
+      name: kei_idle_body_alpha_1
       rect:
         serializedVersion: 2
         x: 48
@@ -148,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa248288eba7206e0800000000000000
-      internalID: -1872799536285990230
+      spriteID: a112a796871b13190800000000000000
+      internalID: -7984405533627375334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_2
+      name: kei_idle_body_alpha_2
       rect:
         serializedVersion: 2
         x: 96
@@ -169,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2edd24bda06807610800000000000000
-      internalID: 1616939647412395490
+      spriteID: ffe6f7bd3457cd920800000000000000
+      internalID: 3016414784737210111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_3
+      name: kei_idle_body_alpha_3
       rect:
         serializedVersion: 2
         x: 144
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3dcb6f32b5e3f4d0800000000000000
-      internalID: -3101883164597170884
+      spriteID: 42800e8c915ce62b0800000000000000
+      internalID: -5589313372985227228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_4
+      name: kei_idle_body_alpha_4
       rect:
         serializedVersion: 2
         x: 192
@@ -211,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e1a1aa28138cb620800000000000000
-      internalID: 2791250008880554465
+      spriteID: 637d252fb09a253f0800000000000000
+      internalID: -913481905627539658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_5
+      name: kei_idle_body_alpha_5
       rect:
         serializedVersion: 2
         x: 240
@@ -232,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dc44ab6334e87b90800000000000000
-      internalID: -7243789091125048108
+      spriteID: 1e53094fb0df9f840800000000000000
+      internalID: 5258512267721324001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_6
+      name: kei_idle_body_alpha_6
       rect:
         serializedVersion: 2
         x: 288
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e9d76e358c74ac0800000000000000
-      internalID: -3870905092026819057
+      spriteID: f6f767617e212fbe0800000000000000
+      internalID: -1445071746708897937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kei_Idle_Alpha_7
+      name: kei_idle_body_alpha_7
       rect:
         serializedVersion: 2
         x: 336
@@ -274,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe8279edea1bc83d0800000000000000
-      internalID: -3202989870350391057
+      spriteID: 237d689f57b4582a0800000000000000
+      internalID: -6735894697593088206
       vertices: []
       indices: 
       edges: []
