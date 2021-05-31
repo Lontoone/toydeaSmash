@@ -335,17 +335,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &572551202 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-  m_PrefabInstance: {fileID: 7923640693875145251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5ea206533f722448c08b2071b778e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &649364188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,126 +1179,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.force
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash_force
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.isLoop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.timeOut
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.duration
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.gap_time
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.priority
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.description
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: jump_end.duration
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 572551202}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 572551202}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Walk_animation
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 572551202}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerControl, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerControl, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerControl, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: walk.action.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692456162592, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: dash.callbackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162594, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1354,17 +1223,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7923640692734189730, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692734189730, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923640692734189730, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
-      propertyPath: m_Color.r
-      value: 1
+    - target: {fileID: 7923640692456162599, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: touch_ground_radious
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}

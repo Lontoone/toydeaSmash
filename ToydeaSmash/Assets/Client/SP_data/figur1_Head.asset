@@ -16,6 +16,12 @@ MonoBehaviour:
   - animation_name: Idle
     spriteSheet: {fileID: -8091764412231461008, guid: a992460ad1f10484eb43778de0b35421, type: 3}
   - animation_name: Walk
-    spriteSheet: {fileID: -6611792403087013849, guid: e4f123aa0d1d27a4d85c2e0dd45981d5, type: 3}
-  - animation_name: Jump-Start
-    spriteSheet: {fileID: -6611792403087013849, guid: e4f123aa0d1d27a4d85c2e0dd45981d5, type: 3}
+    spriteSheet: {fileID: 4562889470339263287, guid: ba9602efbb154184cbfd30a814c67d8e, type: 3}
+  - animation_name: Jumping
+    spriteSheet: {fileID: -5084915562461301856, guid: fd88595af32ad494c89000f09a96a9ae, type: 3}
+  - animation_name: Jump-End
+    spriteSheet: {fileID: -5084915562461301856, guid: fd88595af32ad494c89000f09a96a9ae, type: 3}
+  - animation_name: Jump Falling
+    spriteSheet: {fileID: 1868206907324288905, guid: 02056048dadeeb6418fb6f5007218f48, type: 3}
+  - animation_name: Dash
+    spriteSheet: {fileID: 1525244544193797886, guid: 6624f394c38c90e40ad342e5248952a0, type: 3}
