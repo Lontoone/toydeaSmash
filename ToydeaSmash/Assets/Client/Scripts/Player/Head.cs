@@ -18,7 +18,7 @@ public class Head : MonoBehaviour
     public void Start()
     {
         _player = GetComponent<PlayerControl>();
-
+        /*
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
         GetComponent<SpriteRenderer>().material = _sprite_mat;
 
@@ -28,7 +28,7 @@ public class Head : MonoBehaviour
         {
             _sprite_mat.SetTexture("_Mask", Resources.Load<Sprite>("img/black").texture);
         }
-
+        */
 
         animator = GetComponent<Animator>();
     }
@@ -50,13 +50,14 @@ public class Head : MonoBehaviour
 
     public void PlayAnimatiom(string name)
     {
+        /*
         if (spriteMask != null && (_temp_sprite_name != name))
         {
             _temp_sprite_name = name;
             Sprite _sp = spriteMask.GetSprite(name);
             if (_sp != null)
                 _sprite_mat.SetTexture("_Mask", _sp.texture);
-        }
+        }*/
         animator.Play(name);
     }
 

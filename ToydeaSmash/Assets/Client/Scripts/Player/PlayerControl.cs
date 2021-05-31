@@ -200,9 +200,12 @@ public class PlayerControl : MonoBehaviour
         //.sprite = head.spriteMask.GetSprite("Walk");
         //body_sp.sprite = body.spriteMask.GetSprite("Walk");
 
+    
+    }
+
+    public void Walk_animation() {
         head.PlayAnimatiom("Walk");
         body.PlayAnimatiom("Walk");
-
     }
 
     public void Idle()

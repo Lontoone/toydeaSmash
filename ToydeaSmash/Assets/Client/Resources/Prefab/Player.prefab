@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7923640692456162526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 7923640694212822124}
   - {fileID: 7923640692734189731}
@@ -183,6 +183,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Jump_start
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -211,6 +223,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Jumping
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -226,7 +250,31 @@ MonoBehaviour:
     gap_time: 0.5
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Falling
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Move
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -242,13 +290,25 @@ MonoBehaviour:
     gap_time: 0.05
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Move
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
     priority: 10
     force: 1
-    duration: 0.2
+    duration: 0.1
     isLoop: 0
     timeOut: 1
     time_out_counter: 0
@@ -463,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 7923640692734189660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7923640692456162594}
   m_RootOrder: 1
@@ -507,8 +567,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1580176574393622936, guid: 419112eeda796ee45823e8ad83f65ee0, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -5651572511072010179, guid: 21f8ced2663cea841a67badcbac24413, type: 3}
   m_Color: {r: 1, g: 0, b: 0.37647057, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -531,7 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a6bcd8531bdb14baa3037b2eb36b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteMask: {fileID: 0}
+  spriteMask: {fileID: 11400000, guid: 60b4fd3e41dbdd444b24e668c890d400, type: 2}
+  damage: 100
 --- !u!95 &4384385459083811233
 Animator:
   serializedVersion: 3
@@ -542,7 +603,7 @@ Animator:
   m_GameObject: {fileID: 7923640692734189660}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8cf5a8689e7e00844a2fb4dbcf724b9e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0fe529fdb06c4ee4a9e5fd66b42bb212, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -579,7 +640,7 @@ Transform:
   m_GameObject: {fileID: 7923640694212822125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7923640692456162594}
   m_RootOrder: 0
@@ -624,7 +685,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4728779622702490770, guid: f1957aebf4785474db3951e3bbf3dc21, type: 3}
+  m_Sprite: {fileID: -6333854343528573851, guid: aaf1819839bbb0a4193d8573a1b04ce6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -647,7 +708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb79a0c4fd5fc74e9c1cbcdad4c884d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteMask: {fileID: 0}
+  spriteMask: {fileID: 11400000, guid: a2e7891f494d2b74f98925bbf302e6b6, type: 2}
+  buffs:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &8423634940559796069
 Animator:
   serializedVersion: 3
@@ -658,7 +722,7 @@ Animator:
   m_GameObject: {fileID: 7923640694212822125}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bf53a6a45ed20f6488e8662751ae7dd9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 72ca19e27691e6a4c88fc1bb384c4b44, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
