@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class Head : MonoBehaviour
 {
     //TODO: special skill
@@ -9,11 +9,16 @@ public class Head : MonoBehaviour
     public SpriteMaskPair spriteMask;
     Material _sprite_mat;
     Animator animator;
+    public UnityEvent buffs;
+
+    PlayerControl _player;
 
     string _temp_sprite_name;
 
     public void Start()
     {
+        _player = GetComponent<PlayerControl>();
+
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
         GetComponent<SpriteRenderer>().material = _sprite_mat;
 
@@ -51,5 +56,23 @@ public class Head : MonoBehaviour
             _sprite_mat.SetTexture("_Mask", spriteMask.GetSprite(name).texture);
         }
         animator.Play(name);
+    }
+
+    public void ApplyBuff()
+    {
+        if (buffs != null)
+        {
+            buffs.Invoke();
+        }
+    }
+
+    /*
+     Default Buffs
+     */
+
+    public void AddDamage(float _persent)
+    {
+        float _damage = _player.body.damage * _persent;
+        _player.body.damage = _damage;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackControl : MonoBehaviour
 {
+
     ActionController actionController;
     Rigidbody2D rigid;
     public ActionController.mAction attack, up_attack, down_attack, dash;

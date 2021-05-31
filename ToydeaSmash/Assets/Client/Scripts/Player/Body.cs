@@ -10,7 +10,9 @@ public class Body : MonoBehaviour
     //TODO: attack action
     Animator animator;
 
+    public float damage = 100;
     string _temp_sprite_name;
+
     public void Start()
     {
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
