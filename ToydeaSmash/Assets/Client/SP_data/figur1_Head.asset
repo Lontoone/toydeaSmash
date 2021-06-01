@@ -31,3 +31,5 @@ MonoBehaviour:
     spriteSheet: {fileID: -5861308319106242151, guid: 0563d7b952f6b9a4aae0c043cfea414a, type: 3}
   - animation_name: Up attack
     spriteSheet: {fileID: -6784257459257330290, guid: 66163a48909b8f841bb04af750236a1e, type: 3}
+  - animation_name: Down attack
+    spriteSheet: {fileID: 5599900820847291368, guid: e5b652acc2a881f40b4a77b55b17eeee, type: 3}

@@ -45,16 +45,16 @@ public class Body : MonoBehaviour
         return _sp;
     }
 
-    public void PlayAnimatiom(string name)
+    public void PlayAnimation(string name)
     {
 
         if (spriteMask != null && (_temp_sprite_name != name))
         {
             _temp_sprite_name = name;
+            Sprite _sp = spriteMask.GetSprite(name);
+            if (_sp != null)
+                _sprite_mat.SetTexture("_Mask", _sp.texture);
         }
-        Sprite _sp = spriteMask.GetSprite(name);
-        if (_sp != null)
-            _sprite_mat.SetTexture("_Mask", _sp.texture);
 
         animator.Play(name);
     }

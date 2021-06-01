@@ -425,11 +425,11 @@ MonoBehaviour:
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
-    priority: 9
+    priority: 2
     force: 1
     duration: 999
     isLoop: 0
-    timeOut: 0
+    timeOut: 1
     time_out_counter: 0
   stop:
     description: Stop
@@ -507,7 +507,7 @@ MonoBehaviour:
     m_Bits: 256
   footPositon: {fileID: 7923640694361667545}
   isGrounded: 0
-  touch_ground_radious: 0.5
+  touch_ground_radious: 0.1
 --- !u!70 &8613946847290611853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
