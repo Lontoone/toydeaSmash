@@ -77,6 +77,7 @@ MonoBehaviour:
   maxHP: 0
   isDead: 0
   isHitable: 1
+  hit_combo: 0
 --- !u!114 &7923640692456162592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,16 +163,40 @@ MonoBehaviour:
   hurt:
     description: Hurt
     is_in_gap_time_lock: 0
-    gap_time: 0.25
+    gap_time: 1
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Hurt
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
-        m_Calls: []
-    priority: 99
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: ResetHitCombo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    priority: 100
     force: 1
-    duration: 0.25
+    duration: 1
     isLoop: 0
     timeOut: 0
     time_out_counter: 0
@@ -444,6 +469,46 @@ MonoBehaviour:
     priority: 999
     force: 1
     duration: 0.01
+    isLoop: 0
+    timeOut: 0
+    time_out_counter: 0
+  hurt_falling:
+    description: Hurt falling
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Hurt_Fly
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: ResetHitCombo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    priority: 100
+    force: 1
+    duration: 1
     isLoop: 0
     timeOut: 0
     time_out_counter: 0
