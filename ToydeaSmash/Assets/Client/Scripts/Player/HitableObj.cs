@@ -42,6 +42,12 @@ public class HitableObj : MonoBehaviour
     {
         if (Hit_event != null)
         {
+            //Turn to hit sources
+            if (Vector2.Dot(t.transform.right, attackSource.transform.right) > 0)
+            {
+                t.transform.eulerAngles = new Vector3(0, t.transform.eulerAngles.y + 180, 0);
+            }
+
             Hit_event(t, d, attackSource); //被攻擊的,傷害,攻擊者
         }
     }
@@ -104,7 +110,7 @@ public class HitableObj : MonoBehaviour
         //晃鏡頭
         //GameObject.FindObjectOfType<CameraFollow>().CameraShake(0.25f,0.1f,2.5f);
         //CameraFollow.CameraShake_c(0.25f, 0.1f, 2.5f);
-        
+
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_LINE_SMALL, 2);
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_Particle_SMALL, 5);
 

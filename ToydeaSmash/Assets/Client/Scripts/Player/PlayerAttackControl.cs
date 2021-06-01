@@ -51,8 +51,18 @@ public class PlayerAttackControl : MonoBehaviour
             current_Attack_collider = attackCollider;
             Attack();
         });
-        up_attack.action.AddListener(delegate { Attack(); });
-        down_attack.action.AddListener(delegate { Attack(); });
+
+        up_attack.action.AddListener(delegate
+        {
+            UpAttack();
+            Attack();
+        });
+
+        down_attack.action.AddListener(delegate
+        {
+            DownAttack();
+            Attack();
+        });
 
         //for test:
         //attack.callbackEvent.AddListener(delegate { _attack_callback_event(); });
@@ -60,11 +70,23 @@ public class PlayerAttackControl : MonoBehaviour
 
     public void Update()
     {
+        //Up Attack
+        if (Input.GetAxisRaw(_player.vertical_axis_name) > 0 && Input.GetKeyDown(_player.attack_key))
+        {
+            actionController.AddAction(up_attack);
+        }
+        //Down Attack
+        else if (Input.GetAxisRaw(_player.vertical_axis_name) <0  && Input.GetKeyDown(_player.attack_key))
+        {
+            actionController.AddAction(down_attack);
+        }
         //Attack input
-        if (Input.GetKeyDown(_player.attack_key))
+        else if (Input.GetKeyDown(_player.attack_key))
         {
             actionController.AddAction(attack);
         }
+
+
     }
 
 
@@ -84,10 +106,13 @@ public class PlayerAttackControl : MonoBehaviour
     }
     public virtual void UpAttack()
     {
+        current_Attack_collider = up_attackCollider;
+        _player.PlayAniamtion("Up attack");
     }
     public virtual void DownAttack()
     {
-
+        current_Attack_collider = down_attackCollider;
+        _player.PlayAniamtion("Down attack");
     }
 
 

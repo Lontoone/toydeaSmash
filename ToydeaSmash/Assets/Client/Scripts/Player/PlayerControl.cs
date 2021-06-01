@@ -98,7 +98,7 @@ public class PlayerControl : MonoBehaviour
         //jump_axis_name = "j" + _i.ToString();
         jump_key = CustomPropertyCode.JumpKeys[_i];
         dash_key = CustomPropertyCode.DashKyes[_i];
-        duck_key= CustomPropertyCode.DuckKyes[_i];
+        duck_key = CustomPropertyCode.DuckKyes[_i];
         attack_key = CustomPropertyCode.AttackKyes[_i];
 
 
@@ -334,6 +334,10 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("HURT!");
             //playerAttack.input_s="Hurt";
             //animator.Play("Hurt");
+
+            //add force
+            rigid.AddForce(transform.right * dash_force * 0.5f);
+
         }
     }
     void Die()
@@ -349,7 +353,8 @@ public class PlayerControl : MonoBehaviour
         //animator.Play("Idle");
     }
 
-    public void PlayAniamtion(string _clipName) {
+    public void PlayAniamtion(string _clipName)
+    {
         head.PlayAnimatiom(_clipName);
         body.PlayAnimatiom(_clipName);
     }
