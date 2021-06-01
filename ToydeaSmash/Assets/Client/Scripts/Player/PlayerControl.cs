@@ -111,9 +111,9 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         //跳躍
-        if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
+        //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
         //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
-        //if (Input.GetKeyDown(jump_key) && (jump_count < 2))
+        if (Input.GetKeyDown(jump_key) && (jump_count < 2))
         {
             Debug.Log("jump");
             if (jump_count == 0)
@@ -135,7 +135,8 @@ public class PlayerControl : MonoBehaviour
         }
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        //if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(dash_key))
         {
             actionController.AddAction(dash);
         }
