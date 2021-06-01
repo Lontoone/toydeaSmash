@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7923640692456162592}
   - component: {fileID: 7923640692456162593}
   - component: {fileID: 7923640692456162599}
-  - component: {fileID: 7421235546513670264}
   - component: {fileID: 8613946847290611853}
   m_Layer: 0
   m_Name: Player
@@ -74,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backForce: 0.2
-  HP: 20
+  HP: 1000
   maxHP: 0
   isDead: 0
   isHitable: 1
@@ -405,23 +404,35 @@ MonoBehaviour:
     timeOut: 1
     time_out_counter: 0
   duck:
-    description: 
+    description: Duck
     is_in_gap_time_lock: 0
     gap_time: 0.5
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: Duck
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
+    priority: 9
+    force: 1
+    duration: 999
+    isLoop: 0
     timeOut: 0
     time_out_counter: 0
   stop:
-    description: 
+    description: Stop
     is_in_gap_time_lock: 0
     gap_time: 0.5
     action:
@@ -430,10 +441,10 @@ MonoBehaviour:
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
+    priority: 999
+    force: 1
+    duration: 0.01
+    isLoop: 0
     timeOut: 0
     time_out_counter: 0
   horizontal_axis_name: Horizontal
@@ -443,6 +454,7 @@ MonoBehaviour:
   head: {fileID: 3964585488362808030}
   body: {fileID: 4272841706376436556}
   dash_force: 700
+  heal_amount: 50
   jump_count: 2
 --- !u!114 &7923640692456162593
 MonoBehaviour:
@@ -493,90 +505,7 @@ MonoBehaviour:
     m_Bits: 256
   footPositon: {fileID: 7923640694361667545}
   isGrounded: 0
-  touch_ground_radious: 0.1
---- !u!114 &7421235546513670264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923640692456162526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 534e961b8b286fb4b98754d48f262917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack:
-    description: 
-    is_in_gap_time_lock: 0
-    gap_time: 0.5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    callbackEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
-    timeOut: 0
-    time_out_counter: 0
-  up_attack:
-    description: 
-    is_in_gap_time_lock: 0
-    gap_time: 0.5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    callbackEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
-    timeOut: 0
-    time_out_counter: 0
-  down_attack:
-    description: 
-    is_in_gap_time_lock: 0
-    gap_time: 0.5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    callbackEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
-    timeOut: 0
-    time_out_counter: 0
-  dash:
-    description: 
-    is_in_gap_time_lock: 0
-    gap_time: 0.5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    callbackEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    priority: 0
-    force: 0
-    duration: 0
-    isLoop: 1
-    timeOut: 0
-    time_out_counter: 0
-  current_Attack_collider: {fileID: 0}
-  attackCollider: {fileID: 0}
-  up_attackCollider: {fileID: 0}
-  down_attackCollider: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  touch_ground_radious: 0.5
 --- !u!70 &8613946847290611853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

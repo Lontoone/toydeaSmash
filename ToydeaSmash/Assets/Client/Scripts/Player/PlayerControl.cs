@@ -20,12 +20,14 @@ public class PlayerControl : MonoBehaviour
     //public string jump_axis_name = "Jump";                //default
     public KeyCode jump_key = KeyCode.Space;
     public KeyCode dash_key = KeyCode.LeftShift;
+    public KeyCode duck_key = KeyCode.DownArrow;
 
     public Head head;
     public Body body;
     SpriteRenderer head_sp, body_sp;
 
     public float dash_force = 15;
+    public float heal_amount = 50;
 
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
@@ -89,12 +91,13 @@ public class PlayerControl : MonoBehaviour
         head_sp = head.GetComponent<SpriteRenderer>();
         body_sp = body.GetComponent<SpriteRenderer>();
 
-
+        //********Set Keys *****************
         horizontal_axis_name = "h" + _i.ToString();
         vertical_axis_name = "v" + _i.ToString();
         //jump_axis_name = "j" + _i.ToString();
         jump_key = CustomPropertyCode.JumpKeys[_i];
         dash_key = CustomPropertyCode.DashKyes[_i];
+        duck_key= CustomPropertyCode.DuckKyes[_i];
 
 
         //set team Layer
@@ -139,6 +142,19 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(dash_key))
         {
             actionController.AddAction(dash);
+        }
+
+        //Duck
+        if (Input.GetKeyDown(duck_key))
+        {
+            actionController.AddAction(duck);
+            cHeal = StartCoroutine(Heal());
+        }
+        //Duck Finish
+        else if (Input.GetKeyUp(duck_key))
+        {
+            actionController.AddAction(stop);
+            StopCoroutine(cHeal);
         }
 
     }
@@ -276,8 +292,25 @@ public class PlayerControl : MonoBehaviour
 
     public void Duck()
     {
-
+        head.PlayAnimatiom("Duck");
+        body.PlayAnimatiom("Duck");
     }
+
+    //Heal player HP
+    Coroutine cHeal;
+    IEnumerator Heal()
+    {
+        WaitForSeconds _oneSec = new WaitForSeconds(1);
+        while (true)
+        {
+            Animator _effect = GCManager.Instantiate("Heal Effect", position: listeners.footPositon.transform.position).GetComponent<Animator>();
+            _effect.Play("heal");
+            hitable.Heal(heal_amount);
+            yield return _oneSec;
+        }
+    }
+
+
     public void Stop()
     {
         actionController.AddAction(stop);
@@ -296,6 +329,7 @@ public class PlayerControl : MonoBehaviour
         {
             //被擊退
             actionController.AddAction(hurt);
+            Debug.Log("HURT!");
             //playerAttack.input_s="Hurt";
             //animator.Play("Hurt");
         }

@@ -15,25 +15,69 @@ public class PlayerAttackControl : MonoBehaviour
     public Collider2D up_attackCollider;
     public Collider2D down_attackCollider;
 
+    Body body;
+
     ContactFilter2D filter;
-    Collider2D[] res=new Collider2D[5];
+    Collider2D[] res = new Collider2D[5];
 
     public LayerMask targetLayer;
 
     public void Start()
     {
-        actionController = GetComponent<ActionController>();
+        body = GetComponent<Body>();
+        actionController = transform.parent.GetComponent<ActionController>();
         rigid = GetComponent<Rigidbody2D>();
 
-        filter.SetLayerMask(targetLayer);
+        //include other player's layer:
+        for (int i = 0; i < 4; i++)
+        {
+            string _layer_name = "Player" + i.ToString();
+            Debug.Log("layer " + LayerMask.NameToLayer(_layer_name) + " vs " + transform.parent.gameObject.layer);
+            if (LayerMask.NameToLayer(_layer_name) != transform.parent.gameObject.layer)
+            {
+                targetLayer |= (1 << LayerMask.NameToLayer(_layer_name));
+            }
+        }
 
-        attack.action.AddListener(delegate { Attack(); });
+
+        filter.SetLayerMask(targetLayer);
+        filter.useTriggers = true;
+
+        attack.action.AddListener(delegate
+        {
+            current_Attack_collider = attackCollider;
+            Attack();
+        });
         up_attack.action.AddListener(delegate { Attack(); });
         down_attack.action.AddListener(delegate { Attack(); });
+
+        //for test:
+        attack.callbackEvent.AddListener(delegate { _attack_callback_event(); });
     }
+
+    public void Update()
+    {
+        //Attack input
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            actionController.AddAction(attack);
+        }
+    }
+
+
     public virtual void Attack()
     {
+        //test
+        _attack_test();
 
+        //check collider
+
+        int _num = current_Attack_collider.OverlapCollider(filter, res);
+        for (int i = 0; i < _num; i++)
+        {
+            HitableObj.Hit_event_c(res[i].gameObject, body.damage, body.transform.parent.gameObject);
+            Debug.Log("Hits " + res[i].gameObject.name);
+        }
     }
     public virtual void UpAttack()
     {
@@ -41,6 +85,22 @@ public class PlayerAttackControl : MonoBehaviour
     public virtual void DownAttack()
     {
 
+    }
+
+
+    /*   TEST   */
+    Color _origin_color;
+    void _attack_test()
+    {
+        SpriteRenderer _sp = GetComponent<SpriteRenderer>();
+        _origin_color = _sp.color;
+
+        _sp.color = Random.ColorHSV();
+    }
+
+    void _attack_callback_event()
+    {
+        GetComponent<SpriteRenderer>().color = _origin_color;
     }
 
 }

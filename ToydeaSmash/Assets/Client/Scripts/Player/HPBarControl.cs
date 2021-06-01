@@ -32,6 +32,7 @@ public class HPBarControl : MonoBehaviour
         hitable = _hitable;
         maxHP = hitable.HP;
         hitable.gotHit_event += UpdateHPBar;
+        hitable.gotHeel_event += UpdateHPBar;
         hitable.Die_event += DestorySelfOnDie;
 
         //height_offset = (float)_hitable.gameObject.GetComponent<SpriteRenderer>()?.bounds.size.y;
@@ -45,7 +46,7 @@ public class HPBarControl : MonoBehaviour
         maxHP = hitable.HP;
         hitable.gotHit_event += UpdateHPBar;
         hitable.Die_event += DestorySelfOnDie;
-
+        hitable.gotHeel_event += UpdateHPBar;
 
     }
     private void OnDisable()
@@ -53,6 +54,7 @@ public class HPBarControl : MonoBehaviour
         if (hitable == null) { return; }
 
         hitable.gotHit_event -= UpdateHPBar;
+        hitable.gotHeel_event -= UpdateHPBar;
         hitable.Die_event -= DestorySelfOnDie;
     }
 
@@ -73,6 +75,7 @@ public class HPBarControl : MonoBehaviour
 
     public void UpdateHPBar()
     {
+        Debug.Log("Update HP");
         bar.fillAmount = hitable.HP / (float)maxHP;
 
     }

@@ -13,4 +13,5 @@ public class CustomPropertyCode : MonoBehaviour
     public static readonly Color[] TEAMCOLORS = { Color.red, Color.green, Color.white, Color.blue };
     public static readonly KeyCode[] JumpKeys = { KeyCode.Space, KeyCode.KeypadEnter };
     public static readonly KeyCode[] DashKyes = { KeyCode.LeftShift, KeyCode.RightShift};
+    public static readonly KeyCode[] DuckKyes = { KeyCode.S, KeyCode.DownArrow};
 }

@@ -25,3 +25,5 @@ MonoBehaviour:
     spriteSheet: {fileID: 1868206907324288905, guid: 02056048dadeeb6418fb6f5007218f48, type: 3}
   - animation_name: Dash
     spriteSheet: {fileID: 1525244544193797886, guid: 6624f394c38c90e40ad342e5248952a0, type: 3}
+  - animation_name: Duck
+    spriteSheet: {fileID: -6299818679954293373, guid: baac6b9a71eb28a4db6a10abe8260eb5, type: 3}
