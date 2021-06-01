@@ -451,6 +451,7 @@ MonoBehaviour:
   vertical_axis_name: Vertical
   jump_key: 0
   dash_key: 304
+  duck_key: 274
   head: {fileID: 3964585488362808030}
   body: {fileID: 4272841706376436556}
   dash_force: 700

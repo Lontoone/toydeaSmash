@@ -191,7 +191,7 @@ MonoBehaviour:
   attack:
     description: Attack
     is_in_gap_time_lock: 0
-    gap_time: 1
+    gap_time: 1.2
     action:
       m_PersistentCalls:
         m_Calls: []
@@ -200,7 +200,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 9
     force: 1
-    duration: 0.5
+    duration: 1
     isLoop: 0
     timeOut: 5
     time_out_counter: 0

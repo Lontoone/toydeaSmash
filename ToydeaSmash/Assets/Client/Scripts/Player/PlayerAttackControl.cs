@@ -15,6 +15,7 @@ public class PlayerAttackControl : MonoBehaviour
     public Collider2D up_attackCollider;
     public Collider2D down_attackCollider;
 
+    PlayerControl _player;
     Body body;
 
     ContactFilter2D filter;
@@ -25,6 +26,7 @@ public class PlayerAttackControl : MonoBehaviour
     public void Start()
     {
         body = GetComponent<Body>();
+        _player = transform.parent.GetComponent<PlayerControl>();
         actionController = transform.parent.GetComponent<ActionController>();
         rigid = GetComponent<Rigidbody2D>();
 
@@ -45,6 +47,7 @@ public class PlayerAttackControl : MonoBehaviour
 
         attack.action.AddListener(delegate
         {
+            _player.PlayAniamtion("Attack");
             current_Attack_collider = attackCollider;
             Attack();
         });
@@ -52,13 +55,13 @@ public class PlayerAttackControl : MonoBehaviour
         down_attack.action.AddListener(delegate { Attack(); });
 
         //for test:
-        attack.callbackEvent.AddListener(delegate { _attack_callback_event(); });
+        //attack.callbackEvent.AddListener(delegate { _attack_callback_event(); });
     }
 
     public void Update()
     {
         //Attack input
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(_player.attack_key))
         {
             actionController.AddAction(attack);
         }
@@ -68,7 +71,7 @@ public class PlayerAttackControl : MonoBehaviour
     public virtual void Attack()
     {
         //test
-        _attack_test();
+        //_attack_test();
 
         //check collider
 

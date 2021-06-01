@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public KeyCode jump_key = KeyCode.Space;
     public KeyCode dash_key = KeyCode.LeftShift;
     public KeyCode duck_key = KeyCode.DownArrow;
+    public KeyCode attack_key = KeyCode.Z;
 
     public Head head;
     public Body body;
@@ -98,6 +99,7 @@ public class PlayerControl : MonoBehaviour
         jump_key = CustomPropertyCode.JumpKeys[_i];
         dash_key = CustomPropertyCode.DashKyes[_i];
         duck_key= CustomPropertyCode.DuckKyes[_i];
+        attack_key = CustomPropertyCode.AttackKyes[_i];
 
 
         //set team Layer
@@ -345,5 +347,10 @@ public class PlayerControl : MonoBehaviour
         jump_count = 0;
         actionController.AddAction(jump_end);
         //animator.Play("Idle");
+    }
+
+    public void PlayAniamtion(string _clipName) {
+        head.PlayAnimatiom(_clipName);
+        body.PlayAnimatiom(_clipName);
     }
 }
