@@ -340,12 +340,20 @@ public class PlayerControl : MonoBehaviour
             actionController = GetComponent<ActionController>();
         actionController.AddAction(landing);
         listeners.eOnTouchGround += AddLandEnd;
+        cCreateImageTrail = StartCoroutine(CreateTrailCoro());
     }
     public void AddLandEnd()
     {
         actionController.AddAction(land_end);
         listeners.eOnTouchGround -= AddLandEnd;
+
+        StopCoroutine(cCreateImageTrail);
         //PlayAniamtion("landing fall");
+    }
+    public void CreateImageTrail()
+    {
+        head.CreateImageTrail();
+        body.CreateImageTrail();
     }
 
     public void AddRevive()
@@ -391,6 +399,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    Coroutine cCreateImageTrail;
+    IEnumerator CreateTrailCoro() {
+        WaitForFixedUpdate _wait = new WaitForFixedUpdate();
+        while (true) {
+            CreateImageTrail();
+            yield return _wait;
+        }
+    }
 
     public void Stop()
     {

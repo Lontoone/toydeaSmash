@@ -19,7 +19,7 @@ public class MapControl : MonoBehaviour
     //public Transform[]
     public Vector2 viewWorldCenter
     {
-        get { return Camera.main.ViewportToWorldPoint(new Vector2(0, 1)); }
+        get { return Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 1)); }
     }
 
 

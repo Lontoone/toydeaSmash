@@ -9,6 +9,8 @@ public class Head : MonoBehaviour
     public SpriteMaskPair spriteMask;
     Material _sprite_mat;
     Animator animator;
+    [HideInInspector]
+    public SpriteRenderer sp;
     public UnityEvent buffs;
 
     PlayerControl _player;
@@ -18,9 +20,9 @@ public class Head : MonoBehaviour
     public void Awake()
     {
         _player = GetComponent<PlayerControl>();
-        
+        sp = GetComponent<SpriteRenderer>();
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
-        GetComponent<SpriteRenderer>().material = _sprite_mat;
+        sp.material = _sprite_mat;
         _sprite_mat.renderQueue = 3000;
 
         if (spriteMask != null)
@@ -80,5 +82,11 @@ public class Head : MonoBehaviour
     {
         float _damage = _player.body.damage * _persent;
         _player.body.damage = _damage;
+    }
+
+    public void CreateImageTrail()
+    {
+        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale,sp.color);
+        //AfterImage.CreateImageTrail(body.sp.sprite, body.transform.position, body.transform.lossyScale);
     }
 }
