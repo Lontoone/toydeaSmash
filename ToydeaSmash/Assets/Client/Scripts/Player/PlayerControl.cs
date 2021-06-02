@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     PhysicsControlListeners listeners;
-    HitableObj hitable;
+    [HideInInspector]
+    public HitableObj hitable;
     ActionController actionController;
     public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling;
 
