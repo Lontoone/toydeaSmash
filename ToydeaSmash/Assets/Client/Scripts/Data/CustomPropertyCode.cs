@@ -15,4 +15,5 @@ public class CustomPropertyCode : MonoBehaviour
     public static readonly KeyCode[] DashKyes = { KeyCode.LeftShift, KeyCode.RightShift};
     public static readonly KeyCode[] DuckKyes = { KeyCode.S, KeyCode.DownArrow};
     public static readonly KeyCode[] AttackKyes = { KeyCode.Z, KeyCode.Keypad1 };
+    public static readonly KeyCode[] DefenseKyes = { KeyCode.X, KeyCode.Keypad2 };
 }

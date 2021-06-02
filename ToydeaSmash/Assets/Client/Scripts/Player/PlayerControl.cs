@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     public KeyCode dash_key = KeyCode.LeftShift;
     public KeyCode duck_key = KeyCode.DownArrow;
     public KeyCode attack_key = KeyCode.Z;
+    public KeyCode defense_key = KeyCode.X;
 
     public Head head;
     public Body body;
@@ -102,6 +103,7 @@ public class PlayerControl : MonoBehaviour
         dash_key = CustomPropertyCode.DashKyes[_i];
         duck_key = CustomPropertyCode.DuckKyes[_i];
         attack_key = CustomPropertyCode.AttackKyes[_i];
+        defense_key = CustomPropertyCode.DefenseKyes[_i];
 
 
         //set team Layer
@@ -325,6 +327,12 @@ public class PlayerControl : MonoBehaviour
     IEnumerator Heal()
     {
         WaitForSeconds _oneSec = new WaitForSeconds(1);
+        int _prewait = 3;
+        while (_prewait > 0)
+        {
+            _prewait--;
+            yield return _oneSec;
+        }
         while (true)
         {
             Animator _effect = GCManager.Instantiate("Heal Effect", position: listeners.footPositon.transform.position).GetComponent<Animator>();

@@ -70,6 +70,8 @@ public class HitableObj : MonoBehaviour
 
             if (isHitable)
             {
+             
+
                 //HP -= damage;
                 HP = Mathf.Clamp(HP - damage, 0, maxHP);
                 //特效:

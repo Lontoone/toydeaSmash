@@ -7,7 +7,7 @@ public class PlayerAttackControl : MonoBehaviour
 
     ActionController actionController;
     Rigidbody2D rigid;
-    public ActionController.mAction attack, up_attack, down_attack, dash;
+    public ActionController.mAction attack, up_attack, down_attack, dash, defense;
 
     public Collider2D current_Attack_collider;
 
@@ -22,6 +22,9 @@ public class PlayerAttackControl : MonoBehaviour
     Collider2D[] res = new Collider2D[5];
 
     public LayerMask targetLayer;
+
+    [Range(0, 1)]
+    public float damage_taking_rate = 1; // 0%~100%
 
     public void Start()
     {
@@ -76,7 +79,7 @@ public class PlayerAttackControl : MonoBehaviour
             actionController.AddAction(up_attack);
         }
         //Down Attack
-        else if (Input.GetAxisRaw(_player.vertical_axis_name) <0  && Input.GetKeyDown(_player.attack_key))
+        else if (Input.GetAxisRaw(_player.vertical_axis_name) < 0 && Input.GetKeyDown(_player.attack_key))
         {
             actionController.AddAction(down_attack);
         }
@@ -85,7 +88,15 @@ public class PlayerAttackControl : MonoBehaviour
         {
             actionController.AddAction(attack);
         }
-
+        //defense
+        else if (Input.GetKeyDown(_player.defense_key))
+        {
+            actionController.AddAction(defense);
+        }
+        else if (Input.GetKeyUp(_player.defense_key))
+        {
+            actionController.AddAction(_player.stop);
+        }
 
     }
 
@@ -118,7 +129,13 @@ public class PlayerAttackControl : MonoBehaviour
         _player.PlayAniamtion("Down attack");
 
         //TODO: back to down animation:
-        //actionController.AddAction(_player.duck);
+        actionController.AddAction(_player.duck);
+    }
+
+    public virtual void Defense()
+    {
+        _player.PlayAniamtion("Defense");
+
     }
 
 

@@ -368,7 +368,7 @@ RectTransform:
   - {fileID: 1147295732}
   - {fileID: 658133082}
   m_Father: {fileID: 1819210382}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b2493610e176ffc458081c2793a0a289, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1adde809ec935374f88f4d208fdccba2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1192,8 +1192,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 649364189}
   - {fileID: 1892122778}
+  - {fileID: 649364189}
   m_Father: {fileID: 1000455282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1379,7 +1379,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1819210382}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1737,6 +1737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6011756766144991972, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: defense.priority
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 7923640692456162526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_Name
       value: Player
