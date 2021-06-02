@@ -15,7 +15,7 @@ public class Head : MonoBehaviour
 
     string _temp_sprite_name;
 
-    public void Start()
+    public void Awake()
     {
         _player = GetComponent<PlayerControl>();
         
@@ -58,6 +58,8 @@ public class Head : MonoBehaviour
             if (_sp != null)
                 _sprite_mat.SetTexture("_Mask", _sp.texture);
         }
+        if (animator == null)
+            animator = GetComponent<Animator>();
         animator.Play(name);
     }
 

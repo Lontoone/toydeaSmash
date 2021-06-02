@@ -62,12 +62,24 @@ public class LocalRoomManager : MonoBehaviour
             {
                 PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
                 Debug.Log("player i " + i);
+                _player.transform.position = MapControl.instance.viewWorldCenter;
                 _player.SetUp(players[i], i);
+
+                _player.AddLanding();
 
             }
 
 
         }
+    }
+
+    public void Revive(int _playerData_index) {
+        PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
+        Debug.Log("player i " + _playerData_index);
+        _player.transform.position = MapControl.instance.viewWorldCenter;
+        _player.SetUp(players[_playerData_index], _playerData_index);
+
+        _player.AddRevive();
     }
 
 

@@ -49,6 +49,8 @@ public class HPBarControl : MonoBehaviour
         hitable.Die_event += DestorySelfOnDie;
         hitable.gotHeel_event += UpdateHPBar;
 
+        inner_bar.transform.localPosition = Vector2.zero;
+
     }
     private void OnDisable()
     {

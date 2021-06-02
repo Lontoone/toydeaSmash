@@ -13,7 +13,7 @@ public class Body : MonoBehaviour
     public float damage = 100;
     string _temp_sprite_name;
 
-    public void Start()
+    public void Awake()
     {
 
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
@@ -55,7 +55,8 @@ public class Body : MonoBehaviour
             if (_sp != null)
                 _sprite_mat.SetTexture("_Mask", _sp.texture);
         }
-
+        if (animator == null)
+            animator = GetComponent<Animator>();
         animator.Play(name);
     }
 }

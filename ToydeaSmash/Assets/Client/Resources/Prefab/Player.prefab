@@ -514,6 +514,102 @@ MonoBehaviour:
     isLoop: 0
     timeOut: 0
     time_out_counter: 0
+  revive:
+    description: Revive
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: PlayAniamtion
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Revive
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: ReviveMove
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 1000
+    force: 1
+    duration: 5
+    isLoop: 1
+    timeOut: 0
+    time_out_counter: 0
+  landing:
+    description: Landing
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: PlayAniamtion
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Landing
+            m_BoolArgument: 0
+          m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 999
+    force: 1
+    duration: 10
+    isLoop: 0
+    timeOut: 0
+    time_out_counter: 0
+  land_end:
+    description: land fall
+    is_in_gap_time_lock: 0
+    gap_time: 0.5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: PlayAniamtion
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Landing Fall
+            m_BoolArgument: 0
+          m_CallState: 2
+    callbackEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    priority: 1000
+    force: 1
+    duration: 0.5
+    isLoop: 0
+    timeOut: 0
+    time_out_counter: 0
   horizontal_axis_name: Horizontal
   vertical_axis_name: Vertical
   jump_key: 0
@@ -558,7 +654,7 @@ MonoBehaviour:
     timeOut: 0
     time_out_counter: 0
   allowDuplicate: 0
-  stopWhenInvisiable: 1
+  stopWhenInvisiable: 0
 --- !u!114 &7923640692456162599
 MonoBehaviour:
   m_ObjectHideFlags: 0
