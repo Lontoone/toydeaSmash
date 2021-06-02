@@ -41,3 +41,9 @@ MonoBehaviour:
     spriteSheet: {fileID: 5147680999740243377, guid: 1cc835f80cecdb6408340fa674de0cf6, type: 3}
   - animation_name: Die
     spriteSheet: {fileID: -7747051193383935322, guid: a1e76eb25d439094f99f04b42dbb829b, type: 3}
+  - animation_name: Landing
+    spriteSheet: {fileID: -9223299841397954075, guid: 094f1e7740347d948a1dd6bbf2435d9e, type: 3}
+  - animation_name: Landing Fall
+    spriteSheet: {fileID: -9223299841397954075, guid: 094f1e7740347d948a1dd6bbf2435d9e, type: 3}
+  - animation_name: Revive
+    spriteSheet: {fileID: 8290701779293851554, guid: 3c1d53ea1c570704699e4f4448a59026, type: 3}

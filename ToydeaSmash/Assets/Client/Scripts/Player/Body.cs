@@ -9,15 +9,21 @@ public class Body : MonoBehaviour
     Material _sprite_mat;
     //TODO: attack action
     Animator animator;
+    [HideInInspector]
+    public SpriteRenderer sp;
 
     public float damage = 100;
     string _temp_sprite_name;
 
-    public void Start()
+    public void Awake()
     {
+        sp = GetComponent<SpriteRenderer>();
 
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
-        GetComponent<SpriteRenderer>().material = _sprite_mat;
+
+        sp.material = _sprite_mat;
+        _sprite_mat.renderQueue = 3000;
+
         if (spriteMask != null)
             _sprite_mat.SetTexture("_Mask", spriteMask.GetSprite("Idle").texture);  //default
         else
@@ -55,7 +61,15 @@ public class Body : MonoBehaviour
             if (_sp != null)
                 _sprite_mat.SetTexture("_Mask", _sp.texture);
         }
-
+        if (animator == null)
+            animator = GetComponent<Animator>();
         animator.Play(name);
+    }
+
+
+    public void CreateImageTrail()
+    {
+        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale,sp.color);
+        //AfterImage.CreateImageTrail(body.sp.sprite, body.transform.position, body.transform.lossyScale);
     }
 }

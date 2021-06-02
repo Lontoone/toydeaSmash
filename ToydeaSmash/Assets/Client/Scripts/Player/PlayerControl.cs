@@ -13,8 +13,8 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public HitableObj hitable;
     ActionController actionController;
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling;
-
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive;
+    public ActionController.mAction landing, land_end;
 
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
@@ -34,12 +34,10 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
+
+    int data_index = 0;
     private void Start()
     {
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        listeners = gameObject.GetComponent<PhysicsControlListeners>();
-        animator = gameObject.GetComponent<Animator>();
-        actionController = gameObject.GetComponent<ActionController>();
 
 
         hitable = gameObject.GetComponent<HitableObj>();
@@ -72,6 +70,13 @@ public class PlayerControl : MonoBehaviour
 
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
+        rigid = gameObject.GetComponent<Rigidbody2D>();
+        listeners = gameObject.GetComponent<PhysicsControlListeners>();
+        animator = gameObject.GetComponent<Animator>();
+        actionController = gameObject.GetComponent<ActionController>();
+
+        data_index = _i;
+
         Head _newHead =
             Instantiate(
                 Head.LoadHead(_data.playerProperty[CustomPropertyCode.HEAD_CDOE] as string).gameObject,
@@ -96,6 +101,9 @@ public class PlayerControl : MonoBehaviour
         head_sp = head.GetComponent<SpriteRenderer>();
         body_sp = body.GetComponent<SpriteRenderer>();
 
+        head.ApplyBuff();
+
+
         //********Set Keys *****************
         horizontal_axis_name = "h" + _i.ToString();
         vertical_axis_name = "v" + _i.ToString();
@@ -116,6 +124,11 @@ public class PlayerControl : MonoBehaviour
         //set team color        
         head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
         body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+
+        //Landing animation  (called by manager)
+        //AddLanding();
+        //Test: 
+        //AddRevive();
     }
 
     private void Update()
@@ -233,20 +246,17 @@ public class PlayerControl : MonoBehaviour
     {
         //rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigid.velocity.y);
         rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
+
         //左右翻轉:
         if (rigid.velocity.x > 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
-            //sp.flipX = false;
+
         }
         else if (rigid.velocity.x < 0)
         {
-            //sp.flipX = true;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        //.sprite = head.spriteMask.GetSprite("Walk");
-        //body_sp.sprite = body.spriteMask.GetSprite("Walk");
-
 
     }
     public void OnHurt()
@@ -323,6 +333,52 @@ public class PlayerControl : MonoBehaviour
         body.PlayAnimation("Duck");
     }
 
+    //first time to join the game
+    public void AddLanding()
+    {
+        if (actionController == null)
+            actionController = GetComponent<ActionController>();
+        actionController.AddAction(landing);
+        listeners.eOnTouchGround += AddLandEnd;
+        cCreateImageTrail = StartCoroutine(CreateTrailCoro());
+    }
+    public void AddLandEnd()
+    {
+        actionController.AddAction(land_end);
+        listeners.eOnTouchGround -= AddLandEnd;
+
+        StopCoroutine(cCreateImageTrail);
+        //PlayAniamtion("landing fall");
+    }
+    public void CreateImageTrail()
+    {
+        head.CreateImageTrail();
+        body.CreateImageTrail();
+    }
+
+    public void AddRevive()
+    {
+        actionController.AddAction(revive);
+    }
+    public void ReviveMove()
+    {
+        rigid.Sleep();
+        Vector3 _move = new Vector3(Input.GetAxisRaw(horizontal_axis_name),
+                                                                Input.GetAxisRaw(vertical_axis_name));
+        transform.position = transform.position + _move * Time.deltaTime * speed;
+
+        if (_move.x > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+
+        }
+        else if (_move.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+
     //Heal player HP
     Coroutine cHeal;
     IEnumerator Heal()
@@ -343,6 +399,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    Coroutine cCreateImageTrail;
+    IEnumerator CreateTrailCoro() {
+        WaitForFixedUpdate _wait = new WaitForFixedUpdate();
+        while (true) {
+            CreateImageTrail();
+            yield return _wait;
+        }
+    }
 
     public void Stop()
     {
@@ -386,8 +450,15 @@ public class PlayerControl : MonoBehaviour
         Destroy(actionController);
         PlayAniamtion("Die");
 
-        this.enabled = false;
+        Invoke("RecreatePlayer", 3);
 
+        this.enabled = false;
+    }
+    //create new player 3sec after die
+    void RecreatePlayer()
+    {
+        LocalRoomManager.instance.Revive(data_index);
+        Destroy(gameObject);
     }
 
     void ResetJumpCount()

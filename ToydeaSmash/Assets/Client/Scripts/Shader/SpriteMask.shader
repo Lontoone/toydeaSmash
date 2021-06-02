@@ -15,6 +15,7 @@
 		Pass
 		{
 			ZWrite Off
+			ZTest On
 			Cull Off
 			Blend SrcAlpha OneMinusSrcAlpha
 
@@ -63,6 +64,7 @@
 
 				//fixed4 res= main_col* (1 - mask_color.z) + mask_color * mask_color.z * i.color; 
 				//fixed4 res = main_col * (1 - mask_color.a) + mask_color * mask_color.a * i.color;
+				
 				fixed _a=(1 - mask_color.a);
 				if(_a>0){
 					fixed4 res = main_col;

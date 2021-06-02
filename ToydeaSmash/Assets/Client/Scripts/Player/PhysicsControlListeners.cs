@@ -37,7 +37,8 @@ public class PhysicsControlListeners : MonoBehaviour
             last_frame_isGrounded = isGrounded;
         }
         //碰地面偵測
-        isGrounded = Physics2D.OverlapCircle(footPositon.transform.position, touch_ground_radious, ground_layer);
+        //isGrounded = Physics2D.OverlapCircle(footPositon.transform.position, touch_ground_radious, ground_layer);
+        isGrounded = Physics2D.Raycast(footPositon.transform.position, -transform.up, touch_ground_radious, ground_layer);
 
     }
     private void OnDrawGizmos()
