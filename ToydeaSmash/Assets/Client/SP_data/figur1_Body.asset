@@ -26,7 +26,7 @@ MonoBehaviour:
   - animation_name: Dash
     spriteSheet: {fileID: -3394320397411655669, guid: cf782873e11ff3945998cfaa885cc48a, type: 3}
   - animation_name: Duck
-    spriteSheet: {fileID: -5400273181390472449, guid: 1a6c1b7696634544fa8e47f017850be7, type: 3}
+    spriteSheet: {fileID: -7893401869731021886, guid: 522c77bc9828ab248978454dbecd8b91, type: 3}
   - animation_name: Attack
     spriteSheet: {fileID: 3239735736562555144, guid: a2fb250350dc4fc4db122eb9e10c37bc, type: 3}
   - animation_name: Up attack

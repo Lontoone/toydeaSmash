@@ -48,11 +48,7 @@ public class HitableObj : MonoBehaviour
     {
         if (Hit_event != null)
         {
-            //Turn to hit sources
-            if (Vector2.Dot(t.transform.right, attackSource.transform.right) > 0)
-            {
-                t.transform.eulerAngles = new Vector3(0, t.transform.eulerAngles.y + 180, 0);
-            }
+
 
             Hit_event(t, d, attackSource); //被攻擊的,傷害,攻擊者
         }
@@ -74,7 +70,11 @@ public class HitableObj : MonoBehaviour
 
             if (isHitable)
             {
-             
+                //Turn to hit sources
+                if (Vector2.Dot(target.transform.right, sources.transform.right) > 0)
+                {
+                    target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y + 180, 0);
+                }
 
                 //HP -= damage;
                 HP = Mathf.Clamp(HP - damage * damage_taking_rate, 0, maxHP);

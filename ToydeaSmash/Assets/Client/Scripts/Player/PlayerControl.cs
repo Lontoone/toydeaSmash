@@ -328,7 +328,7 @@ public class PlayerControl : MonoBehaviour
     IEnumerator Heal()
     {
         WaitForSeconds _oneSec = new WaitForSeconds(1);
-        int _prewait = 3;
+        int _prewait = 2;
         while (_prewait > 0)
         {
             _prewait--;
@@ -356,6 +356,7 @@ public class PlayerControl : MonoBehaviour
         _effect.GetComponent<Animator>().Play(_clip_name);
         _effect.transform.position = listeners.footPositon.transform.position;
     }
+    [SerializeField]
     bool _isHurting = false;
     public void Hurt()
     {
@@ -380,6 +381,7 @@ public class PlayerControl : MonoBehaviour
 
         //disable control
         //actionController.enabled = false;
+        hitable.isHitable = false;
         actionController.StopAllCoroutines();
         Destroy(actionController);
         PlayAniamtion("Die");

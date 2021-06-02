@@ -78,6 +78,7 @@ MonoBehaviour:
   isDead: 0
   isHitable: 1
   hit_combo: 0
+  damage_taking_rate: 1
 --- !u!114 &7923640692456162592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 17
+  hitable: {fileID: 0}
   idle:
     description: Idle
     is_in_gap_time_lock: 0
@@ -163,7 +165,7 @@ MonoBehaviour:
   hurt:
     description: Hurt
     is_in_gap_time_lock: 0
-    gap_time: 1
+    gap_time: 0.5
     action:
       m_PersistentCalls:
         m_Calls:
@@ -194,7 +196,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    priority: 100
+    priority: 99
     force: 1
     duration: 1
     isLoop: 0
@@ -356,14 +358,14 @@ MonoBehaviour:
         m_Calls: []
     priority: 49
     force: 1
-    duration: 0.2
+    duration: 0.1
     isLoop: 0
-    timeOut: 1
+    timeOut: 99
     time_out_counter: 0
   doubleJump:
     description: doubleJump
     is_in_gap_time_lock: 0
-    gap_time: 0.25
+    gap_time: 0.1
     action:
       m_PersistentCalls:
         m_Calls:
@@ -384,9 +386,9 @@ MonoBehaviour:
         m_Calls: []
     priority: 11
     force: 1
-    duration: 0.15
+    duration: 0.1
     isLoop: 0
-    timeOut: 1
+    timeOut: 0
     time_out_counter: 0
   dash:
     description: Dash
@@ -524,6 +526,7 @@ MonoBehaviour:
   dash_force: 700
   heal_amount: 50
   jump_count: 2
+  _isHurting: 0
 --- !u!114 &7923640692456162593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,7 +576,7 @@ MonoBehaviour:
     m_Bits: 256
   footPositon: {fileID: 7923640694361667545}
   isGrounded: 0
-  touch_ground_radious: 0.1
+  touch_ground_radious: 0.25
 --- !u!70 &8613946847290611853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
