@@ -307,7 +307,7 @@ MonoBehaviour:
   attack:
     description: Attack
     is_in_gap_time_lock: 0
-    gap_time: 1.2
+    gap_time: 0.6
     action:
       m_PersistentCalls:
         m_Calls: []
@@ -316,9 +316,9 @@ MonoBehaviour:
         m_Calls: []
     priority: 9
     force: 1
-    duration: 1
+    duration: 0.6
     isLoop: 0
-    timeOut: 5
+    timeOut: 0
     time_out_counter: 0
   up_attack:
     description: Up Attack
@@ -374,4 +374,4 @@ MonoBehaviour:
   down_attackCollider: {fileID: 1230561278}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0

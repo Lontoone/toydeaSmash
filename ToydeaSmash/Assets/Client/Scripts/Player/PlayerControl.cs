@@ -264,6 +264,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void ResetHitCombo()
     {
+        _isHurting = false;
         hitable.hit_combo = 0;
     }
     public void Walk_animation()
@@ -350,7 +351,7 @@ public class PlayerControl : MonoBehaviour
     public void Hurt()
     {
         //add force
-        rigid.AddForce(transform.right * dash_force * 0.5f);
+        //rigid.AddForce(transform.right * dash_force * 0.5f);
 
         PlayAniamtion("Hurt");
 
