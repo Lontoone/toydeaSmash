@@ -18,6 +18,8 @@ public class Body : MonoBehaviour
 
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
         GetComponent<SpriteRenderer>().material = _sprite_mat;
+        _sprite_mat.renderQueue = 3000;
+
         if (spriteMask != null)
             _sprite_mat.SetTexture("_Mask", spriteMask.GetSprite("Idle").texture);  //default
         else

@@ -606,7 +606,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 1000
     force: 1
-    duration: 0.5
+    duration: 0.25
     isLoop: 0
     timeOut: 0
     time_out_counter: 0
