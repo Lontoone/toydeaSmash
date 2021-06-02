@@ -33,3 +33,7 @@ MonoBehaviour:
     spriteSheet: {fileID: -6784257459257330290, guid: 66163a48909b8f841bb04af750236a1e, type: 3}
   - animation_name: Down attack
     spriteSheet: {fileID: 5599900820847291368, guid: e5b652acc2a881f40b4a77b55b17eeee, type: 3}
+  - animation_name: Hurt Falling
+    spriteSheet: {fileID: 7595561899685265209, guid: 0ce51c0d510934d43833e9d8c7fee7c3, type: 3}
+  - animation_name: Hurt
+    spriteSheet: {fileID: -4121935293204743909, guid: c0b7b2efe4d86b0478c0e3a9449cc23d, type: 3}
