@@ -39,3 +39,5 @@ MonoBehaviour:
     spriteSheet: {fileID: -4894400558323510320, guid: 643d64855bae3d343a82371c6055a3cf, type: 3}
   - animation_name: Defense
     spriteSheet: {fileID: 5147680999740243377, guid: 1cc835f80cecdb6408340fa674de0cf6, type: 3}
+  - animation_name: Die
+    spriteSheet: {fileID: -7747051193383935322, guid: a1e76eb25d439094f99f04b42dbb829b, type: 3}

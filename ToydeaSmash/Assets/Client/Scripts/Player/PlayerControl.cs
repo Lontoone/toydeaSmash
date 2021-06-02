@@ -377,11 +377,15 @@ public class PlayerControl : MonoBehaviour
     void Die()
     {
         Debug.Log("玩家死亡");
-        PlayAniamtion("Die");
 
         //disable control
-        actionController.enabled = false;
+        //actionController.enabled = false;
+        actionController.StopAllCoroutines();
+        Destroy(actionController);
+        PlayAniamtion("Die");
+
         this.enabled = false;
+
     }
 
     void ResetJumpCount()
