@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     PhysicsControlListeners listeners;
     HitableObj hitable;
     ActionController actionController;
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop;
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling;
 
 
     public string horizontal_axis_name = "Horizontal";  //default
@@ -45,7 +45,8 @@ public class PlayerControl : MonoBehaviour
         if (hitable != null)
         {
             hitable.Die_event += Die;
-            hitable.gotHit_event += Hurt;
+            //hitable.gotHit_event += Hurt;
+            hitable.gotHit_event += OnHurt;
         }
         if (listeners != null)
             listeners.eOnTouchGround += ResetJumpCount;
@@ -58,7 +59,8 @@ public class PlayerControl : MonoBehaviour
         if (hitable != null)
         {
             hitable.Die_event -= Die;
-            hitable.gotHit_event -= Hurt;
+            //hitable.gotHit_event -= Hurt;
+            hitable.gotHit_event -= OnHurt;
         }
         if (listeners != null)
             listeners.eOnTouchGround -= ResetJumpCount;
@@ -244,43 +246,62 @@ public class PlayerControl : MonoBehaviour
 
 
     }
+    public void OnHurt()
+    {
+        if (hitable.isHitable && !_isHurting)
+        {
+            //被擊退
+            actionController.AddAction(hurt);
+            _isHurting = true;
+            Debug.Log("HURT!");
+        }
+        else if (_isHurting)
+        {
+            //got hit when playing hurt animation
+            actionController.AddAction(hurt_falling);
 
+        }
+    }
+    public void ResetHitCombo()
+    {
+        hitable.hit_combo = 0;
+    }
     public void Walk_animation()
     {
-        head.PlayAnimatiom("Walk");
-        body.PlayAnimatiom("Walk");
+        head.PlayAnimation("Walk");
+        body.PlayAnimation("Walk");
     }
 
     public void Idle()
     {
 
-        head.PlayAnimatiom("Idle");
-        body.PlayAnimatiom("Idle");
+        head.PlayAnimation("Idle");
+        body.PlayAnimation("Idle");
     }
 
     public void Jump_start()
     {
 
-        head.PlayAnimatiom("Jump-Start");
-        body.PlayAnimatiom("Jump-Start");
+        head.PlayAnimation("Jump-Start");
+        body.PlayAnimation("Jump-Start");
 
         Effect("Jump Smoke", "jump smoke");
     }
     public void Jumping()
     {
 
-        head.PlayAnimatiom("Jumping");
-        body.PlayAnimatiom("Jumping");
+        head.PlayAnimation("Jumping");
+        body.PlayAnimation("Jumping");
     }
     public void Falling()
     {
-        head.PlayAnimatiom("Jumping Falling");
-        body.PlayAnimatiom("Jumping Falling");
+        head.PlayAnimation("Jumping Falling");
+        body.PlayAnimation("Jumping Falling");
     }
     public void Jump_End()
     {
-        head.PlayAnimatiom("Jump-End");
-        body.PlayAnimatiom("Jump-End");
+        head.PlayAnimation("Jump-End");
+        body.PlayAnimation("Jump-End");
     }
 
     public void Dash()
@@ -288,14 +309,14 @@ public class PlayerControl : MonoBehaviour
 
         //rigid.velocity = new Vector2(dash_force, rigid.velocity.y);
         rigid.AddForce(dash_force * -transform.right);
-        head.PlayAnimatiom("Dash");
-        body.PlayAnimatiom("Dash");
+        head.PlayAnimation("Dash");
+        body.PlayAnimation("Dash");
     }
 
     public void Duck()
     {
-        head.PlayAnimatiom("Duck");
-        body.PlayAnimatiom("Duck");
+        head.PlayAnimation("Duck");
+        body.PlayAnimation("Duck");
     }
 
     //Heal player HP
@@ -325,24 +346,32 @@ public class PlayerControl : MonoBehaviour
         _effect.GetComponent<Animator>().Play(_clip_name);
         _effect.transform.position = listeners.footPositon.transform.position;
     }
-    void Hurt()
+    bool _isHurting = false;
+    public void Hurt()
     {
-        if (hitable.isHitable)
-        {
-            //被擊退
-            actionController.AddAction(hurt);
-            Debug.Log("HURT!");
-            //playerAttack.input_s="Hurt";
-            //animator.Play("Hurt");
+        //add force
+        rigid.AddForce(transform.right * dash_force * 0.5f);
 
-            //add force
-            rigid.AddForce(transform.right * dash_force * 0.5f);
+        PlayAniamtion("Hurt");
 
-        }
+    }
+    //hit to sky
+    public void Hurt_Fly()
+    {
+        //add force to sky 
+        Vector2 _dir = new Vector2(transform.right.x * 0.5f, 1);
+        rigid.AddForce(_dir * dash_force);
+
+        PlayAniamtion("Hurt Falling");
     }
     void Die()
     {
         Debug.Log("玩家死亡");
+        PlayAniamtion("Die");
+
+        //disable control
+        actionController.enabled = false;
+        this.enabled = false;
     }
 
     void ResetJumpCount()
@@ -355,7 +384,7 @@ public class PlayerControl : MonoBehaviour
 
     public void PlayAniamtion(string _clipName)
     {
-        head.PlayAnimatiom(_clipName);
-        body.PlayAnimatiom(_clipName);
+        head.PlayAnimation(_clipName);
+        body.PlayAnimation(_clipName);
     }
 }

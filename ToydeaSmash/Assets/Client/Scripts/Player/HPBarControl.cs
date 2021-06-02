@@ -75,8 +75,10 @@ public class HPBarControl : MonoBehaviour
 
     public void UpdateHPBar()
     {
-        Debug.Log("Update HP");
-        bar.fillAmount = hitable.HP / (float)maxHP;
+        //bar.fillAmount = hitable.HP / (float)maxHP;
+        float _fillAmount =  1-(hitable.HP / (float)maxHP);
+        Debug.Log("Update HP" +_fillAmount +" "+ (-_fillAmount * mask_width));
+        inner_bar.transform.localPosition =new Vector2( -_fillAmount* mask_width,0);
 
     }
 }

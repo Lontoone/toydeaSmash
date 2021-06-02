@@ -48,7 +48,7 @@ public class Head : MonoBehaviour
 
     }
 
-    public void PlayAnimatiom(string name)
+    public void PlayAnimation(string name)
     {
         
         if (spriteMask != null && (_temp_sprite_name != name))

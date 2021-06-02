@@ -21,6 +21,8 @@ public class HitableObj : MonoBehaviour
     public bool isDead = false;
     public bool isHitable = true;
 
+    public float hit_combo = 0;
+
     HPBarControl hpbar;
     private IEnumerator Start()
     {
@@ -72,6 +74,7 @@ public class HitableObj : MonoBehaviour
                 HP = Mathf.Clamp(HP - damage, 0, maxHP);
                 //特效:
                 Hit_effect();
+                hit_combo++;
 
                 //傷害文字
                 //Effecter.PopupTextUI(target, damage.ToString(), 1);

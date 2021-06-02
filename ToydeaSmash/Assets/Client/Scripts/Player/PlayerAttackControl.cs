@@ -103,6 +103,9 @@ public class PlayerAttackControl : MonoBehaviour
             HitableObj.Hit_event_c(res[i].gameObject, body.damage, body.transform.parent.gameObject);
             Debug.Log("Hits " + res[i].gameObject.name);
         }
+
+        //effect:
+        GCManager.Instantiate("attack effect", position: transform.position).GetComponent<Animator>().Play("attack effect");
     }
     public virtual void UpAttack()
     {
@@ -113,6 +116,9 @@ public class PlayerAttackControl : MonoBehaviour
     {
         current_Attack_collider = down_attackCollider;
         _player.PlayAniamtion("Down attack");
+
+        //TODO: back to down animation:
+        //actionController.AddAction(_player.duck);
     }
 
 
