@@ -53,10 +53,12 @@ public class PhysicsControlListeners : MonoBehaviour
 
     bool WallHitDetect()
     {
-        if (Physics2D.Raycast(footPositon.transform.position, -transform.right, touch_ground_radious*2, ground_layer) ||
-            Physics2D.Raycast(footPositon.transform.position, transform.right, touch_ground_radious*2, ground_layer))
+        if (Physics2D.Raycast(footPositon.transform.position, -transform.right, touch_ground_radious, ground_layer) ||
+            Physics2D.Raycast(footPositon.transform.position, transform.right, touch_ground_radious, ground_layer))
         {
             //rigidbody.AddForce(transform.right * side_bounces_force * rigidbody.velocity.normalized);
+            rigidbody.AddForce(transform.right * rigidbody.velocity * rigidbody.mass );
+            Debug.Log("wall anti v" + rigidbody.velocity);
             return true;
         }
         return false;

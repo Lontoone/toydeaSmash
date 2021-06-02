@@ -182,7 +182,7 @@ public class PlayerControl : MonoBehaviour
     {
 
         rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-
+        //rigid.AddForce(transform.up*jumpForce*100);
         Debug.Log("jump force " + rigid.velocity);
     }
     void AddDefault()
@@ -244,29 +244,31 @@ public class PlayerControl : MonoBehaviour
 
     public void Move()
     {
-        //rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigid.velocity.y);
-        if (listeners.isWalled)
+
+
+        rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
+        //rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y - Mathf.Pow(rigid.gravityScale, 0.5f));
+        /*
+        float _x_input = Input.GetAxis(horizontal_axis_name);
+        Vector3 _move = new Vector2((_x_input+rigid.velocity.x )* speed * Time.deltaTime, 0);
+        transform.position = _move + transform.position;
+        Debug.Log("not wall v " + rigid.velocity+" "+_move);*/
+
+        //左右翻轉:
+        //if (_x_input> 0)
+        if (rigid.velocity.x > 0)
         {
-            //rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * -speed, rigid.velocity.y);
-            rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
+            transform.eulerAngles = new Vector3(0, 180, 0);
+
         }
-        else {
-            rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
-
-
-            //左右翻轉:
-            if (rigid.velocity.x > 0)
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-
-            }
-            else if (rigid.velocity.x < 0)
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            }
+        //else if (_x_input< 0)
+        else if (rigid.velocity.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-       
+
+
 
     }
     public void OnHurt()
@@ -321,6 +323,8 @@ public class PlayerControl : MonoBehaviour
     {
         head.PlayAnimation("Jumping Falling");
         body.PlayAnimation("Jumping Falling");
+
+        Debug.Log("falling v " + rigid.velocity);
     }
     public void Jump_End()
     {
@@ -410,9 +414,11 @@ public class PlayerControl : MonoBehaviour
     }
 
     Coroutine cCreateImageTrail;
-    IEnumerator CreateTrailCoro() {
+    IEnumerator CreateTrailCoro()
+    {
         WaitForFixedUpdate _wait = new WaitForFixedUpdate();
-        while (true) {
+        while (true)
+        {
             CreateImageTrail();
             yield return _wait;
         }
