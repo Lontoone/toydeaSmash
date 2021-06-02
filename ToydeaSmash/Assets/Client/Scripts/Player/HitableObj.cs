@@ -23,6 +23,10 @@ public class HitableObj : MonoBehaviour
 
     public float hit_combo = 0;
 
+
+    [Range(0, 1)]
+    public float damage_taking_rate = 1; // 0%~100%
+
     HPBarControl hpbar;
     private IEnumerator Start()
     {
@@ -73,7 +77,7 @@ public class HitableObj : MonoBehaviour
              
 
                 //HP -= damage;
-                HP = Mathf.Clamp(HP - damage, 0, maxHP);
+                HP = Mathf.Clamp(HP - damage * damage_taking_rate, 0, maxHP);
                 //特效:
                 Hit_effect();
                 hit_combo++;

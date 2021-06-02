@@ -23,8 +23,6 @@ public class PlayerAttackControl : MonoBehaviour
 
     public LayerMask targetLayer;
 
-    [Range(0, 1)]
-    public float damage_taking_rate = 1; // 0%~100%
 
     public void Start()
     {
@@ -91,10 +89,14 @@ public class PlayerAttackControl : MonoBehaviour
         //defense
         else if (Input.GetKeyDown(_player.defense_key))
         {
+            _player.hitable.damage_taking_rate *= 0.2f;
             actionController.AddAction(defense);
         }
+
+        //defense end
         else if (Input.GetKeyUp(_player.defense_key))
         {
+            _player.hitable.damage_taking_rate = 1;
             actionController.AddAction(_player.stop);
         }
 
@@ -135,6 +137,7 @@ public class PlayerAttackControl : MonoBehaviour
     public virtual void Defense()
     {
         _player.PlayAniamtion("Defense");
+
 
     }
 

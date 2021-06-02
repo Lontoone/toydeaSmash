@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     PhysicsControlListeners listeners;
-    HitableObj hitable;
+    [HideInInspector]
+    public HitableObj hitable;
     ActionController actionController;
     public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling;
 
@@ -376,11 +377,15 @@ public class PlayerControl : MonoBehaviour
     void Die()
     {
         Debug.Log("玩家死亡");
-        PlayAniamtion("Die");
 
         //disable control
-        actionController.enabled = false;
+        //actionController.enabled = false;
+        actionController.StopAllCoroutines();
+        Destroy(actionController);
+        PlayAniamtion("Die");
+
         this.enabled = false;
+
     }
 
     void ResetJumpCount()
