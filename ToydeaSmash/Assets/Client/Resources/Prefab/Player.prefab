@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7923640692456162526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2260827925821941513}
   - {fileID: 6151810834332112934}
@@ -672,7 +672,9 @@ MonoBehaviour:
     m_Bits: 256
   footPositon: {fileID: 7923640694361667545}
   isGrounded: 0
+  isWalled: 0
   touch_ground_radious: 0.25
+  side_bounces_force: 1000
 --- !u!70 &8613946847290611853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

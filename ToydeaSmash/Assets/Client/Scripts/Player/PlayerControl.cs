@@ -245,18 +245,28 @@ public class PlayerControl : MonoBehaviour
     public void Move()
     {
         //rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigid.velocity.y);
-        rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
-
-        //左右翻轉:
-        if (rigid.velocity.x > 0)
+        if (listeners.isWalled)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            //rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * -speed, rigid.velocity.y);
+            rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
+        }
+        else {
+            rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
 
+
+            //左右翻轉:
+            if (rigid.velocity.x > 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+
+            }
+            else if (rigid.velocity.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
-        else if (rigid.velocity.x < 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+
+       
 
     }
     public void OnHurt()
