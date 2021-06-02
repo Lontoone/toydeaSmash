@@ -8,10 +8,14 @@ public class PhysicsControlListeners : MonoBehaviour
     public GameObject footPositon; //腳步位置
     //public Vector2 move_dir; //移動方向
     public bool isGrounded;
+    public bool isWalled;
     Rigidbody2D rigidbody;
     public float touch_ground_radious = 0.05f;
     bool last_frame_isGrounded;//上一次更新是否碰到地面
     public event Action eOnTouchGround;
+
+    public float side_bounces_force = 100; //force to add while hit wall (not ground.)
+
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -39,11 +43,22 @@ public class PhysicsControlListeners : MonoBehaviour
         //碰地面偵測
         //isGrounded = Physics2D.OverlapCircle(footPositon.transform.position, touch_ground_radious, ground_layer);
         isGrounded = Physics2D.Raycast(footPositon.transform.position, -transform.up, touch_ground_radious, ground_layer);
-
+        isWalled = WallHitDetect();
     }
     private void OnDrawGizmos()
     {
         if (footPositon != null)
             Gizmos.DrawWireSphere(footPositon.transform.position, touch_ground_radious);
+    }
+
+    bool WallHitDetect()
+    {
+        if (Physics2D.Raycast(footPositon.transform.position, -transform.right, touch_ground_radious*2, ground_layer) ||
+            Physics2D.Raycast(footPositon.transform.position, transform.right, touch_ground_radious*2, ground_layer))
+        {
+            //rigidbody.AddForce(transform.right * side_bounces_force * rigidbody.velocity.normalized);
+            return true;
+        }
+        return false;
     }
 }
