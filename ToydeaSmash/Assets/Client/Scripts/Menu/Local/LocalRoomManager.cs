@@ -8,6 +8,8 @@ public class LocalRoomManager : MonoBehaviour
 {
     public static LocalRoomManager instance;
     public List<LocalPlayerProperty> players = new List<LocalPlayerProperty>();
+    public LocalPlayerProperty gamePlaySetting = new LocalPlayerProperty();
+    Dictionary<int, List<int>> team_player_dict = new Dictionary<int, List<int>>(); //team code , player_index
 
     public event Action<LocalPlayerProperty> OnLocalPlayerAdded;
 
@@ -41,12 +43,19 @@ public class LocalRoomManager : MonoBehaviour
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
         players.Add(_local);
-        Debug.Log("player i  count  "+players.Count);
+        Debug.Log("player i  count  " + players.Count);
         //add slot 
         if (OnLocalPlayerAdded != null)
         {
             OnLocalPlayerAdded.Invoke(_local);
         }
+    }
+
+    public virtual void StartGamePlay()
+    {
+
+        //set up data and change Scene
+        SceneManager.LoadScene((string)gamePlaySetting.playerProperty[GameplaySettingControl.MAP_OPT]);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadScene)
@@ -67,13 +76,27 @@ public class LocalRoomManager : MonoBehaviour
 
                 _player.AddLanding();
 
+
+                //Log team member
+                if (team_player_dict.ContainsKey((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]))
+                {
+                    team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
+                }
+                else
+                {
+                    team_player_dict.Add((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE], new List<int>());
+                    team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
+                }
+
+
             }
 
 
         }
     }
 
-    public void Revive(int _playerData_index) {
+    public void Revive(int _playerData_index)
+    {
         PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
         Debug.Log("player i " + _playerData_index);
         _player.transform.position = MapControl.instance.viewWorldCenter;
@@ -82,5 +105,27 @@ public class LocalRoomManager : MonoBehaviour
         _player.AddRevive();
     }
 
+    public int[] Get_Index_In_Same_Team(int teamCode)
+    {
+        return team_player_dict[teamCode].ToArray();
+    }
 
+    public int[] Get_Index_In_Different_Team(int teamCode)
+    {
+        List<int> _res = new List<int>();
+        foreach (KeyValuePair<int, List<int>> pk in team_player_dict)
+        {
+            if (pk.Key != teamCode)
+            {
+                _res.AddRange(pk.Value);
+            }
+        }
+
+        return _res.ToArray();
+    }
+
+    public void ClearPlayerDatas() {
+        players.Clear();
+        gamePlaySetting.playerProperty.Clear();
+    }
 }

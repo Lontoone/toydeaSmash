@@ -5,6 +5,8 @@ using System;
 //玩家控制
 public class PlayerControl : MonoBehaviour
 {
+    public static event Action<int> OnCreate;
+    public static event Action<int> OnDestory;
     public float speed = 5;
     public float jumpForce = 10;
     Animator animator;
@@ -35,11 +37,10 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
 
-    int data_index = 0;
+    [HideInInspector]
+    public int data_index = 0;
     private void Start()
     {
-
-
         hitable = gameObject.GetComponent<HitableObj>();
         actionController.eActionQueueCleared += AddDefault;
         if (hitable != null)
@@ -52,6 +53,8 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround += ResetJumpCount;
 
         listeners.eOnTouchGround += OnJumpEnd;
+
+
     }
     private void OnDestroy()
     {
@@ -70,6 +73,9 @@ public class PlayerControl : MonoBehaviour
 
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
+        if (OnCreate != null)
+            OnCreate(_i);
+
         rigid = gameObject.GetComponent<Rigidbody2D>();
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
         animator = gameObject.GetComponent<Animator>();
@@ -466,15 +472,19 @@ public class PlayerControl : MonoBehaviour
         Destroy(actionController);
         PlayAniamtion("Die");
 
-        Invoke("RecreatePlayer", 3);
+        //Invoke("RecreatePlayer", 3);
 
         this.enabled = false;
+        if (OnDestory!=null) {
+            OnDestory(data_index);
+        }
+        Destroy(gameObject);
     }
     //create new player 3sec after die
     void RecreatePlayer()
     {
         LocalRoomManager.instance.Revive(data_index);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     void ResetJumpCount()

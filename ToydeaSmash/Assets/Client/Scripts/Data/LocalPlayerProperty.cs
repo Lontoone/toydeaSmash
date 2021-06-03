@@ -21,5 +21,16 @@ public class LocalPlayerProperty
         
     }
 
+    public T GetValue<T>(string _key) {
+        object data;
+        if (playerProperty.TryGetValue(_key, out data))
+        {
+            return (T)data;
+        }
+        else {
+            return default;
+        }
+    }
+
 
 }

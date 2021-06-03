@@ -7,7 +7,8 @@ using System;
 public class HitableObj : MonoBehaviour
 {
     public float backForce = 0.2f;
-    private static event Action<GameObject, float, GameObject> Hit_event;
+    public static event Action<GameObject, float, GameObject> Hit_event;
+    public static event Action<GameObject, GameObject> OnKilled; //target , killed by
     //public GameObject hit_numUI_prefab;//跳傷害的UI
     //public static event Action<GameObject> Hit_effect_event;
     public event Action Die_event;
@@ -97,6 +98,11 @@ public class HitableObj : MonoBehaviour
                         Die_event();
                     if (KilledBy_event != null)
                         KilledBy_event(sources);
+
+                    if (OnKilled != null)
+                    {
+                        OnKilled(target, sources);
+                    }
                 }
                 isDead = true;
             }

@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Physics Material 2D
+  m_Name: WallMat
   friction: 0
-  bounciness: 0
+  bounciness: 0.7
