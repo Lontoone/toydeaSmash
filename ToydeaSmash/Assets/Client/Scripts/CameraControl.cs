@@ -19,12 +19,23 @@ public class CameraControl : MonoBehaviour
 
         //wait for all player
         yield return new WaitForFixedUpdate();
+        GetPlayerList(0);
+
+        //scale between all players
+        PlayerControl.OnCreate += GetPlayerList;
+    }
+    public void OnDestroy()
+    {
+        PlayerControl.OnCreate -= GetPlayerList;
+    }
+
+    void GetPlayerList(int player_index)
+    {
 
         players = FindObjectsOfType<PlayerControl>();
 
-        //scale between all players
-
     }
+
     public void Awake()
     {
         camera = Camera.main;
@@ -42,13 +53,14 @@ public class CameraControl : MonoBehaviour
         //get camera bounds
 
         //calculate distance between players
+
         Vector2[] min_max = GetMinMaxPlayerPos();
         Vector3 _center = (min_max[1] - min_max[0]) * 0.5f + min_max[0];
         _center.z = -10;
 
         //move to the center of players
         transform.position = Vector3.Lerp(transform.position, _center, Time.fixedDeltaTime * speed);
-        Debug.Log(_center);
+        Debug.Log(_center + " min max " + min_max);
 
         //get screen size
         float _screen_size = Vector2.Distance(min_max[1], min_max[0]) / player_width_screen_rate;
@@ -62,11 +74,12 @@ public class CameraControl : MonoBehaviour
 
     Vector2[] GetMinMaxPlayerPos()
     {
+        if (players==null || players.Length < 0) { return new Vector2[] { Vector2.zero, Vector2.zero }; }
+
         Vector2 _min = players[0].transform.position;
-        Vector2 _max = players[players.Length - 1].transform.position;
-        float min_dis = 99;
-        float max_dis = 0;
-        for (int i = 1; i < players.Length; i++)
+        Vector2 _max = players[0].transform.position;
+
+        for (int i = 0; i < players.Length; i++)
         {
             if (_max.magnitude < players[i].transform.position.magnitude)
             {
@@ -74,7 +87,7 @@ public class CameraControl : MonoBehaviour
             }
             if (_min.magnitude > players[i].transform.position.magnitude)
             {
-                _min= players[i].transform.position;
+                _min = players[i].transform.position;
             }
 
         }
