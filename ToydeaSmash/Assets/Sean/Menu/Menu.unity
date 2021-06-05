@@ -535,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 303906015}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -987,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 506117297}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1076,7 +1076,7 @@ PrefabInstance:
       objectReference: {fileID: 43231255}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1165,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 303958921}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 5470865991149617259}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1323,6 +1323,10 @@ PrefabInstance:
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Interactable
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_AnimationTriggers.m_SelectedTrigger
+      value: Selected
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
