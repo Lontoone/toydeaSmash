@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 1
+  disableOnce: 0
 --- !u!1 &1280038818
 GameObject:
   m_ObjectHideFlags: 0
