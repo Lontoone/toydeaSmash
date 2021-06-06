@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 //玩家控制
 public class PlayerControl : MonoBehaviour
 {
@@ -33,12 +34,13 @@ public class PlayerControl : MonoBehaviour
 
     public float dash_force = 15;
     public float heal_amount = 50;
-
     [SerializeField]
     int jump_count = 0; //跳躍次數 (for 2段跳)
 
     [HideInInspector]
     public int data_index = 0;
+
+    float originGravityScale = 0;
     private void Start()
     {
         hitable = gameObject.GetComponent<HitableObj>();
@@ -82,6 +84,7 @@ public class PlayerControl : MonoBehaviour
         actionController = gameObject.GetComponent<ActionController>();
 
         data_index = _i;
+        originGravityScale = rigid.gravityScale;
 
         Head _newHead =
             Instantiate(
@@ -338,13 +341,26 @@ public class PlayerControl : MonoBehaviour
         body.PlayAnimation("Jump-End");
     }
 
+    [SerializeField]
+    Ease easeType;
     public void Dash()
     {
-
         //rigid.velocity = new Vector2(dash_force, rigid.velocity.y);
-        rigid.AddForce(dash_force * -transform.right);
+        //rigid.AddForce(dash_force * -transform.right);
         head.PlayAnimation("Dash");
         body.PlayAnimation("Dash");
+
+        //rigid.gravityScale = 0;
+        hitable.isHitable = false;
+        DOTween.Sequence().
+            Append(transform.DOMove(-transform.position+transform.right * dash_force, dash.duration)).SetEase(easeType);
+
+    }
+    public void DashCallBack()
+    {
+        //reset
+        hitable.isHitable = true;
+        //rigid.gravityScale =originGravityScale;
     }
 
     public void Duck()
@@ -475,7 +491,8 @@ public class PlayerControl : MonoBehaviour
         //Invoke("RecreatePlayer", 3);
 
         this.enabled = false;
-        if (OnDestory!=null) {
+        if (OnDestory != null)
+        {
             OnDestory(data_index);
         }
         Destroy(gameObject);
