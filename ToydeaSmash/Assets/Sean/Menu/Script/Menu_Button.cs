@@ -9,14 +9,20 @@ public class Menu_Button_new : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Menu_Button_Animator_Functions animatorFunctions;
     [SerializeField] int thisIndex;
+    public int selected_button_index;
 
+
+
+          
     void Update(){
+        Debug.Log(2);
         if (menuButtonController.index == thisIndex)
         {
             animator.SetBool("selected", true);
             if (Input.GetAxis("Submit") == 1)
             {
                 animator.SetBool("pressed", true);
+                
             }
             else if (animator.GetBool("pressed"))
             {

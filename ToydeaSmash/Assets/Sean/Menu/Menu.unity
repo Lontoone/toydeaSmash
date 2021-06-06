@@ -535,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 303906015}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -596,6 +596,10 @@ PrefabInstance:
     - target: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Name
       value: Menu button (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Transition
@@ -987,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 506117297}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1050,6 +1054,10 @@ PrefabInstance:
       value: Menu button (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Transition
       value: 3
       objectReference: {fileID: 0}
@@ -1076,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 43231255}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1139,6 +1147,10 @@ PrefabInstance:
       value: Menu button (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Transition
       value: 3
       objectReference: {fileID: 0}
@@ -1165,7 +1177,7 @@ PrefabInstance:
       objectReference: {fileID: 303958921}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1228,6 +1240,10 @@ PrefabInstance:
       value: Menu button (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Transition
       value: 3
       objectReference: {fileID: 0}
@@ -1254,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 5470865991149617259}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1315,6 +1331,10 @@ PrefabInstance:
     - target: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Name
       value: Menu button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Transition
