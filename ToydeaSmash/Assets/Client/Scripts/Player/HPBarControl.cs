@@ -35,9 +35,12 @@ public class HPBarControl : MonoBehaviour
         hitable.gotHit_event += UpdateHPBar;
         hitable.gotHeel_event += UpdateHPBar;
         hitable.Die_event += DestorySelfOnDie;
-
-        //height_offset = (float)_hitable.gameObject.GetComponent<SpriteRenderer>()?.bounds.size.y;
-        height_offset =3.5f;
+        /*
+        height_offset = (float)_hitable.gameObject
+                                        .GetComponent<PlayerControl>().head
+                                       .GetComponent<SpriteRenderer>()?.bounds.size.y;
+                                       */
+        height_offset =5f;
     }
 
     private void OnEnable()
@@ -95,6 +98,6 @@ public class HPBarControl : MonoBehaviour
                 , 0
                 );
             yield return _wait;
-        } 
+        }
     }
 }
