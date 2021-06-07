@@ -29,13 +29,13 @@ public class PlayerControl : MonoBehaviour
     public Head head;
     public Body body;
 
-    public float dash_force = 15;
-    public float heal_amount = 50;
+    public float dashForce = 15;
+    public float healAmount = 50;
     [HideInInspector]
-    public int data_index = 0;
+    public int dataIndex = 0;
 
     [SerializeField]
-    private int jump_count = 0; //跳躍次數 (for 2段跳)
+    private int jumpCount = 0; //跳躍次數 (for 2段跳)
 
     [SerializeField]
     private Ease easeType;
@@ -90,7 +90,7 @@ public class PlayerControl : MonoBehaviour
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
         actionController = gameObject.GetComponent<ActionController>();
 
-        data_index = _i;
+        dataIndex = _i;
 
         Head _newHead =
             Instantiate(
@@ -148,24 +148,24 @@ public class PlayerControl : MonoBehaviour
         //跳躍
         //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
         //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
-        if (Input.GetKeyDown(jump_key) && (jump_count < 2))
+        if (Input.GetKeyDown(jump_key) && (jumpCount < 2))
         {
             Debug.Log("jump");
-            if (jump_count == 0)
+            if (jumpCount == 0)
             {
 
                 Debug.Log("Jump start");
-                jump_count++;
+                jumpCount++;
                 actionController.AddAction(jump_start);
             }
             //else if (!listeners.isGrounded)
             else
             {
                 Debug.Log("Jump double");
-                jump_count++;
+                jumpCount++;
                 actionController.AddAction(doubleJump);
             }
-            Debug.Log("jump count" + jump_count);
+            Debug.Log("jump count" + jumpCount);
             //jump_count++;
         }
 
@@ -192,7 +192,6 @@ public class PlayerControl : MonoBehaviour
     }
     public void AddJumpForce()
     {
-
         rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
         //rigid.AddForce(transform.up*jumpForce*100);
         Debug.Log("jump force " + rigid.velocity);
@@ -231,19 +230,12 @@ public class PlayerControl : MonoBehaviour
             actionController.AddAction(walk);
 
             //animator.Play("Walk");
-            jump_count = 0; //TODO:暫時的
+            jumpCount = 0; //TODO:暫時的
 
         }
         else
         {
             actionController.AddAction(idle);
-            /*
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
-                actionController.AddAction(idle);
-            else
-            {
-                actionController.AddAction(walk_stop);
-            }*/
         }
 
     }
@@ -256,8 +248,6 @@ public class PlayerControl : MonoBehaviour
 
     public void Move()
     {
-
-
         rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
         //rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y - Mathf.Pow(rigid.gravityScale, 0.5f));
         /*
@@ -348,12 +338,8 @@ public class PlayerControl : MonoBehaviour
         body.PlayAnimation("Dash");
 
         hitable.isHitable = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.TransformPoint(new Vector3(.5f, .5f, 0)), -transform.right, dash_force, obsticalLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, dashForce, obsticalLayerMask);
         Vector2 _endPos;
-        //Debug.DrawRay(transform.position, -transform.right, Color.red);
-        Debug.DrawLine(transform.TransformPoint(new Vector3(.5f, .5f, 0)), transform.position - transform.right * dash_force, Color.blue, 5);
-
-        Debug.Log(" hit collider " + (hit.collider == null) + " " + (LayerMask.NameToLayer("Ground") == obsticalLayerMask));
 
         if (hit.collider != null)
         {
@@ -361,7 +347,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            _endPos = transform.position - transform.right * dash_force;
+            _endPos = transform.position - transform.right * dashForce;
         }
 
         DOTween.Sequence().
@@ -442,7 +428,7 @@ public class PlayerControl : MonoBehaviour
         {
             Animator _effect = GCManager.Instantiate("Heal Effect", position: listeners.footPositon.transform.position).GetComponent<Animator>();
             _effect.Play("heal");
-            hitable.Heal(heal_amount);
+            hitable.Heal(healAmount);
             yield return _oneSec;
         }
     }
@@ -483,9 +469,10 @@ public class PlayerControl : MonoBehaviour
     //hit to sky
     public void Hurt_Fly()
     {
+        const float _dashForceMultipier = 100;
         //add force to sky 
         Vector2 _dir = new Vector2(transform.right.x * 0.5f, 1);
-        rigid.AddForce(_dir * dash_force);
+        rigid.AddForce(_dir * dashForce* _dashForceMultipier);
 
         PlayAniamtion("Hurt Falling");
     }
@@ -505,21 +492,21 @@ public class PlayerControl : MonoBehaviour
         this.enabled = false;
         if (OnDestory != null)
         {
-            OnDestory(data_index);
+            OnDestory(dataIndex);
         }
         Destroy(gameObject);
     }
     //create new player 3sec after die
     void RecreatePlayer()
     {
-        LocalRoomManager.instance.Revive(data_index);
+        LocalRoomManager.instance.Revive(dataIndex);
         //Destroy(gameObject);
     }
 
     void ResetJumpCount()
     {
         Debug.Log("jump: TouchGround");
-        jump_count = 0;
+        jumpCount = 0;
         actionController.AddAction(jump_end);
         //animator.Play("Idle");
     }
