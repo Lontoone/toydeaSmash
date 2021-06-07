@@ -20,11 +20,11 @@ public class PlayerControl : MonoBehaviour
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
     //public string jump_axis_name = "Jump";            //default
-    public KeyCode jump_key = KeyCode.Space;
-    public KeyCode dash_key = KeyCode.LeftShift;
-    public KeyCode duck_key = KeyCode.DownArrow;
-    public KeyCode attack_key = KeyCode.Z;
-    public KeyCode defense_key = KeyCode.X;
+    public KeyCode jump_key =       KeyCode.Space;
+    public KeyCode dash_key =       KeyCode.LeftShift;
+    public KeyCode duck_key =       KeyCode.DownArrow;
+    public KeyCode attack_key =     KeyCode.Z;
+    public KeyCode defense_key =    KeyCode.X;
 
     public Head head;
     public Body body;
@@ -76,7 +76,7 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround -= ResetJumpCount;
 
         listeners.eOnTouchGround -= OnJumpEnd;
-    }
+    }    
 
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
@@ -148,22 +148,23 @@ public class PlayerControl : MonoBehaviour
         //跳躍
         //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
         //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
-        if (Input.GetKeyDown(jump_key) && (jumpCount < 2))
+        if (Input.GetKeyDown(jump_key) && (jumpCount < 1))
         {
             Debug.Log("jump");
             if (jumpCount == 0)
             {
-
                 Debug.Log("Jump start");
-                jumpCount++;
+                Jump_start();
+                AddJumpForce();
                 actionController.AddAction(jump_start);
+                jumpCount++;
             }
             //else if (!listeners.isGrounded)
             else
             {
                 Debug.Log("Jump double");
-                jumpCount++;
                 actionController.AddAction(doubleJump);
+                jumpCount++;
             }
             Debug.Log("jump count" + jumpCount);
             //jump_count++;

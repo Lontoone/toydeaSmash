@@ -14,12 +14,12 @@ public class PlayerAttackControl : MonoBehaviour
     public Collider2D down_attackCollider;
     public LayerMask targetLayer;
 
-    private PlayerControl _player;
-    private Body body;
     private ActionController actionController;
-    private Rigidbody2D rigid;
+    private static Collider2D[] _res = new Collider2D[10]; 
     private ContactFilter2D _filter;
-    private static Collider2D[] _res = new Collider2D[10];
+    private PlayerControl _player;
+    private Rigidbody2D rigid;
+    private Body body;
 
 
 
@@ -35,14 +35,11 @@ public class PlayerAttackControl : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             string _layer_name = "Player" + i.ToString();
-            Debug.Log("layer " + LayerMask.NameToLayer(_layer_name) + " vs " + transform.parent.gameObject.layer);
             if (LayerMask.NameToLayer(_layer_name) != transform.parent.gameObject.layer)
             {
                 targetLayer |= (1 << LayerMask.NameToLayer(_layer_name));
             }
         }
-
-
         _filter.SetLayerMask(targetLayer);
         _filter.useTriggers = true;
 

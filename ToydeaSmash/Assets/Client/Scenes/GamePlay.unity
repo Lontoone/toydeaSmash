@@ -736,7 +736,7 @@ MonoBehaviour:
   maxSize: 20
   minSize: 10
   speed: 20
-  player_width_screen_rate: 0.5
+  player_width_screen_rate: 0.35
 --- !u!1 &412393038
 GameObject:
   m_ObjectHideFlags: 0

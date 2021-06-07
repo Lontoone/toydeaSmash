@@ -47,8 +47,7 @@ public class CameraControl : MonoBehaviour
     }
 
     public void FixedUpdate()
-    {
-     
+    {    
         //calculate distance between players
         Vector2[] min_max = GetMinMaxPlayerPos();
         Vector3 _center = (min_max[1] - min_max[0]) * 0.5f + min_max[0];
@@ -63,8 +62,6 @@ public class CameraControl : MonoBehaviour
         //screen size to the scale of camera size
         float _camera_size = _screen_size * minSize / s_min_camera_width;
         s_camera.orthographicSize = Mathf.Clamp(_camera_size, minSize, maxSize);
-
-
     }
 
     Vector2[] GetMinMaxPlayerPos()
@@ -73,7 +70,6 @@ public class CameraControl : MonoBehaviour
         {
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
-
         Vector2 _min = s_players[0].transform.position;
         Vector2 _max = s_players[0].transform.position;
         if (s_players.Length < 2)
@@ -98,5 +94,9 @@ public class CameraControl : MonoBehaviour
             }
         }
         return new Vector2[] { _min, _max };
+    }
+    //Damage 1% of lift pre sec if a player is out side the view port
+    public void CheckAllPlayersInsideSight() {
+
     }
 }
