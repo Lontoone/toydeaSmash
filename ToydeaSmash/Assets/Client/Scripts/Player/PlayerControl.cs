@@ -20,11 +20,11 @@ public class PlayerControl : MonoBehaviour
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
     //public string jump_axis_name = "Jump";            //default
-    public KeyCode jump_key =       KeyCode.Space;
-    public KeyCode dash_key =       KeyCode.LeftShift;
-    public KeyCode duck_key =       KeyCode.DownArrow;
-    public KeyCode attack_key =     KeyCode.Z;
-    public KeyCode defense_key =    KeyCode.X;
+    public KeyCode jump_key = KeyCode.Space;
+    public KeyCode dash_key = KeyCode.LeftShift;
+    public KeyCode duck_key = KeyCode.DownArrow;
+    public KeyCode attack_key = KeyCode.Z;
+    public KeyCode defense_key = KeyCode.X;
 
     public Head head;
     public Body body;
@@ -46,6 +46,8 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rigid;
     private ActionController actionController;
     private PhysicsControlListeners listeners;
+
+    private Coroutine c_heal;
 
     private void Start()
     {
@@ -76,14 +78,14 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround -= ResetJumpCount;
 
         listeners.eOnTouchGround -= OnJumpEnd;
-    }    
+    }
 
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
-        
+
         if (OnCreate != null)
             OnCreate(_i);
-            
+
         //OnCreate?.Invoke(_i);
 
         rigid = gameObject.GetComponent<Rigidbody2D>();
@@ -181,13 +183,13 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(duck_key))
         {
             actionController.AddAction(duck);
-            cHeal = StartCoroutine(Heal());
+            c_heal = StartCoroutine(HealCoro());
         }
         //Duck Finish
         else if (Input.GetKeyUp(duck_key))
         {
             actionController.AddAction(stop);
-            StopCoroutine(cHeal);
+            StopCoroutine(c_heal);
         }
 
     }
@@ -332,10 +334,11 @@ public class PlayerControl : MonoBehaviour
         head.PlayAnimation("Jump-End");
         body.PlayAnimation("Jump-End");
     }
-    public void LandingEnd() {
+    public void LandingEnd()
+    {
         head.PlayAnimation("Landing Fall");
         body.PlayAnimation("Landing Fall");
-        Effect("landing effect","Landing");
+        Effect("landing effect", "Landing");
     }
     public void Dash()
     {
@@ -370,6 +373,11 @@ public class PlayerControl : MonoBehaviour
     {
         head.PlayAnimation("Duck");
         body.PlayAnimation("Duck");
+    }
+    public void DuckCallback()
+    {
+        StopCoroutine(c_heal);
+        c_heal = null;
     }
 
     //first time to join the game
@@ -418,9 +426,7 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    //Heal player HP
-    Coroutine cHeal;
-    IEnumerator Heal()
+    IEnumerator HealCoro()
     {
         WaitForSeconds _oneSec = new WaitForSeconds(1);
         int _prewait = 2;
@@ -431,7 +437,7 @@ public class PlayerControl : MonoBehaviour
         }
         while (true)
         {
-            Animator _effect = GCManager.Instantiate("Heal Effect", position: listeners.footPositon.transform.position).GetComponent<Animator>();
+            Animator _effect = GCManager.Instantiate("Heal Effect", _position: listeners.footPositon.transform.position).GetComponent<Animator>();
             _effect.Play("heal");
             hitable.Heal(healAmount);
             yield return _oneSec;
@@ -455,9 +461,9 @@ public class PlayerControl : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
 
-    public void Effect(string _gc_key, string _clip_name)
+    public void Effect(string _gc_key, string _clip_name, Quaternion _rotation = default)
     {
-        GameObject _effect = GCManager.Instantiate(_gc_key);
+        GameObject _effect = GCManager.Instantiate(_gc_key, _rotation: _rotation);
         _effect.GetComponent<Animator>().Play(_clip_name);
         _effect.transform.position = listeners.footPositon.transform.position;
     }
@@ -477,11 +483,11 @@ public class PlayerControl : MonoBehaviour
         const float _dashForceMultipier = 100;
         //add force to sky 
         Vector2 _dir = new Vector2(transform.right.x * 0.5f, 1);
-        rigid.AddForce(_dir * dashForce* _dashForceMultipier);
+        rigid.AddForce(_dir * dashForce * _dashForceMultipier);
 
         PlayAniamtion("Hurt Falling");
     }
-    
+
     void Die()
     {
         Debug.Log("玩家死亡");
@@ -493,8 +499,8 @@ public class PlayerControl : MonoBehaviour
         actionController.StopAllCoroutines();
 
         PlayAniamtion("Die");
-        this.enabled = false;        
-        OnDestory?.Invoke(dataIndex);        
+        this.enabled = false;
+        OnDestory?.Invoke(dataIndex);
 
         Destroy(actionController);
         Destroy(gameObject);

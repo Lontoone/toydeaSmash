@@ -20,7 +20,7 @@ public class GCManager : MonoBehaviour
     static Dictionary<string, LinkedList<object>> dicts = new Dictionary<string, LinkedList<object>>();
     static Dictionary<string, Vector2> registerScale = new Dictionary<string, Vector2>();
 
-    static int _db_c = 0;
+    static int _db_counter = 0;
     public static void RegisterObject(string _key, Object _obj)
     {
         LinkedList<object> _out;
@@ -38,14 +38,14 @@ public class GCManager : MonoBehaviour
         else
         {
             //already registered.
-          
+
             Debug.Log("Already exist");
         }
     }
 
 
     //取得有空閒的物品
-    public static GameObject Instantiate(string _key, Transform parent = null, Vector2 position = default, GameObject prefab = null)
+    public static GameObject Instantiate(string _key, Transform parent = null, Vector3 _position = default, Quaternion _rotation = default, GameObject prefab = null)
     {
         //檢查該key是否存在
         LinkedList<object> _out;
@@ -55,17 +55,18 @@ public class GCManager : MonoBehaviour
             if (!(_out.First.Value as GameObject).activeSelf)
             {
                 LinkedListNode<object> first_obj = _out.First;
-                (first_obj.Value as GameObject).transform.position = position;
+                (first_obj.Value as GameObject).transform.position = _position;
+                (first_obj.Value as GameObject).transform.rotation= _rotation;
                 (first_obj.Value as GameObject).SetActive(true);
 
                 //移至最後:
                 dicts[_key].RemoveFirst();
                 dicts[_key].AddLast(first_obj);
                 (first_obj.Value as GameObject).transform.SetParent(parent);
-                Debug.Log("GC Get First value " + _db_c.ToString());
+                Debug.Log("GC Get First value " + _db_counter.ToString());
 
-                (first_obj.Value as GameObject).name = _db_c.ToString();
-                _db_c++;
+                (first_obj.Value as GameObject).name = _db_counter.ToString();
+                _db_counter++;
 
                 (first_obj.Value as GameObject).transform.localScale = registerScale[_key];
 
@@ -76,7 +77,7 @@ public class GCManager : MonoBehaviour
             GameObject _newobj = UnityEngine.GameObject.Instantiate((GameObject)dicts[_key].First.Value, parent);
             _newobj.SetActive(true);
             dicts[_key].AddLast(_newobj);
-          
+
             Debug.Log("GC Create new one");
 
             _newobj.transform.localScale = registerScale[_key];
@@ -126,7 +127,8 @@ public class GCManager : MonoBehaviour
         }
     }
 
-    public static void Clear() {
+    public static void Clear()
+    {
         dicts.Clear();
         registerScale.Clear();
     }

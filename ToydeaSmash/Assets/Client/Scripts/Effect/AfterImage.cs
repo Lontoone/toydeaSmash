@@ -8,7 +8,7 @@ public class AfterImage : MonoBehaviour
 
     public static void CreateImageTrail(Sprite _sp, Vector2 _pos, Vector2 _scale , Color color=default)
     {
-        GameObject _trail = GCManager.Instantiate("ImageTrail", position: _pos);
+        GameObject _trail = GCManager.Instantiate("ImageTrail", _position: _pos);
         _trail.GetComponent<SpriteRenderer>().sprite = _sp;
         _trail.GetComponent<SpriteRenderer>().color = color;
         _trail.transform.localScale = _scale;

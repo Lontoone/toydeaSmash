@@ -48,21 +48,21 @@ public class PlayerAttackControl : MonoBehaviour
             _player.PlayAniamtion("Attack");
             current_Attack_collider = attackCollider;
             Attack();
-            _player.Effect("attack effect", "attack effect");
+            _player.Effect("attack effect", "attack effect", transform.rotation);
         });
 
         up_attack.action.AddListener(delegate
         {
             UpAttack();
             Attack();
-            _player.Effect("up attack", "up attack");
+            _player.Effect("up attack", "up attack", transform.rotation);
         });
 
         down_attack.action.AddListener(delegate
         {
             DownAttack();
             Attack();
-            _player.Effect("down attack", "down attack");
+            _player.Effect("down attack", "down attack", transform.rotation);
         });
 
         //for test:
