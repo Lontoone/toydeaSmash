@@ -10,18 +10,16 @@ public class PlayerControl : MonoBehaviour
     public static event Action<int> OnDestory;
     public float speed = 5;
     public float jumpForce = 10;
-    Animator animator;
-    Rigidbody2D rigid;
-    PhysicsControlListeners listeners;
     [HideInInspector]
     public HitableObj hitable;
-    ActionController actionController;
+
     public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive;
     public ActionController.mAction landing, land_end;
 
+    /*control keys*/
     public string horizontal_axis_name = "Horizontal";  //default
     public string vertical_axis_name = "Vertical";      //default
-    //public string jump_axis_name = "Jump";                //default
+    //public string jump_axis_name = "Jump";            //default
     public KeyCode jump_key = KeyCode.Space;
     public KeyCode dash_key = KeyCode.LeftShift;
     public KeyCode duck_key = KeyCode.DownArrow;
@@ -30,17 +28,25 @@ public class PlayerControl : MonoBehaviour
 
     public Head head;
     public Body body;
-    SpriteRenderer head_sp, body_sp;
 
     public float dash_force = 15;
     public float heal_amount = 50;
-    [SerializeField]
-    int jump_count = 0; //跳躍次數 (for 2段跳)
-
     [HideInInspector]
     public int data_index = 0;
 
-    float originGravityScale = 0;
+    [SerializeField]
+    private int jump_count = 0; //跳躍次數 (for 2段跳)
+
+    [SerializeField]
+    private Ease easeType;
+
+    [SerializeField]
+    private LayerMask obsticalLayerMask;
+
+    private Rigidbody2D rigid;
+    private ActionController actionController;
+    private PhysicsControlListeners listeners;
+
     private void Start()
     {
         hitable = gameObject.GetComponent<HitableObj>();
@@ -64,7 +70,6 @@ public class PlayerControl : MonoBehaviour
         if (hitable != null)
         {
             hitable.Die_event -= Die;
-            //hitable.gotHit_event -= Hurt;
             hitable.gotHit_event -= OnHurt;
         }
         if (listeners != null)
@@ -75,16 +80,17 @@ public class PlayerControl : MonoBehaviour
 
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
+        
         if (OnCreate != null)
             OnCreate(_i);
+            
+        //OnCreate?.Invoke(_i);
 
         rigid = gameObject.GetComponent<Rigidbody2D>();
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
-        animator = gameObject.GetComponent<Animator>();
         actionController = gameObject.GetComponent<ActionController>();
 
         data_index = _i;
-        originGravityScale = rigid.gravityScale;
 
         Head _newHead =
             Instantiate(
@@ -106,9 +112,6 @@ public class PlayerControl : MonoBehaviour
 
         head = _newHead;
         body = _newBody;
-
-        head_sp = head.GetComponent<SpriteRenderer>();
-        body_sp = body.GetComponent<SpriteRenderer>();
 
         head.ApplyBuff();
 
@@ -309,14 +312,12 @@ public class PlayerControl : MonoBehaviour
 
     public void Idle()
     {
-
         head.PlayAnimation("Idle");
         body.PlayAnimation("Idle");
     }
 
     public void Jump_start()
     {
-
         head.PlayAnimation("Jump-Start");
         body.PlayAnimation("Jump-Start");
 
@@ -341,19 +342,30 @@ public class PlayerControl : MonoBehaviour
         body.PlayAnimation("Jump-End");
     }
 
-    [SerializeField]
-    Ease easeType;
     public void Dash()
     {
-        //rigid.velocity = new Vector2(dash_force, rigid.velocity.y);
-        //rigid.AddForce(dash_force * -transform.right);
         head.PlayAnimation("Dash");
         body.PlayAnimation("Dash");
 
-        //rigid.gravityScale = 0;
         hitable.isHitable = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.TransformPoint(new Vector3(.5f, .5f, 0)), -transform.right, dash_force, obsticalLayerMask);
+        Vector2 _endPos;
+        //Debug.DrawRay(transform.position, -transform.right, Color.red);
+        Debug.DrawLine(transform.TransformPoint(new Vector3(.5f, .5f, 0)), transform.position - transform.right * dash_force, Color.blue, 5);
+
+        Debug.Log(" hit collider " + (hit.collider == null) + " " + (LayerMask.NameToLayer("Ground") == obsticalLayerMask));
+
+        if (hit.collider != null)
+        {
+            _endPos = hit.point;
+        }
+        else
+        {
+            _endPos = transform.position - transform.right * dash_force;
+        }
+
         DOTween.Sequence().
-            Append(transform.DOMove(-transform.position+transform.right * dash_force, dash.duration)).SetEase(easeType);
+            Append(transform.DOMove(_endPos, dash.duration)).SetEase(easeType);
 
     }
     public void DashCallBack()

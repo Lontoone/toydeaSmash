@@ -633,9 +633,12 @@ MonoBehaviour:
   body: {fileID: 4272841706376436556}
   dash_force: 20
   heal_amount: 50
-  jump_count: 2
   data_index: 0
+  jump_count: 2
   easeType: 17
+  obsticalLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   _isHurting: 0
 --- !u!114 &7923640692456162593
 MonoBehaviour:
