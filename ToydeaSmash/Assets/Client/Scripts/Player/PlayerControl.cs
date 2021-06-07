@@ -308,8 +308,8 @@ public class PlayerControl : MonoBehaviour
 
     public void Jump_start()
     {
-        head.PlayAnimation("Jump-Start");
-        body.PlayAnimation("Jump-Start");
+        head.PlayAnimation("Jump Falling");
+        body.PlayAnimation("Jump Falling");
 
         Effect("Jump Smoke", "jump smoke");
     }
@@ -476,6 +476,7 @@ public class PlayerControl : MonoBehaviour
 
         PlayAniamtion("Hurt Falling");
     }
+    
     void Die()
     {
         Debug.Log("玩家死亡");
