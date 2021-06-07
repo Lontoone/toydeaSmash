@@ -13,6 +13,7 @@ public class CameraControl : MonoBehaviour
     private static float s_min_camera_width, s_max_camera_width;
     private static PlayerControl[] s_players;
     private static Camera s_camera;
+    private static Coroutine s_c_checkPlayersInSight;
     public IEnumerator Start()
     {
         //wait for all player
@@ -22,11 +23,15 @@ public class CameraControl : MonoBehaviour
         //scale between all players
         PlayerControl.OnCreate += GetPlayerList;
         PlayerControl.OnDestory += GetPlayerList;
+
+        s_c_checkPlayersInSight = StartCoroutine(CheckAllPlayersInSideSightCoro());
     }
     public void OnDestroy()
     {
         PlayerControl.OnCreate -= GetPlayerList;
         PlayerControl.OnDestory -= GetPlayerList;
+        StopCoroutine(s_c_checkPlayersInSight);
+        s_c_checkPlayersInSight = null;
     }
 
     void GetPlayerList(int player_index)
@@ -47,7 +52,7 @@ public class CameraControl : MonoBehaviour
     }
 
     public void FixedUpdate()
-    {    
+    {
         //calculate distance between players
         Vector2[] min_max = GetMinMaxPlayerPos();
         Vector3 _center = (min_max[1] - min_max[0]) * 0.5f + min_max[0];
@@ -95,8 +100,32 @@ public class CameraControl : MonoBehaviour
         }
         return new Vector2[] { _min, _max };
     }
-    //Damage 1% of lift pre sec if a player is out side the view port
-    public void CheckAllPlayersInsideSight() {
 
+    private IEnumerator CheckAllPlayersInSideSightCoro()
+    {
+        WaitForSeconds _presec = new WaitForSeconds(1);
+        while (true)
+        {
+            CheckAllPlayersInsideSight();
+            yield return _presec;
+        }
+        s_c_checkPlayersInSight = null;
+
+    }
+
+    //Damage 1% of life pre sec if a player is out side the view port
+    private void CheckAllPlayersInsideSight()
+    {
+        //loop all the players
+        for (int i = 0; i < s_players.Length; i++)
+        {
+            //check player's viewport position.
+            Vector2 __playerViewPortPosition = s_camera.WorldToViewportPoint(s_players[i].transform.position);
+            if (__playerViewPortPosition.x < 0 || __playerViewPortPosition.x > 1)
+            {
+                //TODO: temp using null as soruces and minus 100 pre sec
+                HitableObj.Hit_event_c(s_players[i].gameObject, 100, null);
+            }
+        }
     }
 }

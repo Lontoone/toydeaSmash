@@ -72,7 +72,7 @@ public class HitableObj : MonoBehaviour
             if (isHitable)
             {
                 //Turn to hit sources
-                if (Vector2.Dot(target.transform.right, sources.transform.right) > 0)
+                if (sources != null && Vector2.Dot(target.transform.right, sources.transform.right) > 0)
                 {
                     target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y + 180, 0);
                 }
