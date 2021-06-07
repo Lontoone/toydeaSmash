@@ -321,8 +321,8 @@ public class PlayerControl : MonoBehaviour
     }
     public void Falling()
     {
-        head.PlayAnimation("Jumping Falling");
-        body.PlayAnimation("Jumping Falling");
+        head.PlayAnimation("Jump Falling");
+        body.PlayAnimation("Jump Falling");
 
         Debug.Log("falling v " + rigid.velocity);
     }
