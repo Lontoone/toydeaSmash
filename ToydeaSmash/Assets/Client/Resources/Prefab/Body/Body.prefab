@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteMask: {fileID: 11400000, guid: 60b4fd3e41dbdd444b24e668c890d400, type: 2}
+  sp: {fileID: 0}
   damage: 100
 --- !u!95 &4245175814641535461
 Animator:
@@ -348,7 +349,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 10
     force: 1
-    duration: 0.5
+    duration: 1
     isLoop: 0
     timeOut: 2
     time_out_counter: 0

@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerAttackControl : MonoBehaviour
 {
 
-    ActionController actionController;
-    Rigidbody2D rigid;
     public ActionController.mAction attack, up_attack, down_attack, dash, defense;
 
     public Collider2D current_Attack_collider;
@@ -14,14 +12,16 @@ public class PlayerAttackControl : MonoBehaviour
     public Collider2D attackCollider;
     public Collider2D up_attackCollider;
     public Collider2D down_attackCollider;
-
-    PlayerControl _player;
-    Body body;
-
-    ContactFilter2D filter;
-    Collider2D[] res = new Collider2D[5];
-
     public LayerMask targetLayer;
+
+    private PlayerControl _player;
+    private Body body;
+    private ActionController actionController;
+    private Rigidbody2D rigid;
+    private ContactFilter2D _filter;
+    private static Collider2D[] _res = new Collider2D[10];
+
+
 
 
     public void Start()
@@ -43,26 +43,29 @@ public class PlayerAttackControl : MonoBehaviour
         }
 
 
-        filter.SetLayerMask(targetLayer);
-        filter.useTriggers = true;
+        _filter.SetLayerMask(targetLayer);
+        _filter.useTriggers = true;
 
         attack.action.AddListener(delegate
         {
             _player.PlayAniamtion("Attack");
             current_Attack_collider = attackCollider;
             Attack();
+            _player.Effect("attack effect", "attack effect");
         });
 
         up_attack.action.AddListener(delegate
         {
             UpAttack();
             Attack();
+            _player.Effect("up attack", "up attack");
         });
 
         down_attack.action.AddListener(delegate
         {
             DownAttack();
             Attack();
+            _player.Effect("down attack", "down attack");
         });
 
         //for test:
@@ -109,16 +112,15 @@ public class PlayerAttackControl : MonoBehaviour
         //_attack_test();
 
         //check collider
-
-        int _num = current_Attack_collider.OverlapCollider(filter, res);
+        int _num = current_Attack_collider.OverlapCollider(_filter, _res);
         for (int i = 0; i < _num; i++)
         {
-            HitableObj.Hit_event_c(res[i].gameObject, body.damage, body.transform.parent.gameObject);
-            Debug.Log("Hits " + res[i].gameObject.name);
+            HitableObj.Hit_event_c(_res[i].gameObject, body.damage, body.transform.parent.gameObject);
+            Debug.Log("Hits " + _res[i].gameObject.name);
         }
-
         //effect:
-        GCManager.Instantiate("attack effect", position: transform.position).GetComponent<Animator>().Play("attack effect");
+        //GCManager.Instantiate("attack effect", position: transform.position).GetComponent<Animator>().Play("attack effect");
+
     }
     public virtual void UpAttack()
     {
@@ -132,13 +134,12 @@ public class PlayerAttackControl : MonoBehaviour
 
         //TODO: back to down animation:
         actionController.AddAction(_player.duck);
+
     }
 
     public virtual void Defense()
     {
         _player.PlayAniamtion("Defense");
-
-
     }
 
 

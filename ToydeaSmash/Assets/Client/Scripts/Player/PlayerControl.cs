@@ -331,7 +331,11 @@ public class PlayerControl : MonoBehaviour
         head.PlayAnimation("Jump-End");
         body.PlayAnimation("Jump-End");
     }
-
+    public void LandingEnd() {
+        head.PlayAnimation("Landing Fall");
+        body.PlayAnimation("Landing Fall");
+        Effect("landing effect","Landing");
+    }
     public void Dash()
     {
         head.PlayAnimation("Dash");
@@ -450,7 +454,7 @@ public class PlayerControl : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
 
-    void Effect(string _gc_key, string _clip_name)
+    public void Effect(string _gc_key, string _clip_name)
     {
         GameObject _effect = GCManager.Instantiate(_gc_key);
         _effect.GetComponent<Animator>().Play(_clip_name);
@@ -481,20 +485,17 @@ public class PlayerControl : MonoBehaviour
     {
         Debug.Log("玩家死亡");
 
+        Effect("die disappear", "die disappear");
+
         //disable control
-        //actionController.enabled = false;
         hitable.isHitable = false;
         actionController.StopAllCoroutines();
-        Destroy(actionController);
+
         PlayAniamtion("Die");
+        this.enabled = false;        
+        OnDestory?.Invoke(dataIndex);        
 
-        //Invoke("RecreatePlayer", 3);
-
-        this.enabled = false;
-        if (OnDestory != null)
-        {
-            OnDestory(dataIndex);
-        }
+        Destroy(actionController);
         Destroy(gameObject);
     }
     //create new player 3sec after die

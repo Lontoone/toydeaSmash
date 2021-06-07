@@ -160,7 +160,7 @@ AnimatorStateMachine:
     m_Position: {x: 455, y: 435, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5370912964786133029}
-    m_Position: {x: 490, y: 500, z: 0}
+    m_Position: {x: 500, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3011389986209664160}
     m_Position: {x: 525, y: 565, z: 0}
@@ -277,7 +277,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: up attack effect
+  m_Name: up attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -303,7 +303,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Die disappear
+  m_Name: die disappear
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
