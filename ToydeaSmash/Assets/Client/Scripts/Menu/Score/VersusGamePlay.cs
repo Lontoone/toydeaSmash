@@ -82,7 +82,7 @@ public class VersusGamePlay : MonoBehaviour
         if (kpc == null)
             return;
 
-        int killer_teamCode = (int)LocalRoomManager.instance.players[kpc.data_index].playerProperty[CustomPropertyCode.TEAM_CODE];
+        int killer_teamCode = (int)LocalRoomManager.instance.players[kpc.dataIndex].playerProperty[CustomPropertyCode.TEAM_CODE];
 
         int[] other_teams = LocalRoomManager.instance.Get_Index_In_Different_Team(killer_teamCode);
 

@@ -50,15 +50,15 @@ public class GameResultManager : MonoBehaviour
         if (player != null)
         {
             object _outdata;
-            if (LocalRoomManager.instance.players[player.data_index].playerProperty.TryGetValue(_key, out _outdata))
+            if (LocalRoomManager.instance.players[player.dataIndex].playerProperty.TryGetValue(_key, out _outdata))
             {
-                LocalRoomManager.instance.players[player.data_index].SetProperty(_key,
+                LocalRoomManager.instance.players[player.dataIndex].SetProperty(_key,
                     (int)_outdata + data_to_add);
             }
             else
             {
                 //init value
-                LocalRoomManager.instance.players[player.data_index].SetProperty(_key, 0);
+                LocalRoomManager.instance.players[player.dataIndex].SetProperty(_key, 0);
             }
 
         }
