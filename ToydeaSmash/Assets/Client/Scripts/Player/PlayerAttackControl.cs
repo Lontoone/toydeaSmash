@@ -129,8 +129,6 @@ public class PlayerAttackControl : MonoBehaviour
         current_Attack_collider = down_attackCollider;
         _player.PlayAniamtion("Down attack");
 
-        //TODO: back to down animation:
-        actionController.AddAction(_player.duck);
 
     }
 
