@@ -63,8 +63,6 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround += ResetJumpCount;
 
         listeners.eOnTouchGround += OnJumpEnd;
-
-
     }
     private void OnDestroy()
     {
@@ -464,8 +462,11 @@ public class PlayerControl : MonoBehaviour
     public void Effect(string _gc_key, string _clip_name, Quaternion _rotation = default)
     {
         GameObject _effect = GCManager.Instantiate(_gc_key, _rotation: _rotation);
-        _effect.GetComponent<Animator>().Play(_clip_name);
-        _effect.transform.position = listeners.footPositon.transform.position;
+        if (_effect != null)
+        {
+            _effect.GetComponent<Animator>().Play(_clip_name);
+            _effect.transform.position = listeners.footPositon.transform.position;
+        }
     }
     [SerializeField]
     bool _isHurting = false;

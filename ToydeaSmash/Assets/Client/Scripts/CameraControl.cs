@@ -119,6 +119,10 @@ public class CameraControl : MonoBehaviour
         //loop all the players
         for (int i = 0; i < s_players.Length; i++)
         {
+            if (s_players[i] == null)
+            {
+                return;
+            }
             //check player's viewport position.
             Vector2 __playerViewPortPosition = s_camera.WorldToViewportPoint(s_players[i].transform.position);
             if (__playerViewPortPosition.x < 0 || __playerViewPortPosition.x > 1)

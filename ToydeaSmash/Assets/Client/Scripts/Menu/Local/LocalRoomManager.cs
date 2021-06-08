@@ -43,7 +43,7 @@ public class LocalRoomManager : MonoBehaviour
     public void AddLocalPlayer()
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
-        players.Add(_local);        
+        players.Add(_local);
         Debug.Log("player i  count  " + players.Count);
 
         //add slot 
@@ -93,7 +93,7 @@ public class LocalRoomManager : MonoBehaviour
         }
     }
 
-    public void Revive(int _playerData_index)
+    public PlayerControl Revive(int _playerData_index)
     {
         PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
         Debug.Log("player i " + _playerData_index);
@@ -101,6 +101,7 @@ public class LocalRoomManager : MonoBehaviour
         _player.SetUp(players[_playerData_index], _playerData_index);
 
         _player.AddRevive();
+        return _player;
     }
 
     public int[] Get_Index_In_Same_Team(int teamCode)
