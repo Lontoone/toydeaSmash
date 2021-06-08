@@ -26,7 +26,7 @@ public class ReadyButton : MonoBehaviour
     {
         _isReady = !_isReady;
         LocalRoomManager.instance.players[playerSlot.player_index].SetProperty(READY, _isReady);
-        ChangeReadyColor();
+        //ChangeReadyColor();
         CheckAllLocalPlayerIsReady();
     }
 
