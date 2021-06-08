@@ -15,7 +15,7 @@ public class PlayerAttackControl : MonoBehaviour
     public LayerMask targetLayer;
 
     private ActionController actionController;
-    private static Collider2D[] _res = new Collider2D[10]; 
+    private static Collider2D[] _res = new Collider2D[10];
     private ContactFilter2D _filter;
     private PlayerControl _player;
     private Rigidbody2D rigid;
