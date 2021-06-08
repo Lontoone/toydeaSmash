@@ -130,13 +130,25 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     }
     public void Weapon_btn(int _opt)
     {
-        current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length - 1);
-        SetWeapon(current_body);
+        //temp
+        current_body = Mathf.Clamp(current_body + _opt, 0, 2);
+        OnBodyChanged?.Invoke(current_body);
+        /*
+        *  FOR FURTURE
+       current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length - 1);
+       SetWeapon(current_body);
+       */
     }
     public void Head_btn(int _opt)
     {
+        //temp
+        current_head = Mathf.Clamp(current_head + _opt, 0, 8);
+        OnHeadChanged?.Invoke(current_head);
+        /*
+        *  FOR FURTURE
         current_head = Mathf.Clamp(current_head + _opt, 0, heads_res.Length - 1);
         SetHead(current_head);
+        */
     }
 
     void SetTeam(int _index)
@@ -145,7 +157,6 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
 
-        //TODO: Set UI
         head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
         body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
         OnTeamChanged?.Invoke(current_team);
