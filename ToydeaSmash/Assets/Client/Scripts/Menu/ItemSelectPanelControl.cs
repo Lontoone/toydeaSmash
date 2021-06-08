@@ -19,6 +19,7 @@ public class ItemSelectPanelControl : MonoBehaviour
     public Sprite[] _bodySprites;
 
     public Ease easeType;
+    public float easeDuration = 0.5f;
 
     private const string HEAD_RESOURCESPATH = "Head icon/";
     private const string BODY_RESOURCESPATH = "Weapon icon/";
@@ -66,17 +67,17 @@ public class ItemSelectPanelControl : MonoBehaviour
     private void ScrollTeamContainer(int _index)
     {
         Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
-        teamContainer.transform.DOLocalMove(__goalPos, 0.5f).SetEase(easeType);
+        teamContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
     private void ScrollHeadContainer(int _index)
     {
         Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
-        headContainer.transform.DOLocalMove(__goalPos, 0.5f).SetEase(easeType);
+        headContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
     private void ScrollBodyContainer(int _index)
     {
         Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
-        bodyContainer.transform.DOLocalMove(__goalPos, 0.5f).SetEase(easeType);
+        bodyContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
 
 }
