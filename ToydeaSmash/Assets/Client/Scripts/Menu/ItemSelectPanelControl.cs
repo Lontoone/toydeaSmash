@@ -20,10 +20,12 @@ public class ItemSelectPanelControl : MonoBehaviour
 
     public Ease easeType;
     public float easeDuration = 0.5f;
+    public int tamp_gap = 2;
+    public int head_gap = 2;
+    public int body_gap = 2;
 
     private const string HEAD_RESOURCESPATH = "Head icon/";
     private const string BODY_RESOURCESPATH = "Weapon icon/";
-    private const int _GAP = 2;
 
     public void Start()
     {
@@ -37,21 +39,21 @@ public class ItemSelectPanelControl : MonoBehaviour
             GameObject _colorIcon = Instantiate(teamIconPrefab, Vector3.zero, Quaternion.identity, teamContainer.transform);
             _colorIcon.GetComponent<Image>().color = CustomPropertyCode.TEAMCOLORS[i];
             _colorIcon.transform.SetParent(teamContainer.transform);
-            _colorIcon.transform.localPosition = new Vector2(i * _GAP, 0);
+            _colorIcon.transform.localPosition = new Vector2(i * tamp_gap, 0);
         }
         //create head item:
         for (int i = 0; i < _headSprites.Length; i++)
         {
             GameObject _icon = Instantiate(headIconPrefab, Vector3.zero, Quaternion.identity, headContainer.transform);
             _icon.GetComponent<Image>().sprite = _headSprites[i];
-            _icon.transform.localPosition = new Vector2(i * _GAP, 0);
+            _icon.transform.localPosition = new Vector2(i * head_gap, 0);
         }
         //create body item:
         for (int i = 0; i < _bodySprites.Length; i++)
         {
             GameObject _icon = Instantiate(bodyIconPrefab, Vector3.zero, Quaternion.identity, bodyContainer.transform);
             _icon.GetComponent<Image>().sprite = _bodySprites[i];
-            _icon.transform.localPosition = new Vector2(i * _GAP, 0);
+            _icon.transform.localPosition = new Vector2(i * body_gap, 0);
         }
         playerSlot.OnTeamChanged += ScrollTeamContainer;
         playerSlot.OnHeadChanged += ScrollHeadContainer;
@@ -66,17 +68,17 @@ public class ItemSelectPanelControl : MonoBehaviour
 
     private void ScrollTeamContainer(int _index)
     {
-        Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
+        Vector2 __goalPos = new Vector2(-_index * tamp_gap, 0);
         teamContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
     private void ScrollHeadContainer(int _index)
     {
-        Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
+        Vector2 __goalPos = new Vector2(-_index * head_gap, 0);
         headContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
     private void ScrollBodyContainer(int _index)
     {
-        Vector2 __goalPos = new Vector2(-_index * _GAP, 0);
+        Vector2 __goalPos = new Vector2(-_index * body_gap, 0);
         bodyContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
 
