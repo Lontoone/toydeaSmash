@@ -10,6 +10,7 @@ public class ReadyButton : MonoBehaviour
     public const string READY = "READY";
     private static GameObject _startBtn;
     private PlayerSlot playerSlot;
+    [SerializeField]
     private bool _isReady = false;
     public void Start()
     {
@@ -47,9 +48,12 @@ public class ReadyButton : MonoBehaviour
         bool _isAllReady = true;
         for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
         {
+            Debug.Log("player " + i + " " + LocalRoomManager.instance.players[i].GetValue<bool>(READY));
             if (!LocalRoomManager.instance.players[i].GetValue<bool>(READY))
             {
+
                 _isAllReady = false;
+                break;
             }
         }
         //OnCheckIsAllReady?.Invoke(_isAllReady);
