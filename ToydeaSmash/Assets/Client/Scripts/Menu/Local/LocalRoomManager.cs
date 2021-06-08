@@ -9,6 +9,7 @@ public class LocalRoomManager : MonoBehaviour
     public static LocalRoomManager instance;
     public List<LocalPlayerProperty> players = new List<LocalPlayerProperty>();
     public LocalPlayerProperty gamePlaySetting = new LocalPlayerProperty();
+    public event Action<Dictionary<string, object>> OnPlayerValueChanged;
     Dictionary<int, List<int>> team_player_dict = new Dictionary<int, List<int>>(); //team code , player_index
 
     public event Action<LocalPlayerProperty> OnLocalPlayerAdded;
@@ -42,18 +43,15 @@ public class LocalRoomManager : MonoBehaviour
     public void AddLocalPlayer()
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
-        players.Add(_local);
+        players.Add(_local);        
         Debug.Log("player i  count  " + players.Count);
+
         //add slot 
-        if (OnLocalPlayerAdded != null)
-        {
-            OnLocalPlayerAdded.Invoke(_local);
-        }
+        OnLocalPlayerAdded?.Invoke(_local);
     }
 
     public virtual void StartGamePlay()
     {
-
         //set up data and change Scene
         SceneManager.LoadScene((string)gamePlaySetting.playerProperty[GameplaySettingControl.MAP_OPT]);
     }
@@ -124,7 +122,8 @@ public class LocalRoomManager : MonoBehaviour
         return _res.ToArray();
     }
 
-    public void ClearPlayerDatas() {
+    public void ClearPlayerDatas()
+    {
         players.Clear();
         gamePlaySetting.playerProperty.Clear();
     }

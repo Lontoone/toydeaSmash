@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 282685137}
   - component: {fileID: 282685141}
   - component: {fileID: 282685142}
+  - component: {fileID: 282685143}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -435,6 +436,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &282685143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282685136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ec06c10be16404395aad59f6bf635e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &303906011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
@@ -1350,15 +1363,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 282685143}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene_local
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Character selection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711867506384925003, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3711867506394804373, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Color.b

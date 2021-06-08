@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Sean/Menu.unity
     guid: fc7fca65179ae95488eb914474c96a43
   - enabled: 1
+    path: Assets/Sean/Character selection.unity
+    guid: 6475271cb6959b143b436fc2f5b7317c
+  - enabled: 0
     path: Assets/Client/Scenes/Start.unity
     guid: 6e3a3c113763c63438119e132d119c17
-  - enabled: 1
+  - enabled: 0
     path: Assets/Client/Scenes/LocalPlayerSetUp.unity
     guid: bc6ea7b82f94b4e4385ee2095f25f577
   - enabled: 1
