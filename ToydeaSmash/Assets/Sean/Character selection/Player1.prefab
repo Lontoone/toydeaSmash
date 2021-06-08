@@ -1305,6 +1305,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5fcafafc67a927d43a2d19b310b51443, type: 3}
   easeType: 18
   easeDuration: 0.25
+  team_gap: 5
+  head_gap: 5
+  body_gap: 5
 --- !u!1 &2421306135282283012
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class ItemSelectPanelControl : MonoBehaviour
 
     public Ease easeType;
     public float easeDuration = 0.5f;
-    public int tamp_gap = 2;
+    public int team_gap = 2;
     public int head_gap = 2;
     public int body_gap = 2;
 
@@ -39,7 +39,7 @@ public class ItemSelectPanelControl : MonoBehaviour
             GameObject _colorIcon = Instantiate(teamIconPrefab, Vector3.zero, Quaternion.identity, teamContainer.transform);
             _colorIcon.GetComponent<Image>().color = CustomPropertyCode.TEAMCOLORS[i];
             _colorIcon.transform.SetParent(teamContainer.transform);
-            _colorIcon.transform.localPosition = new Vector2(i * tamp_gap, 0);
+            _colorIcon.transform.localPosition = new Vector2(i * team_gap, 0);
         }
         //create head item:
         for (int i = 0; i < _headSprites.Length; i++)
@@ -68,7 +68,7 @@ public class ItemSelectPanelControl : MonoBehaviour
 
     private void ScrollTeamContainer(int _index)
     {
-        Vector2 __goalPos = new Vector2(-_index * tamp_gap, 0);
+        Vector2 __goalPos = new Vector2(-_index * team_gap, 0);
         teamContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
     private void ScrollHeadContainer(int _index)
@@ -82,4 +82,12 @@ public class ItemSelectPanelControl : MonoBehaviour
         bodyContainer.transform.DOLocalMove(__goalPos, easeDuration).SetEase(easeType);
     }
 
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(headContainer.transform.position, headContainer.transform.TransformPoint(new Vector2(head_gap,0)));
+        Gizmos.DrawLine(teamContainer.transform.position, teamContainer.transform.TransformPoint(new Vector2(team_gap, 0)));
+        Gizmos.DrawLine(bodyContainer.transform.position, bodyContainer.transform.TransformPoint(new Vector2(body_gap, 0)));
+    }
 }
