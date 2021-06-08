@@ -1,4 +1,4 @@
-﻿Shader "Unlit/SpriteMask"
+﻿Shader "Unlit/SpriteMaskWithMask"
 {
 	Properties
 	{
@@ -18,6 +18,12 @@
 			ZTest On
 			Cull Off
 			Blend SrcAlpha OneMinusSrcAlpha
+
+			Stencil{
+				Ref 1
+				Comp Equal
+			}
+		
 
 			CGPROGRAM
 			#pragma vertex vert
