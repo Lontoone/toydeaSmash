@@ -1,18 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
 
-public class LocalRoomManager : MonoBehaviour
+public class LocalRoomManager : MonoBehaviourPunCallbacks
 {
     public static LocalRoomManager instance;
+    public event Action<LocalPlayerProperty> OnLocalPlayerAdded;
+    public event Action<LocalPlayerProperty> OnOnlinePlayerAdded;
     public List<LocalPlayerProperty> players = new List<LocalPlayerProperty>();
     public LocalPlayerProperty gamePlaySetting = new LocalPlayerProperty();
     public event Action<Dictionary<string, object>> OnPlayerValueChanged;
     Dictionary<int, List<int>> team_player_dict = new Dictionary<int, List<int>>(); //team code , player_index
 
-    public event Action<LocalPlayerProperty> OnLocalPlayerAdded;
 
     public void Awake()
     {
@@ -30,7 +33,7 @@ public class LocalRoomManager : MonoBehaviour
     public IEnumerator Start()
     {
         yield return new WaitForEndOfFrame();
-        AddLocalPlayer();  //Add first
+        //AddLocalPlayer();  //Add first
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -48,6 +51,15 @@ public class LocalRoomManager : MonoBehaviour
 
         //add slot 
         OnLocalPlayerAdded?.Invoke(_local);
+    }
+    public void AddOnlinePlayer(Player _player, int _index)
+    {
+        LocalPlayerProperty _local = new LocalPlayerProperty();
+        _local.SetProperty("Player", _player);
+        _local.SetProperty("PlayerIndex", _index);
+        players.Add(_local);
+        Debug.Log("Photon Add Player " + _player.NickName);
+        OnOnlinePlayerAdded?.Invoke(_local);
     }
 
     public virtual void StartGamePlay()

@@ -130,8 +130,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     //When Players all enter the room
     public void PlayerCustomMenu() {
-        //MenuManager.instance.OpenMenu("CustomMenu");
-        PhotonNetwork.LoadLevel(1);
+        //PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel("Character selection_Online");
     }
     public void StartGame()
     {

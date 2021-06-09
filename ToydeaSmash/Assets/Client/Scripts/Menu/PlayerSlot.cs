@@ -46,25 +46,35 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         Debug.Log(heads_res.Length);
     }
 
+
     //local
     public void SetUpPlayer(int _index)
     {
         player_index = _index;
         InitPropertyDict();
-        InitMererial();
     }
     //online
-    public void SetUpPlayer(Player _p) //call from player slot manager
+    public void SetUpPlayer(Player _p, int _index) //call from player slot manager
     {
+        Debug.Log("slot set up Player " + _p.NickName + " local " + PhotonNetwork.LocalPlayer.NickName);
+        //if (thisPlayer == PhotonNetwork.LocalPlayer)
 
         thisPlayer = _p;
+        player_index = _index;
         name_text.text = _p.NickName;
-
-        if (thisPlayer == PhotonNetwork.LocalPlayer)
+        if (_p == PhotonNetwork.LocalPlayer)
+        {
+            btn_group.SetActive(true);
+        }
+        else
         {
             btn_group.SetActive(false);
+            //Destroy(btn_group);
         }
-
+        //update online data
+        //OnTeamChanged += delegate { SendCP(CustomPropertyCode.TEAM_CODE, current_team); };
+        //OnHeadChanged += delegate { SendCP(CustomPropertyCode.HEAD_CDOE, current_head); };
+        //OnBodyChanged += delegate { SendCP(CustomPropertyCode.BODY_CODE, current_body); };
     }
 
     void InitPropertyDict()
@@ -77,36 +87,25 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
         SetTeam(0);
     }
-    void InitMererial()
-    {
-        /*
-        //create head and body metarial
-        Material head_mat = new Material(Shader.Find("Unlit/SpriteMask"));
-        Material body_mat = new Material(Shader.Find("Unlit/SpriteMask"));
-        //load mask sprite from resources
-        head.GetComponent<SpriteRenderer>().material = head_mat;
-        body.GetComponent<SpriteRenderer>().material = body_mat;
 
-        head_mat.SetTexture("_Mask", Head.LoadMask(heads_res[current_head].name).texture);
-        body_mat.SetTexture("_Mask", Body.LoadMask(body_res[current_body].name).texture);
 
-        Debug.Log("Mask " + body_res[current_body].name);*/
-
-    }
 
     //Online
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-
         //Don't apply to self, or it will get crunchy!!
-        if (targetPlayer != thisPlayer) { return; }
+        if (targetPlayer == null || targetPlayer != thisPlayer) { return; }
+        Debug.Log("Photon OnPlayerPropertiesUpdate " + "target name " + targetPlayer.NickName + "\n this name " + thisPlayer.NickName + " \n" + (targetPlayer != thisPlayer));
 
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
 
         object _data;
+        Debug.Log("changedProps : TEAM " + changedProps.ContainsKey(CustomPropertyCode.TEAM_CODE) + " value " + (int)changedProps[CustomPropertyCode.TEAM_CODE]);
+
         if (changedProps.TryGetValue(CustomPropertyCode.TEAM_CODE, out _data))
         {
             //set team
+            Debug.Log(thisPlayer.NickName+" set team");
             SetTeam((int)_data);
         }
         else if (changedProps.TryGetValue(CustomPropertyCode.BODY_CODE, out _data))
@@ -116,23 +115,29 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         }
         else if (changedProps.TryGetValue(CustomPropertyCode.HEAD_CDOE, out _data))
         {
-            //set weapon
+            //set head
             SetHead((int)_data);
         }
-
+        else
+        {
+            Debug.Log(targetPlayer.NickName + " Not getting desire data " + changedProps.Keys.Count);
+        }
 
     }
 
     public void Team_btn(int _opt)
     {
-        current_team = Mathf.Clamp(current_team + _opt, 0, 3);
+        current_team = Mathf.Clamp(current_team + _opt, 0, CustomPropertyCode.TEAM_CODE.Length - 1);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
         SetTeam(current_team);
     }
     public void Weapon_btn(int _opt)
     {
         //temp
         current_body = Mathf.Clamp(current_body + _opt, 0, 2);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_body].name);
         OnBodyChanged?.Invoke(current_body);
+        SetWeapon((int)current_body);
         /*
         *  FOR FURTURE
        current_body = Mathf.Clamp(current_body + _opt, 0, body_res.Length - 1);
@@ -144,6 +149,8 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         //temp
         current_head = Mathf.Clamp(current_head + _opt, 0, 8);
         OnHeadChanged?.Invoke(current_head);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
+        SetWeapon((int)current_head);
         /*
         *  FOR FURTURE
         current_head = Mathf.Clamp(current_head + _opt, 0, heads_res.Length - 1);
@@ -151,12 +158,23 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         */
     }
 
+    public void UpdateTeam() {
+        //SetOtherProperty(CustomPropertyCode.TEAM_CODE, current_team);
+    }
+
+    public void SetOtherProperty(string _key, object _data)
+    {
+        //LocalRoomManager.instance.players[player_index].SetProperty(READY, _isReady);
+        if (thisPlayer != null)
+        {
+            SendCP(_key, _data);
+        }
+    }
+
     void SetTeam(int _index)
     {
-        current_team = Mathf.Clamp(_index, 0, CustomPropertyCode.TEAM_CODE.Length - 1);
-
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
-
+        //current_team = Mathf.Clamp(_index, 0, CustomPropertyCode.TEAM_CODE.Length - 1);
+        current_team = _index;
         head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
         body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[current_team];
         OnTeamChanged?.Invoke(current_team);
@@ -164,24 +182,22 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     void SetHead(int _index)
     {
-        current_head = _index;
+        //current_head = _index;
         GameObject _new_head = Instantiate(heads_res[current_head], head.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(head);
         head = _new_head;
         head.GetComponent<SpriteRenderer>().color = LocalRoomManager.instance.players[player_index].GetValue<Color>(CustomPropertyCode.TEAM_CODE);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
         OnHeadChanged?.Invoke(current_head);
     }
     void SetWeapon(int _index)
     {
-        current_body = _index;
+        //current_body = _index;
         GameObject _new_body = Instantiate(body_res[current_body], body.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(body);
         body = _new_body;
         Destroy(body.GetComponent<PlayerAttackControl>());
         body.GetComponent<SpriteRenderer>().color = LocalRoomManager.instance.players[player_index].GetValue<Color>(CustomPropertyCode.TEAM_CODE);
         OnBodyChanged?.Invoke(current_body);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_body].name);
     }
 
     void SendCP(string _key, object _data)

@@ -29,6 +29,10 @@ public class ReadyButton : MonoBehaviour
         //ChangeReadyColor();
         CheckAllLocalPlayerIsReady();
     }
+    public void OnlineReady() {
+        LocalReady();
+
+    }
 
     void ChangeReadyColor()
     {

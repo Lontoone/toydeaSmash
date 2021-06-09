@@ -10,23 +10,37 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     public PlayerSlot slot_prefab;
     public Transform[] slot_pos;
     int _current_player_count = 0;
-    public void Start()
+    public void Awake()
     {
         LocalRoomManager.instance.OnLocalPlayerAdded += GenerateSlot;
+        LocalRoomManager.instance.OnOnlinePlayerAdded += GenerateOnlineSlot;
     }
     public void OnDestroy()
     {
         LocalRoomManager.instance.OnLocalPlayerAdded -= GenerateSlot;
+        LocalRoomManager.instance.OnOnlinePlayerAdded -= GenerateOnlineSlot;
     }
 
     //When player enter. Add player slot
-    public void GenerateSlot(LocalPlayerProperty _data) {
+    public void GenerateSlot(LocalPlayerProperty _data)
+    {
 
-        PlayerSlot _slot = Instantiate(slot_prefab, slot_pos[_current_player_count].position,Quaternion.identity);
+        PlayerSlot _slot = Instantiate(slot_prefab, slot_pos[_current_player_count].position, Quaternion.identity);
 
         _slot.SetUpPlayer(_current_player_count);
 
         _current_player_count++;
+    }
+    public void GenerateOnlineSlot(LocalPlayerProperty _data)
+    {
+        //if (PhotonNetwork.LocalPlayer == _data.GetValue<Player>("Player"))
+
+        int __playerIndex = _data.GetValue<int>("PlayerIndex");
+        const string _PLAYER_SLOT_PATH = "Prefab/UI/PlayerSlotOnline";
+        //PlayerSlot _slot = PhotonNetwork.Instantiate(_PLAYER_SLOT_PATH, slot_pos[__playerIndex].position, Quaternion.identity).GetComponent<PlayerSlot>();
+        PlayerSlot _slot = Instantiate(slot_prefab, slot_pos[__playerIndex].position, Quaternion.identity);
+
+        _slot.SetUpPlayer(_data.GetValue<Player>("Player"), __playerIndex);
 
     }
 }

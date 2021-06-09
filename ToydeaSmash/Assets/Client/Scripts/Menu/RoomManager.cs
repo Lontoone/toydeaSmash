@@ -38,10 +38,20 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadScene)
     {
-
-        if (scene.buildIndex == 2) //in Game scene
+        Debug.Log("Photon test scene " + scene.name + " " + (scene.name == "Character selection_Online"));
+        if (scene.name == "Character selection_Online") //in custom scene
         {
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
+            //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
+
+            //Add player to list
+            Debug.Log("Player count " + PhotonNetwork.CountOfPlayers);
+
+            for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
+            {
+                Debug.Log("Phonton player " + i.ToString());
+                LocalRoomManager.instance.AddOnlinePlayer(PhotonNetwork.PlayerList[i] , i);
+            }
+
         }
     }
 }
