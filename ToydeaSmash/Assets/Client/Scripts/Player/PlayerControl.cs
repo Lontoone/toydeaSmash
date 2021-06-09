@@ -48,6 +48,7 @@ public class PlayerControl : MonoBehaviour
     private PhysicsControlListeners listeners;
 
     private Coroutine c_heal;
+    private Coroutine cCreateImageTrail;
 
     private void Start()
     {
@@ -369,12 +370,14 @@ public class PlayerControl : MonoBehaviour
         DOTween.Sequence().
             Append(transform.DOMove(_endPos, dash.duration)).SetEase(easeType);
 
+        StartCreateTrail();
+
     }
     public void DashCallBack()
     {
         //reset
         hitable.isHitable = true;
-        //rigid.gravityScale =originGravityScale;
+        StopCreateTrail();
     }
 
     public void Duck()
@@ -452,7 +455,19 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    Coroutine cCreateImageTrail;
+
+    private void StartCreateTrail()
+    {
+        cCreateImageTrail = StartCoroutine(CreateTrailCoro());
+    }
+    private void StopCreateTrail()
+    {
+        if (cCreateImageTrail != null)
+        {
+            StopCoroutine(cCreateImageTrail);
+            cCreateImageTrail = null;
+        }
+    }
     IEnumerator CreateTrailCoro()
     {
         WaitForFixedUpdate _wait = new WaitForFixedUpdate();

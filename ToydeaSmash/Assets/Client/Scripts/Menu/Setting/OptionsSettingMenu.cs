@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -22,7 +23,14 @@ public class OptionsSettingMenu : MonoBehaviour
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string __opts = _resolutions[i].width + " x " + _resolutions[i].height;
-            _options.Add(__opts);
+            if (!_options.Contains(__opts))
+            {
+                _options.Add(__opts);
+            }
+            else
+            {
+                continue;
+            }
 
             if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
             {
