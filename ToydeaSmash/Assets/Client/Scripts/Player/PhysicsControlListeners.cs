@@ -9,12 +9,27 @@ public class PhysicsControlListeners : MonoBehaviour
     //public Vector2 move_dir; //移動方向
     public bool isGrounded;
     public bool isWalled;
-    Rigidbody2D rigidbody;
     public float touch_ground_radious = 0.05f;
-    bool last_frame_isGrounded;//上一次更新是否碰到地面
     public event Action eOnTouchGround;
-
     public float side_bounces_force = 100; //force to add while hit wall (not ground.)
+    public GameObject currentStandingGround
+    {
+        get
+        {
+            RaycastHit2D hit = Physics2D.Raycast(footPositon.transform.position, -transform.up, touch_ground_radious, ground_layer);
+            if (hit.collider != null)
+            {
+                return hit.collider.gameObject;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    private bool last_frame_isGrounded;//上一次更新是否碰到地面
+    private Rigidbody2D rigidbody;
 
     void Start()
     {
@@ -57,7 +72,7 @@ public class PhysicsControlListeners : MonoBehaviour
             Physics2D.Raycast(footPositon.transform.position, transform.right, touch_ground_radious, ground_layer))
         {
             //rigidbody.AddForce(transform.right * side_bounces_force * rigidbody.velocity.normalized);
-            rigidbody.AddForce(transform.right * rigidbody.velocity * rigidbody.mass );
+            rigidbody.AddForce(transform.right * rigidbody.velocity * rigidbody.mass);
             Debug.Log("wall anti v" + rigidbody.velocity);
             return true;
         }

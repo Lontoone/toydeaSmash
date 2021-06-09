@@ -29,7 +29,8 @@ public class ReadyButton : MonoBehaviour
         //ChangeReadyColor();
         CheckAllLocalPlayerIsReady();
     }
-    public void OnlineReady() {
+    public void OnlineReady()
+    {
         LocalReady();
 
     }
@@ -55,13 +56,16 @@ public class ReadyButton : MonoBehaviour
             Debug.Log("player " + i + " " + LocalRoomManager.instance.players[i].GetValue<bool>(READY));
             if (!LocalRoomManager.instance.players[i].GetValue<bool>(READY))
             {
-
                 _isAllReady = false;
                 break;
             }
         }
-        //OnCheckIsAllReady?.Invoke(_isAllReady);
-        ShowAllReadyBtn(_isAllReady);
+        //Check team count:
+        Debug.Log("team Count " + LocalRoomManager.instance.teamCount);
+        if (LocalRoomManager.instance.teamCount > 1)
+        {
+            ShowAllReadyBtn(_isAllReady);
+        }
     }
 
     void ShowAllReadyBtn(bool _res)

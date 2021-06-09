@@ -7,7 +7,7 @@ public class CameraControl : MonoBehaviour
     public int maxSize = 20, minSize = 10;
     public float speed = 20;
     public float player_width_screen_rate = 0.5f;
-
+    public Vector2 centerOffset;
 
 
     private static float s_min_camera_width, s_max_camera_width;
@@ -55,7 +55,7 @@ public class CameraControl : MonoBehaviour
     {
         //calculate distance between players
         Vector2[] min_max = GetMinMaxPlayerPos();
-        Vector3 _center = (min_max[1] - min_max[0]) * 0.5f + min_max[0];
+        Vector3 _center = (min_max[1] - min_max[0]) * 0.5f + min_max[0] + centerOffset;
         _center.z = -10;
 
         //move to the center of players

@@ -14,8 +14,12 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     public List<LocalPlayerProperty> players = new List<LocalPlayerProperty>();
     public LocalPlayerProperty gamePlaySetting = new LocalPlayerProperty();
     public event Action<Dictionary<string, object>> OnPlayerValueChanged;
-    Dictionary<int, List<int>> team_player_dict = new Dictionary<int, List<int>>(); //team code , player_index
+    public int teamCount
+    {
+        get { return team_player_dict.Count; }
+    }
 
+    private Dictionary<int, List<int>> team_player_dict = new Dictionary<int, List<int>>(); //team code , player_index
 
     public void Awake()
     {
@@ -131,7 +135,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
                 _res.AddRange(pk.Value);
             }
         }
-
         return _res.ToArray();
     }
 

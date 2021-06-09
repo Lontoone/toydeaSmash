@@ -148,7 +148,15 @@ public class PlayerControl : MonoBehaviour
         //跳躍
         //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
         //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
-        if (Input.GetKeyDown(jump_key) && (jumpCount < 1))
+        //Duck and jump down
+        if (Input.GetKey(duck_key) && Input.GetKeyDown(jump_key))
+        {
+            //check ground is pass throughable?
+            GameObject __ground = listeners.currentStandingGround;
+            if (__ground != null && __ground.tag == "ThinWall")
+                transform.DOMoveY(transform.position.y - 3.5f, 0.1f);
+        }
+        else if (Input.GetKeyDown(jump_key) && (jumpCount < 1))
         {
             Debug.Log("jump");
             if (jumpCount == 0)
@@ -183,6 +191,7 @@ public class PlayerControl : MonoBehaviour
             actionController.AddAction(duck);
             c_heal = StartCoroutine(HealCoro());
         }
+
         //Duck Finish
         else if (Input.GetKeyUp(duck_key))
         {

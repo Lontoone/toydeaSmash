@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-using System;
 //可攻擊物件
 public class HitableObj : MonoBehaviour
 {
@@ -21,8 +22,10 @@ public class HitableObj : MonoBehaviour
     public float maxHP;
     public bool isDead = false;
     public bool isHitable = true;
-
     public float hit_combo = 0;
+
+    private Camera _camera;
+
 
 
     [Range(0, 1)]
@@ -39,6 +42,8 @@ public class HitableObj : MonoBehaviour
 
         maxHP = HP;
         Hit_event += Hit;
+
+        _camera = Camera.main;
     }
     private void OnDestroy()
     {
@@ -128,6 +133,7 @@ public class HitableObj : MonoBehaviour
 
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_LINE_SMALL, 2);
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_Particle_SMALL, 5);
+        _camera.transform.DOScale(1,1);
 
     }
 }

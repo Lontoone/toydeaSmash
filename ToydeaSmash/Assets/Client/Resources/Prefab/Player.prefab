@@ -842,6 +842,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7923640692456162594}
     m_Modifications:
+    - target: {fileID: 105852399, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.x
+      value: 8.742836
+      objectReference: {fileID: 0}
+    - target: {fileID: 105852399, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.y
+      value: 13.141065
+      objectReference: {fileID: 0}
+    - target: {fileID: 105852399, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Offset.y
+      value: 6.0705323
+      objectReference: {fileID: 0}
+    - target: {fileID: 238165925, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.x
+      value: 6.5893955
+      objectReference: {fileID: 0}
+    - target: {fileID: 238165925, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.y
+      value: 6.780954
+      objectReference: {fileID: 0}
+    - target: {fileID: 238165925, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.7946978
+      objectReference: {fileID: 0}
+    - target: {fileID: 238165925, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.890477
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230561278, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.x
+      value: 7.8906097
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230561278, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Size.y
+      value: 9.753918
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230561278, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.9537449
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230561278, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.3821373
+      objectReference: {fileID: 0}
     - target: {fileID: 7766455958558847000, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
       propertyPath: m_Name
       value: Body
