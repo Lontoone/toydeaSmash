@@ -90,7 +90,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
 
                 _player.AddLanding();
 
-
                 //Log team member
                 if (team_player_dict.ContainsKey((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]))
                 {
@@ -101,13 +100,10 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
                     team_player_dict.Add((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE], new List<int>());
                     team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
                 }
-
-
             }
-
-
         }
     }
+
 
     public PlayerControl Revive(int _playerData_index)
     {

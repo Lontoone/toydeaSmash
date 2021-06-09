@@ -62,15 +62,35 @@ public class ReadyButton : MonoBehaviour
         }
         //Check team count:
         Debug.Log("team Count " + LocalRoomManager.instance.teamCount);
-        if (LocalRoomManager.instance.teamCount > 1)
+        if (GetTeamCount() > 1 || LocalRoomManager.instance.players.Count == 1)
         {
             ShowAllReadyBtn(_isAllReady);
         }
     }
 
-    void ShowAllReadyBtn(bool _res)
+    private void ShowAllReadyBtn(bool _res)
     {
         _startBtn.SetActive(_res);
 
     }
+
+    private int GetTeamCount()
+    {
+        int _count = 0;
+        Dictionary<int, int> m_teamCount = new Dictionary<int, int>();
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            if (m_teamCount.ContainsKey((int)LocalRoomManager.instance.players[i].playerProperty[CustomPropertyCode.TEAM_CODE]))
+            {
+                m_teamCount[(int)LocalRoomManager.instance.players[i].playerProperty[CustomPropertyCode.TEAM_CODE]] += 1;
+            }
+            else
+            {
+                m_teamCount.Add((int)LocalRoomManager.instance.players[i].playerProperty[CustomPropertyCode.TEAM_CODE], 1);
+
+            }
+        }
+        return m_teamCount.Keys.Count;
+    }
+
 }
