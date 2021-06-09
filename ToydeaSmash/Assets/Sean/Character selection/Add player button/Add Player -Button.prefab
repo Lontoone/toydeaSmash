@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 1335245276532883143}
   - component: {fileID: 1335245276532883140}
   - component: {fileID: 1335245276532883161}
+  - component: {fileID: 656937129318268802}
   m_Layer: 5
   m_Name: Add Player -Button
   m_TagString: Untagged
@@ -279,6 +280,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 656937129318268802}
+        m_TargetAssemblyTypeName: PlayAudioClip, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1335245276532883161
 Animator:
   serializedVersion: 3
@@ -298,3 +311,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &656937129318268802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335245276532883138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603295f891f924349b0d401407f4d7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 75778ff09059f2948a80210fef841a29, type: 3}

@@ -8,18 +8,28 @@ public class ReadyButton : MonoBehaviour
 {
     //private static event Action<bool> OnCheckIsAllReady;
     public const string READY = "READY";
+
     private static GameObject _startBtn;
+    private static GameObject _btnHint;
     private PlayerSlot playerSlot;
+
     [SerializeField]
     private bool _isReady = false;
-    public void Start()
+    private void Start()
     {
         playerSlot = GetComponentInParent<PlayerSlot>();
+        //find btn
         if (_startBtn == null)
         {
             _startBtn = GameObject.FindGameObjectWithTag("StartBtn");
             _startBtn.SetActive(false);
         }
+        if (_btnHint == null)
+        {
+            _btnHint = GameObject.FindGameObjectWithTag("HintBtn");
+            _btnHint.SetActive(false);
+        }
+        Debug.Log(_btnHint == null);
     }
 
     public void LocalReady()
@@ -60,18 +70,23 @@ public class ReadyButton : MonoBehaviour
                 break;
             }
         }
-        //Check team count:
-        Debug.Log("team Count " + LocalRoomManager.instance.teamCount);
-        if (GetTeamCount() > 1 || LocalRoomManager.instance.players.Count == 1)
-        {
-            ShowAllReadyBtn(_isAllReady);
-        }
+        //Check team count:        
+        ShowAllReadyBtn(_isAllReady);
+
+
     }
 
     private void ShowAllReadyBtn(bool _res)
     {
-        _startBtn.SetActive(_res);
-
+        if (GetTeamCount() > 1 || LocalRoomManager.instance.players.Count == 1)
+        {
+            _startBtn.SetActive(_res);
+        }
+        else if (_res)
+        {
+            //Open error Hint
+            _btnHint.SetActive(true);
+        }
     }
 
     private int GetTeamCount()

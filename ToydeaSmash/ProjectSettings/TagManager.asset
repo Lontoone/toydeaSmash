@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StartBtn
   - ThinWall
+  - HintBtn
   layers:
   - Default
   - TransparentFX

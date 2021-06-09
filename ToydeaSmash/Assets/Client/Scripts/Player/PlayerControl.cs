@@ -285,10 +285,13 @@ public class PlayerControl : MonoBehaviour
     }
     public void OnHurt()
     {
+        SFXManager.instance.PlaySoundInstance(SFXManager.HURT);
         if (hitable.isHitable && !_isHurting)
         {
-            //被擊退
-            actionController.AddAction(hurt);
+            if (listeners.isGrounded)
+                actionController.AddAction(hurt);
+            else
+                actionController.AddAction(hurt_falling);
             _isHurting = true;
             Debug.Log("HURT!");
         }
@@ -296,7 +299,6 @@ public class PlayerControl : MonoBehaviour
         {
             //got hit when playing hurt animation
             actionController.AddAction(hurt_falling);
-
         }
     }
     public void ResetHitCombo()
@@ -320,12 +322,11 @@ public class PlayerControl : MonoBehaviour
     {
         head.PlayAnimation("Jump Falling");
         body.PlayAnimation("Jump Falling");
-
+        SFXManager.instance.PlaySoundInstance(SFXManager.JUMP);
         Effect("Jump Smoke", "jump smoke");
     }
     public void Jumping()
     {
-
         head.PlayAnimation("Jumping");
         body.PlayAnimation("Jumping");
     }
@@ -500,7 +501,7 @@ public class PlayerControl : MonoBehaviour
     void Die()
     {
         Debug.Log("玩家死亡");
-
+        SFXManager.instance.PlaySoundInstance(SFXManager.EXPLODE);
         Effect("die disappear", "die disappear");
 
         //disable control

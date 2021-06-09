@@ -117,19 +117,21 @@ public class PlayerAttackControl : MonoBehaviour
         }
         //effect:
         //GCManager.Instantiate("attack effect", position: transform.position).GetComponent<Animator>().Play("attack effect");
-
+        SFXManager.instance.PlaySoundInstance(SFXManager.ATTACK);
     }
     public virtual void UpAttack()
     {
         current_Attack_collider = up_attackCollider;
         _player.PlayAniamtion("Up attack");
         CameraControl.CameraShake(0.25f, 1);
+        SFXManager.instance.PlaySoundInstance(SFXManager.HEAVY_PUNCH);
     }
     public virtual void DownAttack()
     {
         current_Attack_collider = down_attackCollider;
         _player.PlayAniamtion("Down attack");
         CameraControl.CameraShake(0.25f, 1);
+        SFXManager.instance.PlaySoundInstance(SFXManager.HEAVY_PUNCH);
     }
 
     public virtual void Defense()
