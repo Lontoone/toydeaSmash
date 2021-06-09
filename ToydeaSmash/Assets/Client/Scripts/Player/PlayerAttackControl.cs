@@ -123,13 +123,13 @@ public class PlayerAttackControl : MonoBehaviour
     {
         current_Attack_collider = up_attackCollider;
         _player.PlayAniamtion("Up attack");
+        CameraControl.CameraShake(0.25f, 1);
     }
     public virtual void DownAttack()
     {
         current_Attack_collider = down_attackCollider;
         _player.PlayAniamtion("Down attack");
-
-
+        CameraControl.CameraShake(0.25f, 1);
     }
 
     public virtual void Defense()

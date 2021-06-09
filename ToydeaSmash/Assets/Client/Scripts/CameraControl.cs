@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class CameraControl : MonoBehaviour
 {
     public int maxSize = 20, minSize = 10;
@@ -131,5 +131,10 @@ public class CameraControl : MonoBehaviour
                 HitableObj.Hit_event_c(s_players[i].gameObject, 100, null);
             }
         }
+    }
+
+    public static void CameraShake(float _duration, float _strength)
+    {
+        s_camera.transform.DOShakePosition(_duration, _strength);
     }
 }

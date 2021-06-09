@@ -483,9 +483,8 @@ public class PlayerControl : MonoBehaviour
     {
         //add force
         //rigid.AddForce(transform.right * dash_force * 0.5f);
-
         PlayAniamtion("Hurt");
-
+        CameraControl.CameraShake(0.25f, 1);
     }
     //hit to sky
     public void Hurt_Fly()
