@@ -45,8 +45,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-
     public void AddLocalPlayer()
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
@@ -65,22 +63,21 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Photon Add Player " + _player.NickName);
         OnOnlinePlayerAdded?.Invoke(_local);
     }
-
     public virtual void StartGamePlay()
     {
         //set up data and change Scene
         SceneManager.LoadScene((string)gamePlaySetting.playerProperty[GameplaySettingControl.MAP_OPT]);
     }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadScene)
     {
         //if in game play
-        if (scene.name == "GamePlay")
+        if (scene.name == "Menu")
         {
             //[Update] move to game mode
+            ClearPlayerDatas();
+            Destroy(gameObject);
         }
     }
-
     public void InstantiateLocalPlayer()
     {
         //for each playerData=> Gernerate local multiplayer with id
@@ -114,8 +111,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         //_player.SetUp(players[i], 0);
         _player.AddLanding();
     }
-
-
     public PlayerControl Revive(int _playerData_index)
     {
         PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
@@ -131,7 +126,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     {
         return team_player_dict[teamCode].ToArray();
     }
-
     public int[] Get_Index_In_Different_Team(int teamCode)
     {
         List<int> _res = new List<int>();
