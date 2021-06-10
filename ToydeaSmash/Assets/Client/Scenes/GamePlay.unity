@@ -4240,38 +4240,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2445726072467763542, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072467763542, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072467763542, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072467763542, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072564387800, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072564387800, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072564387800, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445726072564387800, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2445726072776532778, guid: e68d6e0ad7317e349b37eb071106b53b, type: 3}
       propertyPath: m_Name
       value: Pause Opt Canvas

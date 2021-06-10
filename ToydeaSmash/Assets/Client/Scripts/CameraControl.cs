@@ -11,7 +11,7 @@ public class CameraControl : MonoBehaviour
 
 
     private static float s_min_camera_width, s_max_camera_width;
-    private static PlayerControl[] s_players;
+    private PlayerControl[] s_players;
     private static Camera s_camera;
     private static Coroutine s_c_checkPlayersInSight;
     public IEnumerator Start()
