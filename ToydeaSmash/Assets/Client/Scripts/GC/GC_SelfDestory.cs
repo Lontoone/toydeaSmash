@@ -16,5 +16,9 @@ public class GC_SelfDestory : MonoBehaviour
         Debug.Log("DoCollect");
         GCManager.Destory(key, gameObject);
     }
+    private void OnDestroy()
+    {
+        GCManager.Remove(key);
+    }
 
 }

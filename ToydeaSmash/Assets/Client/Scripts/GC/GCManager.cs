@@ -51,8 +51,12 @@ public class GCManager : MonoBehaviour
         LinkedList<object> _out;
         if (dicts.TryGetValue(_key, out _out))
         {
+            if ((_out.First.Value as GameObject) ==null) {
+                dicts[_key].RemoveFirst();
+            }
+
             //存在=>檢查有空閒的(active= false)
-            if (!(_out.First.Value as GameObject).activeSelf)
+            else if (!(_out.First.Value as GameObject).activeSelf)
             {
                 LinkedListNode<object> first_obj = _out.First;
                 (first_obj.Value as GameObject).transform.position = _position;

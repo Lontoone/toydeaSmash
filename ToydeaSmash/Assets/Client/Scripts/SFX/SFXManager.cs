@@ -52,13 +52,13 @@ public class SFXManager : MonoBehaviour
     //Play Sound with a new audioSource
     public void PlaySoundInstance(string _key)
     {
-        AudioSource _as = GCManager.Instantiate(_AUDIOSOURCE_GC).GetComponent<AudioSource>();
+        AudioSource _as = GCManager.Instantiate(_AUDIOSOURCE_GC, parent: transform).GetComponent<AudioSource>();
         _as.PlayOneShot(SoundData.nameClipPairsMap[_key]);
     }
 
     public static void PlayerAudioClipInstance(AudioClip _audioClip)
-    {        
-        AudioSource _as = GCManager.Instantiate(_AUDIOSOURCE_GC).GetComponent<AudioSource>();
+    {
+        AudioSource _as = GCManager.Instantiate(_AUDIOSOURCE_GC, parent: instance.transform).GetComponent<AudioSource>();
         _as.PlayOneShot(_audioClip);
     }
 }

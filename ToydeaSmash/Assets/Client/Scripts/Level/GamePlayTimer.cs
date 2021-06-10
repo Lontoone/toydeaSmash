@@ -22,7 +22,7 @@ public class GamePlayTimer : MonoBehaviour
         }
 
         Debug.Log("Time up");
-        GCManager.Clear();
+        //GCManager.Clear();
         if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Result");

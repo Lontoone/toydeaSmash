@@ -95,7 +95,7 @@ public class VersusGamePlay : MonoBehaviour
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
             UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
-            GCManager.Clear();
+            //GCManager.Clear();
         }
 
 

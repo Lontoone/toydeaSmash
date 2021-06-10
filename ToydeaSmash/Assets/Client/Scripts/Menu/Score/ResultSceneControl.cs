@@ -39,7 +39,7 @@ public class ResultSceneControl : MonoBehaviour
         LocalRoomManager.instance.ClearPlayerDatas();
 
         Destroy(LocalRoomManager.instance.gameObject);
-        GCManager.Clear();
+        //GCManager.Clear();
 
     }
 }

@@ -37,8 +37,12 @@ public class HitableObj : MonoBehaviour
         //wait for hp bar to finish regiester:
         yield return new WaitForEndOfFrame();
         //Create HP Bar
-        hpbar = GCManager.Instantiate(HPBarControl.HPBAR_GC_KEY).GetComponent<HPBarControl>();
-        hpbar.SetHitable(this);
+        GameObject _bar = GCManager.Instantiate(HPBarControl.HPBAR_GC_KEY);
+        if (_bar != null)
+        {
+            hpbar = _bar.GetComponent<HPBarControl>();
+            hpbar.SetHitable(this);
+        }
 
         maxHP = HP;
         Hit_event += Hit;
@@ -133,7 +137,7 @@ public class HitableObj : MonoBehaviour
 
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_LINE_SMALL, 2);
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_Particle_SMALL, 5);
-        _camera.transform.DOScale(1,1);
+        _camera.transform.DOScale(1, 1);
 
     }
 }
