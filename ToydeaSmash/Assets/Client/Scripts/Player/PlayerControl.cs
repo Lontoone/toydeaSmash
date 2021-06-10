@@ -449,6 +449,7 @@ public class PlayerControl : MonoBehaviour
         {
             _endPos = transform.position - transform.right * dashForce;
         }
+        Effect("dash smoke", "dash smoke",transform.rotation);
 
         DOTween.Sequence().
             Append(transform.DOMove(_endPos, dash.duration)).SetEase(easeType);
