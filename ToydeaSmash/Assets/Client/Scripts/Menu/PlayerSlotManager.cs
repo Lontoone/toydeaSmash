@@ -50,4 +50,8 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
         _slot.SetUpPlayer(_data.GetValue<Player>("Player"), __playerIndex);
 
     }
+    public void CancelAllPlayerReady()
+    {
+        ReadyButton.CancelAllPlayerReady();
+    }
 }

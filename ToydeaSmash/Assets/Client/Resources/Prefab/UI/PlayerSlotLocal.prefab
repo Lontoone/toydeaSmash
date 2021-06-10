@@ -1399,6 +1399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 5840606476667959386}
+  readyHint: {fileID: 6968407010875514021}
+  unReadyHint: {fileID: 5383913544633589366}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

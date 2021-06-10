@@ -16,8 +16,8 @@ public class ReadyButton : MonoBehaviourPunCallbacks
     private static GameObject _btnHint;
     private PlayerSlot playerSlot;
 
-    [SerializeField]
-    private bool _isReady = false;
+    //[SerializeField]
+    //private bool _isReady = false;
     static Dictionary<Player, bool> m_playerReadyState = new Dictionary<Player, bool>();
 
     private void Start()
@@ -40,16 +40,17 @@ public class ReadyButton : MonoBehaviourPunCallbacks
 
     public void LocalReady()
     {
-        _isReady = !_isReady;
+        bool _isReady = !LocalRoomManager.instance.players[playerSlot.player_index].GetValue<bool>(READY);
         LocalRoomManager.instance.players[playerSlot.player_index].SetProperty(READY, _isReady);
+        playerSlot.SetReady(_isReady);
         //ChangeReadyColor();
         CheckAllLocalPlayerIsReady();
     }
     public void OnlineReady()
     {
-        _isReady = !_isReady;
+        bool _isReady = !LocalRoomManager.instance.players[playerSlot.player_index].GetValue<bool>(READY);
         LocalRoomManager.instance.players[playerSlot.player_index].SetProperty(READY, _isReady);
-
+        playerSlot.SetReady(_isReady);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -81,7 +82,17 @@ public class ReadyButton : MonoBehaviourPunCallbacks
         }
 
     }
-
+    public static void CancelAllPlayerReady()
+    {
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            LocalRoomManager.instance.players[i].SetProperty(READY, false);
+        }
+        foreach (PlayerSlot _slot in FindObjectsOfType<PlayerSlot>())
+        {
+            _slot.SetReady(false);
+        }
+    }
 
 
     public void CheckAllLocalPlayerIsReady()

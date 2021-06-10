@@ -4393,7 +4393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482046386513449182, guid: bb5ea17129112494e8d8a57123f142e1, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4482046386513449182, guid: bb5ea17129112494e8d8a57123f142e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4458,7 +4458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1977821591250078628, guid: 0c111d4659d3d3f469f960d767745475, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1977821591250078628, guid: 0c111d4659d3d3f469f960d767745475, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4955,6 +4955,34 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.7924528
       objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1581940801}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CancelAllPlayerReady
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerSlotManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616670695889100, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2934616671232046544, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1353.2722
@@ -4989,7 +5017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2934616671276379843, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2934616671276379843, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5063,6 +5091,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2934616671276379868, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2934616671276379871, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_Name
       value: Character selection Start Canvas
@@ -5070,6 +5102,14 @@ PrefabInstance:
     - target: {fileID: 2934616671276379871, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748670062351239071, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1384.3511
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748670062351239071, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 102.1
       objectReference: {fileID: 0}
     - target: {fileID: 5795970787601654090, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_fontSize

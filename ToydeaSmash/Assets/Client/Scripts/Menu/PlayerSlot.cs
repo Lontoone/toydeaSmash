@@ -19,6 +19,9 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public int player_index = 0;
 
     public TextMeshProUGUI name_text;
+    public GameObject readyHint;
+    public GameObject unReadyHint;
+    public GameObject btn_group;
 
     public static Head[] heads_res;
     public static Body[] body_res;
@@ -34,7 +37,6 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public GameObject body;
 
     //PhotonView pv;
-    public GameObject btn_group;
 
     public void Awake()
     {
@@ -124,6 +126,12 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
             Debug.Log(targetPlayer.NickName + " Not getting desire data " + changedProps.Keys.Count);
         }
 
+    }
+
+    public void SetReady(bool _isReady) {
+        readyHint.SetActive(!_isReady);
+        btn_group.SetActive(!_isReady);
+        unReadyHint.SetActive(_isReady);
     }
 
     public void Team_btn(int _opt)
