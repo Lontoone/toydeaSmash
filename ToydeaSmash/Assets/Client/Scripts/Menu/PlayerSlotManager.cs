@@ -9,9 +9,16 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     //public PlayerSlot[] slots;
     public PlayerSlot slot_prefab;
     public Transform[] slot_pos;
+    public GameObject[] addPlayerBtns;
+    public int maxSlotCount = 4;
     int _current_player_count = 0;
     public void Awake()
     {
+
+        for (int i = 1; i < maxSlotCount; i++)
+        {
+            addPlayerBtns[i].SetActive(true);
+        }
         LocalRoomManager.instance.OnLocalPlayerAdded += GenerateSlot;
         LocalRoomManager.instance.OnOnlinePlayerAdded += GenerateOnlineSlot;
     }

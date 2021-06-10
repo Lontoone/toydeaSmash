@@ -57,7 +57,7 @@ public class SFXManager : MonoBehaviour
     }
 
     public static void PlayerAudioClipInstance(AudioClip _audioClip)
-    {
+    {        
         AudioSource _as = GCManager.Instantiate(_AUDIOSOURCE_GC).GetComponent<AudioSource>();
         _as.PlayOneShot(_audioClip);
     }

@@ -206,8 +206,9 @@ public class PlayerControl : MonoBehaviour
         //Test: 
         //AddRevive();
     }
-    private void SetKey(int _i)
+    private void SetKey(int index)
     {
+        int _i = index % 2;
         horizontal_axis_name = "h" + _i.ToString();
         vertical_axis_name = "v" + _i.ToString();
         //jump_axis_name = "j" + _i.ToString();
