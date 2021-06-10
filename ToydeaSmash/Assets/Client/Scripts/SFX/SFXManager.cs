@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SFXManager : MonoBehaviour
 {
@@ -33,9 +34,13 @@ public class SFXManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         data.MapInit();
     }
-    public void OnEnable()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+    }
+    private void OnEnable()
+    {
+
         GCManager.RegisterObject(_AUDIOSOURCE_GC, _audioSourcePrefab.gameObject);
         Debug.Log("register sfx manager");
     }

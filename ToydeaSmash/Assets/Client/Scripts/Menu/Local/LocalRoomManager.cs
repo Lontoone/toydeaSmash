@@ -40,6 +40,7 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         //AddLocalPlayer();  //Add first
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
     public void OnDestroy()
     {
@@ -72,11 +73,12 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     {
         //if in game play
         if (scene.name == "Menu")
-        {
-            //[Update] move to game mode
+        {            
             ClearPlayerDatas();
+            instance = null;
             Destroy(gameObject);
         }
+        Debug.Log("Player conuts " + players.Count);
     }
     public void InstantiateLocalPlayer()
     {

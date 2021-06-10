@@ -100,4 +100,8 @@ public class HPBarControl : MonoBehaviour
             yield return _wait;
         }
     }
+    private void OnDestroy()
+    {
+        GCManager.Remove(HPBAR_GC_KEY);
+    }
 }

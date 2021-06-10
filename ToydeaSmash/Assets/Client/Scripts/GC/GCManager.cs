@@ -56,7 +56,7 @@ public class GCManager : MonoBehaviour
             {
                 LinkedListNode<object> first_obj = _out.First;
                 (first_obj.Value as GameObject).transform.position = _position;
-                (first_obj.Value as GameObject).transform.rotation= _rotation;
+                (first_obj.Value as GameObject).transform.rotation = _rotation;
                 (first_obj.Value as GameObject).SetActive(true);
 
                 //移至最後:
@@ -124,6 +124,7 @@ public class GCManager : MonoBehaviour
         if (dicts.ContainsKey(_key))
         {
             dicts.Remove(_key);
+            registerScale.Remove(_key);
         }
     }
 

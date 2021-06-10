@@ -9,4 +9,8 @@ public class GC_AutoRegister : MonoBehaviour
     {
         GCManager.RegisterObject(KEY, gameObject);
     }
+    public void OnDestroy()
+    {
+        GCManager.Remove(KEY);
+    }
 }
