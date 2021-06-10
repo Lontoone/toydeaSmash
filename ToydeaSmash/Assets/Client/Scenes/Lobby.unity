@@ -911,7 +911,6 @@ MonoBehaviour:
   - {fileID: 1693543672}
   - {fileID: 804156748}
   - {fileID: 552579016}
-  - {fileID: 0}
 --- !u!1 &631887621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1308,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.43381e-40, z: 0, w: -4.3125}
+  m_BoundingSphereOverride: {x: 1.4571041e+22, y: 4.7428895e+30, z: 1.805385e+28, w: 1.960383e+31}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -3981,7 +3981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00774bfe13871143a046f914024c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot_prefab: {fileID: 2421306135258925306, guid: ebb63f3f0ae65e44b88d17b48aefca62, type: 3}
+  slot_prefab: {fileID: 2147245526961976167, guid: 73909e1ff67038a428ab650db2184b05, type: 3}
   slot_pos:
   - {fileID: 8667266278378024671}
   - {fileID: 1738644457}
