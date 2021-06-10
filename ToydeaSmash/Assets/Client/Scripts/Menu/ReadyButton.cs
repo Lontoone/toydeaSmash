@@ -43,7 +43,8 @@ public class ReadyButton : MonoBehaviourPunCallbacks
         bool _isReady = !LocalRoomManager.instance.players[playerSlot.player_index].GetValue<bool>(READY);
         LocalRoomManager.instance.players[playerSlot.player_index].SetProperty(READY, _isReady);
         playerSlot.SetReady(_isReady);
-        //ChangeReadyColor();
+        FindObjectOfType<PlayerSlotManager>().EnableAddPlayerBtn(!_isReady); //temp
+
         CheckAllLocalPlayerIsReady();
     }
     public void OnlineReady()
@@ -109,8 +110,6 @@ public class ReadyButton : MonoBehaviourPunCallbacks
         }
         //Check team count:        
         ShowAllReadyBtn(_isAllReady);
-
-
     }
 
     public void CheckAllOnlinePlayerIsReady()

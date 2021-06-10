@@ -14,7 +14,6 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     int _current_player_count = 0;
     public void Awake()
     {
-
         for (int i = 1; i < maxSlotCount; i++)
         {
             addPlayerBtns[i].SetActive(true);
@@ -53,5 +52,12 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     public void CancelAllPlayerReady()
     {
         ReadyButton.CancelAllPlayerReady();
+    }
+    public void EnableAddPlayerBtn(bool _isActive)
+    {
+        for (int i = 0; i < maxSlotCount; i++)
+        {
+            addPlayerBtns[i].SetActive(_isActive);
+        }
     }
 }
