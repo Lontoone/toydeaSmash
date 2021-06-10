@@ -16,6 +16,7 @@ public class ResultSceneControl : MonoBehaviour
 
     private void GeneratePlayer()
     {
+        Debug.Log("result player count " + LocalRoomManager.instance.players.Count);
         //score
         for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
         {

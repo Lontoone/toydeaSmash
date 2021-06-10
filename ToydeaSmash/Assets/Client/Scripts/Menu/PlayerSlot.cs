@@ -136,7 +136,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     public void Team_btn(int _opt)
     {
-        current_team = Mathf.Clamp(current_team + _opt, 0, CustomPropertyCode.TEAM_CODE.Length - 1);
+        current_team = Mathf.Clamp(current_team + _opt, 0, CustomPropertyCode.TEAMCOLORS.Length - 1);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
         SetTeam(current_team);
     }

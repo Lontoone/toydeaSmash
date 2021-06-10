@@ -6,9 +6,10 @@ public class GC_SelfDestory : MonoBehaviour
 {
     public string key;
     public float lifeTime = 1;
+    public bool unRegisterWhenDestory = true;
     public void OnEnable()
     {
-        Invoke("DoCollect",lifeTime);
+        Invoke("DoCollect", lifeTime);
     }
 
     void DoCollect()
@@ -18,7 +19,10 @@ public class GC_SelfDestory : MonoBehaviour
     }
     private void OnDestroy()
     {
-        GCManager.Remove(key);
+        if (unRegisterWhenDestory)
+        {
+            GCManager.Remove(key);
+        }
     }
 
 }

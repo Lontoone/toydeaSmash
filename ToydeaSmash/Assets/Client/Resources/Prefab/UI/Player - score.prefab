@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 1253914976548010135}
   - component: {fileID: 1253914976548010129}
   - component: {fileID: 1253914976548010128}
-  - component: {fileID: 6075661839771118622}
   m_Layer: 5
   m_Name: Player - score
   m_TagString: Untagged
@@ -262,21 +261,6 @@ MonoBehaviour:
   kill_text: {fileID: 1253914977373453458}
   damage_text: {fileID: 1253914976436185419}
   damage_take_text: {fileID: 1253914977380917949}
---- !u!114 &6075661839771118622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253914976548010133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ed89321ad076e438719af23104808f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container: {fileID: 0}
-  spawnPoints: []
-  playerResultPanels: []
 --- !u!1 &1253914976738228649
 GameObject:
   m_ObjectHideFlags: 0
