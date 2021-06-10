@@ -21,7 +21,6 @@ public class GameResultManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void Start()
     {
         HitableObj.OnKilled += AddKillAndDeathCount;
@@ -32,7 +31,6 @@ public class GameResultManager : MonoBehaviour
         HitableObj.OnKilled -= AddKillAndDeathCount;
         HitableObj.Hit_event -= AddDamageCount;
     }
-
     void AddKillAndDeathCount(GameObject target, GameObject killer)
     {
         SetProperty(killer.GetComponent<PlayerControl>(), KILL, 1);
@@ -43,8 +41,6 @@ public class GameResultManager : MonoBehaviour
         SetProperty(t.GetComponent<PlayerControl>(), DAMAGE, (int)d);
         SetProperty(s?.GetComponent<PlayerControl>(), DAMAGETAKE, (int)d);
     }
-
-
     void SetProperty(PlayerControl player, string _key, int data_to_add)
     {
         if (player != null)

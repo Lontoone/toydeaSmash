@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
+
 public class GameplaySettingControl : MonoBehaviour
 {
     public const string MAP_OPT = "MAP_OPT";
     public const string MINUTES_OPT = "MINUTES_OPT";
     public const string LIFESTOCK_OPT = "LIFESTOCK_OPT";
 
-    public readonly string[] map_opts = new string[] { "GamePlay" };
-    public readonly int[] minutes_opts = new int[] { 3, 5, 10 };
-    public readonly int[] lifeStock_opts = new int[] { 1, 2, 3, 4, 5, 10, 99 };
+    private static readonly string[] map_opts = new string[] { "GamePlay" };
+    private static readonly int[] minutes_opts = new int[] { 3, 5, 10 };
+    private static readonly int[] lifeStock_opts = new int[] { 1, 2, 3, 4, 5, 10, 99 };
 
     public TextMeshProUGUI mapNameText, minutesText, lifestockText;
 
@@ -52,4 +54,22 @@ public class GameplaySettingControl : MonoBehaviour
         LocalRoomManager.instance.StartGamePlay();
     }
 
+    public void Confirm(int _maxIndex, int _minutes_index, int _lifeStock)
+    {
+        LocalRoomManager.instance.gamePlaySetting.SetProperty(MAP_OPT, map_opts[_maxIndex]);
+        LocalRoomManager.instance.gamePlaySetting.SetProperty(MINUTES_OPT, minutes_opts[_minutes_index]);
+        LocalRoomManager.instance.gamePlaySetting.SetProperty(LIFESTOCK_OPT, lifeStock_opts[_lifeStock]);
+
+    }
+    public void ConfirmOnline()
+    {
+        PhotonView _pv = GetComponent<PhotonView>();
+        //Store to master clientData
+        if (PhotonNetwork.IsMasterClient && _pv != null)
+        {
+            _pv.RPC("Confirm", RpcTarget.All, map_index, minutes_index, life_stock_index);
+        }
+        //TODO TEST:直接開始
+        LocalRoomManager.instance.StartGamePlay();
+    }
 }
