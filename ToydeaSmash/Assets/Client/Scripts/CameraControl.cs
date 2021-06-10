@@ -8,6 +8,7 @@ public class CameraControl : MonoBehaviour
     public float speed = 20;
     public float player_width_screen_rate = 0.5f;
     public Vector2 centerOffset;
+    public float threshold = 0.01f;
 
 
     private static float s_min_camera_width, s_max_camera_width;
@@ -65,8 +66,11 @@ public class CameraControl : MonoBehaviour
         float _screen_size = Vector2.Distance(min_max[1], min_max[0]) / player_width_screen_rate;
 
         //screen size to the scale of camera size
+
         float _camera_size = _screen_size * minSize / s_min_camera_width;
-        s_camera.orthographicSize = Mathf.Clamp(_camera_size, minSize, maxSize);
+
+        if (Mathf.Abs(_camera_size - s_camera.orthographicSize) > threshold)
+            s_camera.orthographicSize = Mathf.Lerp(s_camera.orthographicSize, Mathf.Clamp(_camera_size, minSize, maxSize), Time.fixedDeltaTime * speed);
     }
 
     Vector2[] GetMinMaxPlayerPos()
