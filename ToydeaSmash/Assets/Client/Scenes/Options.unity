@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4510502, g: 0.4690412, b: 0.5283019, a: 1}
+  m_Color: {r: 0.2202741, g: 0.340184, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2222,8 +2222,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2399,8 +2399,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.060997, y: 0}
+  m_SizeDelta: {x: -2.1210327, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139478725
 MonoBehaviour:
@@ -2415,7 +2415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+  m_Color: {r: 0.21960786, g: 0.3372549, b: 0.47058827, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3051,8 +3051,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchoredPosition: {x: -1.6900024, y: 0}
+  m_SizeDelta: {x: -3.3807373, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338670025
 MonoBehaviour:
@@ -4536,7 +4536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2126668442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4601,7 +4601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.45098042, g: 0.47058827, b: 0.5294118, a: 1}
+  m_Color: {r: 0.5506853, g: 0.62911624, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4900,9 +4900,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3711867506777490563}
   - component: {fileID: 3711867506777490564}
-  - component: {fileID: 8678252274779482769}
   - component: {fileID: 3711867506777490560}
   - component: {fileID: 1772811726}
+  - component: {fileID: 3711867506777490565}
   m_Layer: 0
   m_Name: Menu button
   m_TagString: Untagged
@@ -4934,7 +4934,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3711867506777490562}
   m_CullTransparentMesh: 0
---- !u!95 &8678252274779482769
+--- !u!95 &3711867506777490565
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -4944,7 +4944,7 @@ Animator:
   m_GameObject: {fileID: 3711867506777490562}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 489d4bfee6ac3ef4aa58755e4fa9d798, type: 2}
+  m_Controller: {fileID: 9100000, guid: 84a96a4959c265c40ac0fc0db73e619a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
