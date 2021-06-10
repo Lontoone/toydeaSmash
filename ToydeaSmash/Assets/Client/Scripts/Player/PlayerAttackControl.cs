@@ -27,7 +27,13 @@ public class PlayerAttackControl : MonoBehaviour
     public void Start()
     {
         body = GetComponent<Body>();
-        _player = transform.parent.GetComponent<PlayerControl>();
+        //_player = transform.parent.GetComponent<PlayerControl>();
+        _player = GetComponentInParent<PlayerControl>();
+        //temp:
+        if (_player==null) {
+            Destroy(this);
+        }
+
         actionController = transform.parent.GetComponent<ActionController>();
         rigid = GetComponent<Rigidbody2D>();
 

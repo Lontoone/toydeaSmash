@@ -61,6 +61,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
         thisPlayer = _p;
         player_index = _index;
+        InitPropertyDict();
         name_text.text = _p.NickName;
         if (_p == PhotonNetwork.LocalPlayer)
         {
@@ -81,8 +82,8 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     {
 
         //dict init
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_head].name);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, current_head);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
 
         SetTeam(0);
@@ -100,12 +101,12 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
 
         object _data;
-        Debug.Log("changedProps : TEAM " + changedProps.ContainsKey(CustomPropertyCode.TEAM_CODE) + " value " + (int)changedProps[CustomPropertyCode.TEAM_CODE]);
+        //Debug.Log("changedProps : TEAM " + changedProps.ContainsKey(CustomPropertyCode.TEAM_CODE) + " value " + (int)changedProps[CustomPropertyCode.TEAM_CODE]);
 
         if (changedProps.TryGetValue(CustomPropertyCode.TEAM_CODE, out _data))
         {
             //set team
-            Debug.Log(thisPlayer.NickName+" set team");
+            Debug.Log(thisPlayer.NickName + " set team");
             SetTeam((int)_data);
         }
         else if (changedProps.TryGetValue(CustomPropertyCode.BODY_CODE, out _data))
@@ -135,7 +136,10 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     {
         //temp
         current_body = Mathf.Clamp(current_body + _opt, 0, 2);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_body].name);
+        //TODO:[BUG] should store int but it is storing name of Resources path.
+        //LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, body_res[current_body].name);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, current_body);
+
         OnBodyChanged?.Invoke(current_body);
         SetWeapon((int)current_body);
         /*
@@ -149,8 +153,11 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         //temp
         current_head = Mathf.Clamp(current_head + _opt, 0, 8);
         OnHeadChanged?.Invoke(current_head);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
+        //TODO:[BUG] should store int but it is storing name of Resources path.
+        //LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
         SetWeapon((int)current_head);
+
         /*
         *  FOR FURTURE
         current_head = Mathf.Clamp(current_head + _opt, 0, heads_res.Length - 1);
@@ -158,7 +165,8 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         */
     }
 
-    public void UpdateTeam() {
+    public void UpdateTeam()
+    {
         //SetOtherProperty(CustomPropertyCode.TEAM_CODE, current_team);
     }
 
@@ -182,21 +190,21 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     void SetHead(int _index)
     {
-        //current_head = _index;
+        current_head = _index;
         GameObject _new_head = Instantiate(heads_res[current_head], head.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(head);
         head = _new_head;
-        head.GetComponent<SpriteRenderer>().color = LocalRoomManager.instance.players[player_index].GetValue<Color>(CustomPropertyCode.TEAM_CODE);
+        head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[player_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)];
         OnHeadChanged?.Invoke(current_head);
     }
     void SetWeapon(int _index)
     {
-        //current_body = _index;
+        current_body = _index;
         GameObject _new_body = Instantiate(body_res[current_body], body.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(body);
         body = _new_body;
         Destroy(body.GetComponent<PlayerAttackControl>());
-        body.GetComponent<SpriteRenderer>().color = LocalRoomManager.instance.players[player_index].GetValue<Color>(CustomPropertyCode.TEAM_CODE);
+        body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[player_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)];
         OnBodyChanged?.Invoke(current_body);
     }
 

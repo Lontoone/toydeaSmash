@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using Photon.Pun;
 //玩家控制
 public class PlayerControl : MonoBehaviour
 {
@@ -49,11 +50,20 @@ public class PlayerControl : MonoBehaviour
 
     private Coroutine c_heal;
     private Coroutine cCreateImageTrail;
+    private bool _isOnline = false;
+    private PhotonView _pv;
+    public void Awake()
+    {
+        SetUpOnline();
+    }
 
     private void Start()
     {
         hitable = gameObject.GetComponent<HitableObj>();
-        actionController.eActionQueueCleared += AddDefault;
+        if (actionController != null)
+        {
+            actionController.eActionQueueCleared += AddDefault;
+        }
         if (hitable != null)
         {
             hitable.Die_event += Die;
@@ -61,13 +71,17 @@ public class PlayerControl : MonoBehaviour
             hitable.gotHit_event += OnHurt;
         }
         if (listeners != null)
+        {
             listeners.eOnTouchGround += ResetJumpCount;
-
-        listeners.eOnTouchGround += OnJumpEnd;
+            listeners.eOnTouchGround += OnJumpEnd;
+        }
     }
     private void OnDestroy()
     {
-        actionController.eActionQueueCleared -= AddDefault;
+        if (actionController != null)
+        {
+            actionController.eActionQueueCleared -= AddDefault;
+        }
         if (hitable != null)
         {
             hitable.Die_event -= Die;
@@ -75,17 +89,73 @@ public class PlayerControl : MonoBehaviour
         }
         if (listeners != null)
             listeners.eOnTouchGround -= ResetJumpCount;
-
-        listeners.eOnTouchGround -= OnJumpEnd;
+        if (listeners != null)
+        {
+            listeners.eOnTouchGround -= OnJumpEnd;
+            listeners.eOnTouchGround -= ResetJumpCount;
+        }
     }
+    public void SetUpOnline()
+    {
+        _pv = GetComponent<PhotonView>();
+        if (_pv == null)
+        {
+            return;
+        }
+        _isOnline = true;
+        if (!_pv.IsMine)
+        {
+            Destroy(GetComponent<PhysicsControlListeners>());
+            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(GetComponent<ActionController>());
+            Destroy(body.GetComponent<PlayerAttackControl>());
+            //Destroy(this);
+        }
+        else
+        {
+            rigid = gameObject.GetComponent<Rigidbody2D>();
+            listeners = gameObject.GetComponent<PhysicsControlListeners>();
+            actionController = gameObject.GetComponent<ActionController>();
 
+            string _head_path = "Prefab/Online/Head/" + PlayerSlot.heads_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.HEAD_CDOE]].name;
+            string _body_path = "Prefab/Online/Body/" + PlayerSlot.body_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.BODY_CODE]].name;
+            Head _newHead =
+                             PhotonNetwork.Instantiate(
+                             _head_path,
+                             head.transform.position,
+                             Quaternion.identity
+                             ).GetComponent<Head>();
+            Body _newBody =
+                            PhotonNetwork.Instantiate(
+                            _body_path,
+                            body.transform.position,
+                            Quaternion.identity
+                            ).GetComponent<Body>();
+
+            _newBody.transform.SetParent(body.transform.parent);
+            _newHead.transform.SetParent(head.transform.parent);
+            Destroy(head.gameObject);
+            Destroy(body.gameObject);
+
+            head = _newHead;
+            body = _newBody;
+
+            //set team Layer
+            gameObject.layer = LayerMask.NameToLayer("Player" + PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE]);
+
+            int _team_code = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE];
+            Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
+
+            //set team color        
+            head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+            body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+
+            SetKey(0);
+        }
+    }
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
-
-        if (OnCreate != null)
-            OnCreate(_i);
-
-        //OnCreate?.Invoke(_i);
+        OnCreate?.Invoke(_i);
 
         rigid = gameObject.GetComponent<Rigidbody2D>();
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
@@ -95,14 +165,15 @@ public class PlayerControl : MonoBehaviour
 
         Head _newHead =
             Instantiate(
-                Head.LoadHead(_data.playerProperty[CustomPropertyCode.HEAD_CDOE] as string).gameObject,
+                Head.LoadHead(PlayerSlot.heads_res[(int)_data.playerProperty[CustomPropertyCode.HEAD_CDOE]].name).gameObject,
                 head.transform.position,
                 Quaternion.identity,
                 head.transform.parent
                 ).GetComponent<Head>();
         Body _newBody =
             Instantiate(
-                Body.LoadBody(_data.playerProperty[CustomPropertyCode.BODY_CODE] as string).gameObject,
+                //Body.LoadBody(_data.playerProperty[CustomPropertyCode.BODY_CODE] as string).gameObject,
+                Body.LoadBody(PlayerSlot.body_res[(int)_data.playerProperty[CustomPropertyCode.BODY_CODE]].name).gameObject,
                 body.transform.position,
                 Quaternion.identity,
                 body.transform.parent
@@ -116,16 +187,8 @@ public class PlayerControl : MonoBehaviour
 
         head.ApplyBuff();
 
-
         //********Set Keys *****************
-        horizontal_axis_name = "h" + _i.ToString();
-        vertical_axis_name = "v" + _i.ToString();
-        //jump_axis_name = "j" + _i.ToString();
-        jump_key = CustomPropertyCode.JumpKeys[_i];
-        dash_key = CustomPropertyCode.DashKyes[_i];
-        duck_key = CustomPropertyCode.DuckKyes[_i];
-        attack_key = CustomPropertyCode.AttackKyes[_i];
-        defense_key = CustomPropertyCode.DefenseKyes[_i];
+        SetKey(_i);
 
 
         //set team Layer
@@ -143,12 +206,26 @@ public class PlayerControl : MonoBehaviour
         //Test: 
         //AddRevive();
     }
+    private void SetKey(int _i)
+    {
+        horizontal_axis_name = "h" + _i.ToString();
+        vertical_axis_name = "v" + _i.ToString();
+        //jump_axis_name = "j" + _i.ToString();
+        jump_key = CustomPropertyCode.JumpKeys[_i];
+        dash_key = CustomPropertyCode.DashKyes[_i];
+        duck_key = CustomPropertyCode.DuckKyes[_i];
+        attack_key = CustomPropertyCode.AttackKyes[_i];
+        defense_key = CustomPropertyCode.DefenseKyes[_i];
+    }
 
     private void Update()
     {
+        if (_pv != null && !_pv.IsMine)
+        {
+            return;
+        }
+
         //跳躍
-        //if (Input.GetKeyDown(KeyCode.Space) && (jump_count < 2))
-        //if (Input.GetAxisRaw(jump_axis_name) != 0 && (jump_count < 2))
         //Duck and jump down
         if (Input.GetKey(duck_key) && Input.GetKeyDown(jump_key))
         {
@@ -213,6 +290,11 @@ public class PlayerControl : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (_pv != null && !_pv.IsMine)
+        {
+            return;
+        }
+
         //動畫判定:
         if (!listeners.isGrounded) //跳躍
         {

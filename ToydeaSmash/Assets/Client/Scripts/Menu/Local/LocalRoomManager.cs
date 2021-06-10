@@ -77,31 +77,42 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         //if in game play
         if (scene.name == "GamePlay")
         {
-            //generate player
-            Debug.Log(" Create player!");
+            //[Update] move to game mode
+        }
+    }
 
-            //for each playerData=> Gernerate local multiplayer with id
-            for (int i = 0; i < players.Count; i++)
+    public void InstantiateLocalPlayer()
+    {
+        //for each playerData=> Gernerate local multiplayer with id
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
+            Debug.Log("player i " + i);
+            _player.transform.position = MapControl.instance.viewWorldCenter;
+            _player.SetUp(players[i], i);
+
+            _player.AddLanding();
+
+            //Log team member
+            if (team_player_dict.ContainsKey((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]))
             {
-                PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
-                Debug.Log("player i " + i);
-                _player.transform.position = MapControl.instance.viewWorldCenter;
-                _player.SetUp(players[i], i);
-
-                _player.AddLanding();
-
-                //Log team member
-                if (team_player_dict.ContainsKey((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]))
-                {
-                    team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
-                }
-                else
-                {
-                    team_player_dict.Add((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE], new List<int>());
-                    team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
-                }
+                team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
+            }
+            else
+            {
+                team_player_dict.Add((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE], new List<int>());
+                team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
             }
         }
+    }
+    public void InstantiateOnlinePlayer(int i)
+    {
+        PlayerControl _player = PhotonNetwork.Instantiate("Prefab/Player_Variant_Online", Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
+        Debug.Log("player i " + i);
+        _player.transform.position = MapControl.instance.viewWorldCenter;
+        //_player.SetUpOnline();
+        //_player.SetUp(players[i], 0);
+        _player.AddLanding();
     }
 
 

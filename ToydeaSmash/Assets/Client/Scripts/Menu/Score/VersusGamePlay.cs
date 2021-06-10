@@ -10,6 +10,7 @@ public class VersusGamePlay : MonoBehaviour
 
     public Dictionary<int, int> playerLifeStock = new Dictionary<int, int>();
     Dictionary<int, PlayerLifeStockControl> lifeStockUI = new Dictionary<int, PlayerLifeStockControl>();
+    /*
     public void Awake()
     {
         PlayerControl.OnCreate += RegisterPlayer;
@@ -23,15 +24,10 @@ public class VersusGamePlay : MonoBehaviour
         PlayerControl.OnDestory -= CheckPlayerRevive;
 
         HitableObj.OnKilled -= CheckTeamWinLose;
-    }
+    }*/
 
     public const string ISLOSE = "ISLOSE";
-
-    public void Start()
-    {
-
-    }
-
+   
     //players first join the game
     public void RegisterPlayer(int _index)
     {
@@ -49,14 +45,12 @@ public class VersusGamePlay : MonoBehaviour
             lifeStockUI.Add(_index, _ui);
             _ui.lifeStock_number_text.text = playerLifeStock[_index].ToString();
         }
-
     }
     public void MinusLifeStock(int _index)
     {
         //update ui and data
         playerLifeStock[_index]--;
         lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
-
     }
 
     public void CheckPlayerRevive(int _i)
