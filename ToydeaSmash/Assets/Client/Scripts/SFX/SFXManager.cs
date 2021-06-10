@@ -33,10 +33,11 @@ public class SFXManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         data.MapInit();
     }
-    public void Start()
+    public void OnEnable()
     {
         _audioSource = GetComponent<AudioSource>();
         GCManager.RegisterObject(_AUDIOSOURCE_GC, _audioSourcePrefab.gameObject);
+        Debug.Log("register sfx manager");
     }
 
     public void PlaySound(string _key)
