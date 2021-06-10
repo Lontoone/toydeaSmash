@@ -4584,6 +4584,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
+    - target: {fileID: 2934616670537134003, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_text
+      value: Can't start with all players on the same team(color)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934616671232046544, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1241.5955
+      objectReference: {fileID: 0}
     - target: {fileID: 2934616671276379843, guid: ee80df8b5f745694f9b3f04189cdb934, type: 3}
       propertyPath: m_Pivot.x
       value: 0

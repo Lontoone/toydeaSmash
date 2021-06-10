@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSize: 20
-  minSize: 10
+  minSize: 15
   speed: 5
   player_width_screen_rate: 0.35
   centerOffset: {x: 0, y: 3}
@@ -2275,7 +2275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.3336105, y: 0.06449509}
+  m_Size: {x: 4.3336105, y: 0.42054176}
   m_EdgeRadius: 0
 --- !u!212 &627650287
 SpriteRenderer:
@@ -5077,7 +5077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359880372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.8507, y: -15.44, z: -1.5699997}
+  m_LocalPosition: {x: -25.18, y: -15.44, z: -1.5699997}
   m_LocalScale: {x: 43.04015, y: 1.7002981, z: 1}
   m_Children: []
   m_Father: {fileID: 1489865630}
@@ -5330,7 +5330,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04875374, y: 2.0360346}
+  m_Offset: {x: 0.04875374, y: 1.9069464}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -5341,7 +5341,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2239876, y: 0.108551025}
+  m_Size: {x: 4.2239876, y: 0.36672735}
   m_EdgeRadius: 0
 --- !u!212 &1394368043
 SpriteRenderer:
@@ -6096,7 +6096,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.9833508, y: 0.089710474}
+  m_Size: {x: 3.9833508, y: 0.38049173}
   m_EdgeRadius: 0
 --- !u!212 &1544796973
 SpriteRenderer:
@@ -6980,7 +6980,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10619879, y: 1.7847152}
+  m_Offset: {x: 0.10619879, y: 1.7380128}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -6991,7 +6991,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.955924, y: 0.10067272}
+  m_Size: {x: 3.955924, y: 0.380888}
   m_EdgeRadius: 0
 --- !u!212 &1813568920
 SpriteRenderer:
