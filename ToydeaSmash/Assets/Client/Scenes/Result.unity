@@ -3545,6 +3545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587101449}
   - component: {fileID: 1587101450}
+  - component: {fileID: 1587101451}
   m_Layer: 0
   m_Name: Map Wall (1)
   m_TagString: Untagged
@@ -3579,7 +3580,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.17664242, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3590,8 +3591,30 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 31.017025, y: 170.7479}
+  m_Size: {x: 30.66374, y: 170.7479}
   m_EdgeRadius: 0
+--- !u!68 &1587101451
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587101448}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 291eee05e962cf546bbc45c299e51ce2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.25
+  m_Points:
+  - {x: -15.245205, y: -33.532993}
+  - {x: -15.20018, y: 3.2937393}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1588739842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,6 +3625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1588739843}
   - component: {fileID: 1588739844}
+  - component: {fileID: 1588739845}
   m_Layer: 0
   m_Name: Map Wall
   m_TagString: Untagged
@@ -3649,6 +3673,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 31.017025, y: 170.7479}
   m_EdgeRadius: 0
+--- !u!68 &1588739845
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588739842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 291eee05e962cf546bbc45c299e51ce2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.25
+  m_Points:
+  - {x: 15.657326, y: 3.6333075}
+  - {x: 15.619247, y: -34.106213}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1601157192
 GameObject:
   m_ObjectHideFlags: 0
