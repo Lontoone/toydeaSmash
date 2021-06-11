@@ -46,7 +46,7 @@ public class PlayerResultPanel : MonoBehaviour
             _data.data = LocalRoomManager.instance.players[i].GetValue<int>(GameResultManager.KILL);
             _res.Add(_data);
         }
-        _res.Sort((x, y) => x.data.CompareTo(y.data));
+        _res.Sort((x, y) => y.data.CompareTo(x.data));
         return _res;
     }
     private class SortData
