@@ -895,8 +895,16 @@ PrefabInstance:
       value: Body
       objectReference: {fileID: 0}
     - target: {fileID: 7766455958558847206, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766455958558847206, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766455958558847206, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -504763203
       objectReference: {fileID: 0}
     - target: {fileID: 7766455958558847207, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
       propertyPath: m_RootOrder

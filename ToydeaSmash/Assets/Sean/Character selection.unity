@@ -1992,7 +1992,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &921964982
 RectTransform:
@@ -4570,13 +4570,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 0}
+  readyHint: {fileID: 0}
+  unReadyHint: {fileID: 0}
+  btn_group: {fileID: 0}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   head: {fileID: 0}
   body: {fileID: 0}
-  btn_group: {fileID: 0}
 --- !u!4 &2421306133625213715
 Transform:
   m_ObjectHideFlags: 0
@@ -4637,13 +4639,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 0}
+  readyHint: {fileID: 0}
+  unReadyHint: {fileID: 0}
+  btn_group: {fileID: 0}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   head: {fileID: 0}
   body: {fileID: 0}
-  btn_group: {fileID: 0}
 --- !u!1 &2421306134099459249
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,13 +4694,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 0}
+  readyHint: {fileID: 0}
+  unReadyHint: {fileID: 0}
+  btn_group: {fileID: 0}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   head: {fileID: 0}
   body: {fileID: 0}
-  btn_group: {fileID: 0}
 --- !u!114 &2508395799617300382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5163,13 +5169,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 0}
+  readyHint: {fileID: 0}
+  unReadyHint: {fileID: 0}
+  btn_group: {fileID: 0}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   head: {fileID: 0}
   body: {fileID: 0}
-  btn_group: {fileID: 0}
 --- !u!4 &6472347608523515429
 Transform:
   m_ObjectHideFlags: 0

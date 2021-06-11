@@ -1,36 +1,36 @@
 fileFormatVersion: 2
-guid: 178983dffa33c7748ab79d9efb3cdae4
+guid: 012c8d8efc59d8e4c888771b9c593bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8317474684423563309
-    second: easter egg_0
+      213: 5741071087551392331
+    second: easter egg alpha_0
   - first:
-      213: -3625491434695117884
-    second: easter egg_1
+      213: 3997476941884313407
+    second: easter egg alpha_1
   - first:
-      213: 1739941427838291346
-    second: easter egg_2
+      213: 7233196343586635553
+    second: easter egg alpha_2
   - first:
-      213: 4190898377246872775
-    second: easter egg_3
+      213: 6916257269582208139
+    second: easter egg alpha_3
   - first:
-      213: -5693234526418706061
-    second: easter egg_4
+      213: 6195316011513988475
+    second: easter egg alpha_4
   - first:
-      213: 6867128749704983996
-    second: easter egg_5
+      213: -5657453206110389792
+    second: easter egg alpha_5
   - first:
-      213: -4081631661227827716
-    second: easter egg_6
+      213: 3038348377009516469
+    second: easter egg alpha_6
   - first:
-      213: 4011024953837804734
-    second: easter egg_7
+      213: 2417536605288225792
+    second: easter egg alpha_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -74,9 +74,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: easter egg_0
+      name: easter egg alpha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,20 +121,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d28ee59582b9d6370800000000000000
-      internalID: 8317474684423563309
+      spriteID: b4a24c39cb16caf40800000000000000
+      internalID: 5741071087551392331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_1
+      name: easter egg alpha_1
       rect:
         serializedVersion: 2
         x: 96
@@ -142,20 +142,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c3b6c2bfbaafadc0800000000000000
-      internalID: -3625491434695117884
+      spriteID: f3f44de5914e97730800000000000000
+      internalID: 3997476941884313407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_2
+      name: easter egg alpha_2
       rect:
         serializedVersion: 2
         x: 192
@@ -163,20 +163,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d89409283852810800000000000000
-      internalID: 1739941427838291346
+      spriteID: 12fb22a50c9716460800000000000000
+      internalID: 7233196343586635553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_3
+      name: easter egg alpha_3
       rect:
         serializedVersion: 2
         x: 288
@@ -184,20 +184,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c49f89aedf092a30800000000000000
-      internalID: 4190898377246872775
+      spriteID: b8c19a0c75b7bff50800000000000000
+      internalID: 6916257269582208139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_4
+      name: easter egg alpha_4
       rect:
         serializedVersion: 2
         x: 384
@@ -205,20 +205,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 371e2ddbc519df0b0800000000000000
-      internalID: -5693234526418706061
+      spriteID: b75c499961f2af550800000000000000
+      internalID: 6195316011513988475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_5
+      name: easter egg alpha_5
       rect:
         serializedVersion: 2
         x: 480
@@ -226,20 +226,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb5b909d631fc4f50800000000000000
-      internalID: 6867128749704983996
+      spriteID: 0e935649840bc71b0800000000000000
+      internalID: -5657453206110389792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_6
+      name: easter egg alpha_6
       rect:
         serializedVersion: 2
         x: 576
@@ -247,20 +247,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfd178821a12b57c0800000000000000
-      internalID: -4081631661227827716
+      spriteID: 5bf698340c16a2a20800000000000000
+      internalID: 3038348377009516469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: easter egg_7
+      name: easter egg alpha_7
       rect:
         serializedVersion: 2
         x: 672
@@ -268,14 +268,14 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebcdab6b1f50aa730800000000000000
-      internalID: 4011024953837804734
+      spriteID: 00c55bddbb0dc8120800000000000000
+      internalID: 2417536605288225792
       vertices: []
       indices: 
       edges: []
@@ -289,9 +289,7 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 012c8d8efc59d8e4c888771b9c593bac, type: 3}
-      name: mask
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -474,7 +474,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282685136}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85d7795a599a6d945a8c0772a7fd4f60, type: 3}
   m_Name: 
@@ -836,7 +836,7 @@ PrefabInstance:
       objectReference: {fileID: 303906015}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1009,6 +1009,7 @@ GameObject:
   - component: {fileID: 695507397}
   - component: {fileID: 695507396}
   - component: {fileID: 695507395}
+  - component: {fileID: 695507398}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1081,6 +1082,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &695507398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695507394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1065381496 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
@@ -1297,7 +1329,7 @@ PrefabInstance:
       objectReference: {fileID: 506117297}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1565,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 43231255}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1746,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 303958921}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -1871,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 5470865991149617259}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: thisIndex
@@ -2122,6 +2154,10 @@ PrefabInstance:
     - target: {fileID: 7034337286608355681, guid: 121e588a13988da478f890830a6106ce, type: 3}
       propertyPath: m_Name
       value: How to play
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034337287425587109, guid: 121e588a13988da478f890830a6106ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688252425804563445, guid: 121e588a13988da478f890830a6106ce, type: 3}
       propertyPath: m_IsActive
