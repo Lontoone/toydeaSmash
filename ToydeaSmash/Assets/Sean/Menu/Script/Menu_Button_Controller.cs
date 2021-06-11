@@ -12,7 +12,7 @@ public class Menu_Button_Controller : MonoBehaviour
 
 
     void Start() {
-        audioSource = GetComponent<AudioSource>();
+       // audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update(){
