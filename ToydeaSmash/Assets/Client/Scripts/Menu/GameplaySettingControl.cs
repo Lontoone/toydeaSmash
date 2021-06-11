@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 
@@ -10,18 +11,28 @@ public class GameplaySettingControl : MonoBehaviour
     public const string MINUTES_OPT = "MINUTES_OPT";
     public const string LIFESTOCK_OPT = "LIFESTOCK_OPT";
 
-    private static readonly string[] map_opts = new string[] { "GamePlay" };
+    private static readonly string[] map_opts = new string[] { "GamePlay", "GamePlay night" };
     private static readonly int[] minutes_opts = new int[] { 3, 5, 10 };
     private static readonly int[] lifeStock_opts = new int[] { 1, 2, 3, 4, 5, 10, 99 };
+    private static List<Sprite> s_maps = new List<Sprite>();
+    private const string mapResPath = "scene selection/";
 
-    public TextMeshProUGUI mapNameText, minutesText, lifestockText;
+    public TextMeshProUGUI minutesText, lifestockText;
+    public Image mapPreview;
 
     public int map_index = 0;
     public int minutes_index = 0;
     public int life_stock_index = 0;
 
+
+
     public void Start()
     {
+        for (int i = 0; i < map_opts.Length; i++)
+        {
+            s_maps.Add(Resources.Load<Sprite>(mapResPath + map_opts[i]));
+        }
+
         SetMapIndex(0);
         SetMinutesIndex(0);
         SetLifeStockIndex(0);
@@ -29,7 +40,7 @@ public class GameplaySettingControl : MonoBehaviour
     public void SetMapIndex(int _optration)
     {
         map_index = Mathf.Clamp(map_index + _optration, 0, map_opts.Length - 1);
-        mapNameText.text = map_opts[map_index].ToString();
+        mapPreview.sprite = s_maps[map_index];
     }
     public void SetMinutesIndex(int _optration)
     {
