@@ -13,5 +13,8 @@ public class ChangeScene : MonoBehaviour
     public void ChangeScene_Photon(string _name) {
         PhotonNetwork.LoadLevel(_name);
     }
+    public void QuitGame() {
+        Application.Quit();
+    }
 
 }
