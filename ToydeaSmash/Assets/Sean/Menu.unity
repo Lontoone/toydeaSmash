@@ -189,30 +189,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &43231251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-  m_PrefabInstance: {fileID: 2090089615}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &43231252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 2090089615}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &43231253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43231251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976cc3acecdee9e48bbe57957fcb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 0
 --- !u!95 &43231255 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8678252273024769882, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
@@ -373,8 +354,6 @@ GameObject:
   - component: {fileID: 282685139}
   - component: {fileID: 282685138}
   - component: {fileID: 282685137}
-  - component: {fileID: 282685141}
-  - component: {fileID: 282685142}
   - component: {fileID: 282685143}
   m_Layer: 5
   m_Name: Button
@@ -467,118 +446,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &282685141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282685136}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85d7795a599a6d945a8c0772a7fd4f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  keyDown: 0
-  maxIndex: 4
-  audioSource: {fileID: 0}
---- !u!82 &282685142
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282685136}
-  m_Enabled: 0
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7302932577769819670, guid: 254d1cee58624ef478d2d7cc36d99198, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 97b161e63af19bf43acd6a201db80ae5, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &282685143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,59 +458,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ec06c10be16404395aad59f6bf635e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &303906011 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-  m_PrefabInstance: {fileID: 547039691}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &303906012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 547039691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &303906013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303906011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976cc3acecdee9e48bbe57957fcb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 0
 --- !u!95 &303906015 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8678252273024769882, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 547039691}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &303958917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-  m_PrefabInstance: {fileID: 2121887262}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &303958918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 2121887262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &303958919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303958917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976cc3acecdee9e48bbe57957fcb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 0
 --- !u!95 &303958921 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8678252273024769882, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
@@ -794,30 +623,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f6216622f12f94bb9311295eaf3d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &506117293 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-  m_PrefabInstance: {fileID: 1805115897}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &506117294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 1805115897}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &506117295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506117293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976cc3acecdee9e48bbe57957fcb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 0
 --- !u!95 &506117297 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8678252273024769882, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
@@ -845,11 +655,11 @@ PrefabInstance:
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: animatorFunctions
       value: 
-      objectReference: {fileID: 303906013}
+      objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 282685141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -914,7 +724,8 @@ PrefabInstance:
       propertyPath: m_text
       value: Quit
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
 --- !u!1 &585070647
 GameObject:
@@ -1113,30 +924,11 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &1065381496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3711867506384925001, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
-  m_PrefabInstance: {fileID: 3711867506007416625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1065381497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_PrefabInstance: {fileID: 3711867506007416625}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1065381498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065381496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976cc3acecdee9e48bbe57957fcb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menu_Button_Controller: {fileID: 282685141}
-  disableOnce: 0
 --- !u!1 &1280038818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,11 +1130,11 @@ PrefabInstance:
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: animatorFunctions
       value: 
-      objectReference: {fileID: 506117295}
+      objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 282685141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1439,7 +1231,8 @@ PrefabInstance:
       propertyPath: m_text
       value: Online Play
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
 --- !u!1 &1842841895
 GameObject:
@@ -1606,11 +1399,11 @@ PrefabInstance:
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: animatorFunctions
       value: 
-      objectReference: {fileID: 43231253}
+      objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 282685141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1763,7 +1556,8 @@ PrefabInstance:
       propertyPath: m_text
       value: How To Play
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
 --- !u!1001 &2121887262
 PrefabInstance:
@@ -1787,11 +1581,11 @@ PrefabInstance:
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: animatorFunctions
       value: 
-      objectReference: {fileID: 303958919}
+      objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 282685141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1888,7 +1682,8 @@ PrefabInstance:
       propertyPath: m_text
       value: Options
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
 --- !u!1001 &3711867506007416625
 PrefabInstance:
@@ -1912,11 +1707,11 @@ PrefabInstance:
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: animatorFunctions
       value: 
-      objectReference: {fileID: 1065381498}
+      objectReference: {fileID: 0}
     - target: {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 282685141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3711867506384925000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2033,7 +1828,8 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4290772991
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 767812377115298705, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26ef10b80fc9fff44a0e35cc54c71015, type: 3}
 --- !u!95 &5470865991149617259 stripped
 Animator:
