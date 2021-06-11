@@ -89,15 +89,21 @@ public class VersusGamePlay : MonoBehaviour
                 is_team_win = false;
             }
         }
-
         if (is_team_win)
         {
             //WIN
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+            StartCoroutine(EndGamePlayCoro(5));
+                  
+
         }
+    }
 
-
+    //Temp
+    IEnumerator EndGamePlayCoro(int _duration)
+    {
+        yield return new WaitForSeconds(_duration);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
 }
