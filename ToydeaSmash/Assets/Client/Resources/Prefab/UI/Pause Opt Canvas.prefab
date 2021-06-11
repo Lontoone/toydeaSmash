@@ -1053,7 +1053,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 13dd6752bde3efc44a72fe4f914f2501, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1067,6 +1067,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2445726073599075361}
     m_Modifications:
+    - target: {fileID: 9109665527456861872, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1169,6 +1173,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2445726073599075361}
     m_Modifications:
+    - target: {fileID: 9109665527456861872, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

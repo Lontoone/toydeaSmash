@@ -14,6 +14,10 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     int _current_player_count = 0;
     public void Awake()
     {
+        for (int i = 0; i < addPlayerBtns.Length; i++)
+        {
+            addPlayerBtns[i].SetActive(false);
+        }
         for (int i = 1; i < maxSlotCount; i++)
         {
             addPlayerBtns[i].SetActive(true);

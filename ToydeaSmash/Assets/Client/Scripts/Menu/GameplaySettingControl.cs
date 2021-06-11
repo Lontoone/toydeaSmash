@@ -70,6 +70,7 @@ public class GameplaySettingControl : MonoBehaviour
             _pv.RPC("Confirm", RpcTarget.All, map_index, minutes_index, life_stock_index);
         }
         //TODO TEST:直接開始
-        LocalRoomManager.instance.StartGamePlay();
+        PhotonNetwork.LoadLevel("GamePlay");
+        //LocalRoomManager.instance.StartGamePlay();
     }
 }
