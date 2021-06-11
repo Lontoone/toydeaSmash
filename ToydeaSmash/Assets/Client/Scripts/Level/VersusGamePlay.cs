@@ -10,7 +10,7 @@ public class VersusGamePlay : MonoBehaviour
 
     public Dictionary<int, int> playerLifeStock = new Dictionary<int, int>();
     Dictionary<int, PlayerLifeStockControl> lifeStockUI = new Dictionary<int, PlayerLifeStockControl>();
-    
+
     public void Awake()
     {
         PlayerControl.OnCreate += RegisterPlayer;
@@ -27,7 +27,7 @@ public class VersusGamePlay : MonoBehaviour
     }
 
     public const string ISLOSE = "ISLOSE";
-   
+
     //players first join the game
     public void RegisterPlayer(int _index)
     {
@@ -43,6 +43,7 @@ public class VersusGamePlay : MonoBehaviour
             //generate life stock ui item for each player
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
+            _ui.SetUp(CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)]);
             _ui.lifeStock_number_text.text = playerLifeStock[_index].ToString();
         }
     }
@@ -95,7 +96,6 @@ public class VersusGamePlay : MonoBehaviour
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
             UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
-            //GCManager.Clear();
         }
 
 
