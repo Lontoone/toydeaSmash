@@ -86,6 +86,8 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < players.Count; i++)
         {
             PlayerControl _player = Instantiate(Resources.Load("Prefab/Player") as GameObject, Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
+            _player.gameObject.name ="Player"+ UnityEngine.Random.Range(0,9999);
+
             Debug.Log("player i " + i);
             _player.transform.position = MapControl.instance.viewWorldCenter;
             _player.SetUp(players[i], i);

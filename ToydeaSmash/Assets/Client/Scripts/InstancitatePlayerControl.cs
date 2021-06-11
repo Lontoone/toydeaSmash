@@ -27,7 +27,7 @@ public class InstancitatePlayerControl : MonoBehaviour
     }
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
@@ -45,6 +45,9 @@ public class InstancitatePlayerControl : MonoBehaviour
             {
                 CreateLocalPlayer();
             }
+        }
+        else if (arg0.name=="Menu") {
+            Destroy(gameObject);
         }
 
     }
