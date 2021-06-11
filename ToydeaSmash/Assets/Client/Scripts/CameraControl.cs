@@ -15,6 +15,7 @@ public class CameraControl : MonoBehaviour
     private PlayerControl[] s_players;
     private static Camera s_camera;
     private static Coroutine s_c_checkPlayersInSight;
+    
     public IEnumerator Start()
     {
         //wait for all player
@@ -77,6 +78,11 @@ public class CameraControl : MonoBehaviour
     {
         if (s_players == null || s_players.Length < 0)
         {
+            return new Vector2[] { Vector2.zero, Vector2.zero };
+        }
+        if (s_players[0] == null)
+        {
+            this.enabled = false;
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
       
