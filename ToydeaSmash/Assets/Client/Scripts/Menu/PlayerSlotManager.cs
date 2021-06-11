@@ -44,14 +44,12 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     public void GenerateOnlineSlot(LocalPlayerProperty _data)
     {
         //if (PhotonNetwork.LocalPlayer == _data.GetValue<Player>("Player"))
-
         int __playerIndex = _data.GetValue<int>("PlayerIndex");
         const string _PLAYER_SLOT_PATH = "Prefab/UI/PlayerSlotOnline";
         //PlayerSlot _slot = PhotonNetwork.Instantiate(_PLAYER_SLOT_PATH, slot_pos[__playerIndex].position, Quaternion.identity).GetComponent<PlayerSlot>();
         PlayerSlot _slot = Instantiate(Resources.Load<PlayerSlot>(_PLAYER_SLOT_PATH), slot_pos[__playerIndex].position, Quaternion.identity);
 
         _slot.SetUpPlayer(_data.GetValue<Player>("Player"), __playerIndex);
-
     }
     public void CancelAllPlayerReady()
     {

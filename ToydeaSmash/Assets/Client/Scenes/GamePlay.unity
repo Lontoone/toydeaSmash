@@ -13020,6 +13020,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2260827925821941526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260827925821941526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260827925821941526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260827925821941526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_SortingLayer
       value: 5
       objectReference: {fileID: 0}
@@ -13030,6 +13042,18 @@ PrefabInstance:
     - target: {fileID: 2260827925821941526, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_MaskInteraction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151810834332112935, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151810834332112935, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151810834332112935, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6151810834332112935, guid: 150a3d77e12d9fd4a868f159059f38ab, type: 3}
       propertyPath: m_SortingLayer
