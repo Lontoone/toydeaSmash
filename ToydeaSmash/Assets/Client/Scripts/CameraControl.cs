@@ -75,10 +75,11 @@ public class CameraControl : MonoBehaviour
 
     Vector2[] GetMinMaxPlayerPos()
     {
-        if (s_players == null || s_players.Length <= 0)
+        if (s_players == null || s_players.Length < 0)
         {
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
+      
         Vector2 _min = s_players[0].transform.position;
         Vector2 _max = s_players[0].transform.position;
         if (s_players.Length < 2)

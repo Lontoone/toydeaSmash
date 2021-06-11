@@ -35,7 +35,7 @@ public class InstancitatePlayerControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (arg0.name == "GamePlay")
+        else if (arg0.name.Contains("GamePlay"))
         {
             if (isOnline)
             {
