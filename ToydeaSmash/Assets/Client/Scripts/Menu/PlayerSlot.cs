@@ -22,6 +22,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public GameObject readyHint;
     public GameObject unReadyHint;
     public GameObject btn_group;
+    public GameObject readyOkHint;
 
     public static Head[] heads_res;
     public static Body[] body_res;
@@ -128,10 +129,15 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     }
 
-    public void SetReady(bool _isReady) {
+    public void SetReady(bool _isReady)
+    {
         readyHint.SetActive(!_isReady);
         btn_group.SetActive(!_isReady);
         unReadyHint.SetActive(_isReady);
+
+        readyOkHint.SetActive(_isReady);
+        readyOkHint.GetComponent<UnityEngine.UI.Image>().color =CustomPropertyCode.TEAMCOLORS[
+                                                                LocalRoomManager.instance.players[player_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)];
     }
 
     public void Team_btn(int _opt)
