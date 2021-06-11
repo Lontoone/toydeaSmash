@@ -59,7 +59,7 @@ public class PlayerSlotManager : MonoBehaviourPunCallbacks
     }
     public void EnableAddPlayerBtn(bool _isActive)
     {
-        for (int i = 0; i < maxSlotCount; i++)
+        for (int i = _current_player_count; i < maxSlotCount; i++)
         {
             addPlayerBtns[i].SetActive(_isActive);
         }
