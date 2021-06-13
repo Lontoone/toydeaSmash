@@ -50,12 +50,12 @@ TagManager:
   - name: middle
     uniqueID: 3742506881
     locked: 0
-  - name: front
-    uniqueID: 3728195657
-    locked: 0
   - name: egg
     uniqueID: 2959032809
     locked: 0
   - name: player
     uniqueID: 3790204093
+    locked: 0
+  - name: front
+    uniqueID: 3728195657
     locked: 0
