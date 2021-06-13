@@ -40,7 +40,7 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         //AddLocalPlayer();  //Add first
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+
     }
     public void OnDestroy()
     {
@@ -73,7 +73,7 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     {
         //if in game play
         if (scene.name == "Menu")
-        {            
+        {
             ClearPlayerDatas();
             instance = null;
             Destroy(gameObject);
@@ -109,11 +109,12 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     public void InstantiateOnlinePlayer(int i)
     {
         PlayerControl _player = PhotonNetwork.Instantiate("Prefab/Player_Variant_Online", Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
-        Debug.Log("player i " + i);
+        Debug.Log("player i " + i + " local index " + (int)PhotonNetwork.LocalPlayer.CustomProperties["PlayerIndex"]);
+        //_player.SetUpOnline(i);
+        _player.GetComponent<PhotonView>().RPC("SetUpOnline", RpcTarget.All, i);
         _player.transform.position = MapControl.instance.viewWorldCenter;
-        //_player.SetUpOnline();
         //_player.SetUp(players[i], 0);
-        _player.AddLanding();
+        //_player.AddLanding();
     }
     public PlayerControl Revive(int _playerData_index)
     {

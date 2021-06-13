@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,66 +18,57 @@ public class PlayerAttackControl : MonoBehaviour
     private ActionController actionController;
     private static Collider2D[] _res = new Collider2D[10];
     private ContactFilter2D _filter;
-    private PlayerControl _player;
+    public PlayerControl _player;
     private Rigidbody2D rigid;
     private Body body;
-
-
-
+    private PhotonView _pv;
 
     public void Start()
     {
-        body = GetComponent<Body>();
-        //_player = transform.parent.GetComponent<PlayerControl>();
-        _player = GetComponentInParent<PlayerControl>();
-        //temp:
-        if (_player==null) {
-            Destroy(this);
-        }
-
-        actionController = transform.parent.GetComponent<ActionController>();
-        rigid = GetComponent<Rigidbody2D>();
-
         //include other player's layer:
         for (int i = 0; i < 4; i++)
         {
             string _layer_name = "Player" + i.ToString();
-            if (LayerMask.NameToLayer(_layer_name) != transform.parent.gameObject.layer)
+            if (transform.parent != null &&
+                LayerMask.NameToLayer(_layer_name) != transform.parent.gameObject.layer)
             {
                 targetLayer |= (1 << LayerMask.NameToLayer(_layer_name));
             }
         }
+
+        body = GetComponent<Body>();
+        //_player = transform.parent.GetComponent<PlayerControl>();
+        //_player = GetComponentInParent<PlayerControl>();
+        _pv = GetComponent<PhotonView>();
+        //temp:
+        /*
+        if (_player == null)
+        {
+            Destroy(gameObject);
+        }*/
+
         _filter.SetLayerMask(targetLayer);
         _filter.useTriggers = true;
 
-        attack.action.AddListener(delegate
+        //set up function
+        SetupAction();
+        if (_pv == null || _pv.IsMine) //if not online or if is online and is mine
         {
-            _player.PlayAniamtion("Attack");
-            current_Attack_collider = attackCollider;
-            Attack();
-            _player.Effect("attack effect", "attack effect", transform.rotation);
-        });
-
-        up_attack.action.AddListener(delegate
+            actionController = transform.parent.GetComponent<ActionController>();
+            rigid = GetComponent<Rigidbody2D>();
+        }
+        else if (_pv != null && _pv.IsMine)
         {
-            UpAttack();
-            Attack();
-            _player.Effect("up attack", "up attack", transform.rotation);
-        });
-
-        down_attack.action.AddListener(delegate
-        {
-            DownAttack();
-            Attack();
-            _player.Effect("down attack", "down attack", transform.rotation);
-        });
-
-        //for test:
-        //attack.callbackEvent.AddListener(delegate { _attack_callback_event(); });
+            SetupOnlineAction();
+        }
     }
 
     public void Update()
     {
+        if (_pv != null && !_pv.IsMine || _player == null)
+        {
+            return;
+        }
         //Up Attack
         if (Input.GetAxisRaw(_player.vertical_axis_name) > 0 && Input.GetKeyDown(_player.attack_key))
         {
@@ -108,12 +100,49 @@ public class PlayerAttackControl : MonoBehaviour
 
     }
 
-
-    public virtual void Attack()
+    private void SetupAction()
     {
-        //test
-        //_attack_test();
+        attack.action.AddListener(delegate
+        {
+            NormalAttack();
+        });
 
+        up_attack.action.AddListener(delegate
+        {
+            UpAttack();
+        });
+
+        down_attack.action.AddListener(delegate
+        {
+            DownAttack();
+        });
+    }
+    private void SetupOnlineAction()
+    {
+        attack.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("NormalAttack");
+            //DoRpcOnAllOtherPlayers("NormalAttack");
+            //NormalAttack();
+        });
+
+        up_attack.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("UpAttack");
+            //DoRpcOnAllOtherPlayers("UpAttack");
+            //UpAttack();
+        });
+
+        down_attack.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("DownAttack");
+            //DoRpcOnAllOtherPlayers("DownAttack");
+            //DownAttack();
+        });
+    }
+    [PunRPC]
+    public virtual void AttackCheck()
+    {
         //check collider
         int _num = current_Attack_collider.OverlapCollider(_filter, _res);
         for (int i = 0; i < _num; i++)
@@ -121,28 +150,46 @@ public class PlayerAttackControl : MonoBehaviour
             HitableObj.Hit_event_c(_res[i].gameObject, body.damage, body.transform.parent.gameObject);
             Debug.Log("Hits " + _res[i].gameObject.name);
         }
-        //effect:
-        //GCManager.Instantiate("attack effect", position: transform.position).GetComponent<Animator>().Play("attack effect");
-        SFXManager.instance.PlaySoundInstance(SFXManager.ATTACK);
     }
+    [PunRPC]
+    public virtual void NormalAttack()
+    {
+        current_Attack_collider = attackCollider;
+        _player.Effect("attack effect", "attack effect", transform.rotation);
+        SFXManager.instance.PlaySoundInstance(SFXManager.ATTACK);
+        AttackCheck();
+        _player.PlayAniamtion("Attack");
+    }
+    [PunRPC]
     public virtual void UpAttack()
     {
         current_Attack_collider = up_attackCollider;
+        AttackCheck();
         _player.PlayAniamtion("Up attack");
         CameraControl.CameraShake(0.25f, 1);
         SFXManager.instance.PlaySoundInstance(SFXManager.HEAVY_PUNCH);
+        _player.Effect("up attack", "up attack", transform.rotation);
     }
-    public virtual void DownAttack()
+    [PunRPC]
+    public void DownAttack()
     {
         current_Attack_collider = down_attackCollider;
+        AttackCheck();
         _player.PlayAniamtion("Down attack");
         CameraControl.CameraShake(0.25f, 1);
         SFXManager.instance.PlaySoundInstance(SFXManager.HEAVY_PUNCH);
+        _player.Effect("down attack", "down attack", transform.rotation);
     }
 
     public virtual void Defense()
     {
         _player.PlayAniamtion("Defense");
+    }
+
+    [PunRPC]
+    private void PlayerEffect(string _gcKey, string _clipName)
+    {
+
     }
 
 
@@ -161,4 +208,14 @@ public class PlayerAttackControl : MonoBehaviour
         GetComponent<SpriteRenderer>().color = _origin_color;
     }
 
+
+    [PunRPC]
+    private void DoRpcOnAllOtherPlayers(string _functionName)
+    {
+        Debug.Log("other players " + _player._otherPlayers.Length);
+        for (int i = 0; i < _player._otherPlayers.Length; i++)
+        {
+            _pv.RPC(_functionName, _player._otherPlayers[i]);
+        }
+    }
 }

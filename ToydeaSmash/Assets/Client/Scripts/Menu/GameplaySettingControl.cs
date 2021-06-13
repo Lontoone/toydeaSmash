@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class GameplaySettingControl : MonoBehaviour
 {
     public const string MAP_OPT = "MAP_OPT";
     public const string MINUTES_OPT = "MINUTES_OPT";
     public const string LIFESTOCK_OPT = "LIFESTOCK_OPT";
+    public const int PUN_ONCONFIRME_EVENTCODE = 1; //todo : put it together?
 
     private static readonly string[] map_opts = new string[] { "GamePlay", "GamePlay night" };
     private static readonly int[] minutes_opts = new int[] { 3, 5, 10 };
@@ -36,6 +39,11 @@ public class GameplaySettingControl : MonoBehaviour
         SetMapIndex(0);
         SetMinutesIndex(0);
         SetLifeStockIndex(0);
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+    public void OnDestroy()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
     public void SetMapIndex(int _optration)
     {
@@ -74,14 +82,31 @@ public class GameplaySettingControl : MonoBehaviour
     }
     public void ConfirmOnline()
     {
-        PhotonView _pv = GetComponent<PhotonView>();
         //Store to master clientData
-        if (PhotonNetwork.IsMasterClient && _pv != null)
+        if (PhotonNetwork.IsMasterClient)
         {
-            _pv.RPC("Confirm", RpcTarget.All, map_index, minutes_index, life_stock_index);
+            //PhotonNetwork.LocalPlayer.RPC("Confirm", RpcTarget.All, map_index, minutes_index, life_stock_index);
+            object[] _content = new object[] {
+                map_index,
+                minutes_index,
+                life_stock_index
+            };
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+            PhotonNetwork.RaiseEvent(PUN_ONCONFIRME_EVENTCODE, _content, raiseEventOptions, SendOptions.SendReliable);
         }
         //TODO TEST:直接開始
-        PhotonNetwork.LoadLevel("GamePlay");
         //LocalRoomManager.instance.StartGamePlay();
+    }
+    private void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+        if (eventCode == PUN_ONCONFIRME_EVENTCODE)
+        {
+            object[] data = (object[])photonEvent.CustomData;
+            Confirm((int)data[0], (int)data[1], (int)data[2]);
+        }
+
+        //PhotonNetwork.LoadLevel("GamePlay");
+        PhotonNetwork.LoadLevel(map_opts[map_index]);
     }
 }

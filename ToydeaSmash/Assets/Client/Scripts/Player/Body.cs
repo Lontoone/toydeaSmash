@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,14 +12,22 @@ public class Body : MonoBehaviour
     Animator animator;
     [HideInInspector]
     public SpriteRenderer sp;
+    [SerializeField]
+    private PlayerControl _player;
 
     public float damage = 100;
     string _temp_sprite_name;
 
     public void Awake()
     {
-        sp = GetComponent<SpriteRenderer>();
+        SetUpSpriteMaskMatetial();
+        animator = GetComponent<Animator>();
 
+    }
+
+    private void SetUpSpriteMaskMatetial() {
+
+        sp = GetComponent<SpriteRenderer>();
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
 
         sp.material = _sprite_mat;
@@ -31,10 +40,7 @@ public class Body : MonoBehaviour
             _sprite_mat.SetTexture("_Mask", Resources.Load<Sprite>("img/black").texture);
         }
 
-        animator = GetComponent<Animator>();
-
     }
-
 
     public static Body LoadBody(string _body_name)
     {
@@ -66,6 +72,14 @@ public class Body : MonoBehaviour
         animator.Play(name);
     }
 
+    [PunRPC]
+    public void RpcSetParent(int _playerIndex)
+    {
+        _player = PlayerControl.FindPlayerControlByIndex(_playerIndex);
+        transform.SetParent(_player.transform);
+        GetComponent<PlayerAttackControl>()._player = _player;
+        _player.body = this;
+    }
 
     public void CreateImageTrail()
     {

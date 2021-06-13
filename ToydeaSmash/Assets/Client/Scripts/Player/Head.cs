@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +8,7 @@ public class Head : MonoBehaviour
     //TODO: special skill
 
     public SpriteMaskPair spriteMask;
+    [SerializeField]
     Material _sprite_mat;
     Animator animator;
     [HideInInspector]
@@ -20,6 +22,11 @@ public class Head : MonoBehaviour
     public void Awake()
     {
         _player = GetComponent<PlayerControl>();
+        SetUpSpriteMaskMatetial();
+        animator = GetComponent<Animator>();
+    }
+    private void SetUpSpriteMaskMatetial()
+    {
         sp = GetComponent<SpriteRenderer>();
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
         sp.material = _sprite_mat;
@@ -31,9 +38,7 @@ public class Head : MonoBehaviour
         {
             _sprite_mat.SetTexture("_Mask", Resources.Load<Sprite>("img/black").texture);
         }
-        
 
-        animator = GetComponent<Animator>();
     }
 
     public static Head LoadHead(string _head_name)
@@ -53,7 +58,7 @@ public class Head : MonoBehaviour
 
     public void PlayAnimation(string name)
     {
-        
+
         if (spriteMask != null && (_temp_sprite_name != name))
         {
             _temp_sprite_name = name;
@@ -74,6 +79,18 @@ public class Head : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    public void RpcSetParent(int _playerIndex)
+    {
+        Debug.Log("Rpc Set Parent index: " + _playerIndex);
+        _player = PlayerControl.FindPlayerControlByIndex(_playerIndex);
+        if (_player != null)
+        {
+            transform.SetParent(_player.transform);
+            _player.head = this;
+        }
+    }
+
     /*
      Default Buffs
      */
@@ -86,7 +103,7 @@ public class Head : MonoBehaviour
 
     public void CreateImageTrail()
     {
-        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale,sp.color);
+        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale, sp.color);
         //AfterImage.CreateImageTrail(body.sp.sprite, body.transform.position, body.transform.lossyScale);
     }
 }

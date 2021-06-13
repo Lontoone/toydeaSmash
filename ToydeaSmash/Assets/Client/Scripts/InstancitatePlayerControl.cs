@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InstancitatePlayerControl : MonoBehaviour
+public class InstancitatePlayerControl : MonoBehaviourPun
 {
     public static InstancitatePlayerControl instance;
     public bool isOnline = false;
@@ -46,7 +46,8 @@ public class InstancitatePlayerControl : MonoBehaviour
                 CreateLocalPlayer();
             }
         }
-        else if (arg0.name=="Menu") {
+        else if (arg0.name == "Menu")
+        {
             Destroy(gameObject);
         }
 
@@ -61,8 +62,21 @@ public class InstancitatePlayerControl : MonoBehaviour
     {
         //generate player
         Debug.Log(" Create player!");
+
         LocalRoomManager.instance.InstantiateOnlinePlayer(
             (int)PhotonNetwork.LocalPlayer.CustomProperties["PlayerIndex"]
             );
+
+        //if (base.photonView.Owner == PhotonNetwork.LocalPlayer)
+        /*
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+                PlayerManager _pm = PhotonNetwork.Instantiate("Prefab/PlayerManager_Online", Vector3.zero, Quaternion.identity).GetComponent<PlayerManager>();
+                _pm.CreateController(PhotonNetwork.PlayerList[i]);
+            }
+
+        }*/
     }
 }

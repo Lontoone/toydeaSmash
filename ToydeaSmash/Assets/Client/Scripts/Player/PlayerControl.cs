@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using Photon.Pun;
+using Photon.Realtime;
 //玩家控制
 public class PlayerControl : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class PlayerControl : MonoBehaviour
     public float dashForce = 15;
     public float healAmount = 50;
     [HideInInspector]
+    public PhotonView _pv;
+    //[HideInInspector]
     public int dataIndex = 0;
 
     [SerializeField]
@@ -51,13 +54,27 @@ public class PlayerControl : MonoBehaviour
     private Coroutine c_heal;
     private Coroutine cCreateImageTrail;
     private bool _isOnline = false;
-    private PhotonView _pv;
+    public Player[] _otherPlayers;
+    private Vector2 _footPosition
+    {
+        get
+        {
+            if (listeners == null)
+            {
+                return transform.position;
+            }
+            else
+            {
+                return listeners.footPositon.transform.position;
+            }
+        }
+    }
+    /*
     public void Awake()
     {
         SetUpOnline();
-    }
-
-    private void Start()
+    }*/
+    private void SetUpLocalEvent()
     {
         hitable = gameObject.GetComponent<HitableObj>();
         if (actionController != null)
@@ -75,6 +92,11 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround += ResetJumpCount;
             listeners.eOnTouchGround += OnJumpEnd;
         }
+    }
+
+    private void Start()
+    {
+
     }
     private void OnDestroy()
     {
@@ -95,20 +117,25 @@ public class PlayerControl : MonoBehaviour
             listeners.eOnTouchGround -= ResetJumpCount;
         }
     }
-    public void SetUpOnline()
+    [PunRPC]
+    public void SetUpOnline(int _playerIndex)
     {
         _pv = GetComponent<PhotonView>();
+        hitable = gameObject.GetComponent<HitableObj>();
         if (_pv == null)
         {
             return;
         }
         _isOnline = true;
+        dataIndex = _playerIndex;
+        Debug.Log("player index " + dataIndex);
+
         if (!_pv.IsMine)
         {
-            Destroy(GetComponent<PhysicsControlListeners>());
+            //Destroy(GetComponent<PhysicsControlListeners>());
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<ActionController>());
-            Destroy(body.GetComponent<PlayerAttackControl>());
+            //Destroy(body.GetComponent<PlayerAttackControl>());
             //Destroy(this);
         }
         else
@@ -116,42 +143,139 @@ public class PlayerControl : MonoBehaviour
             rigid = gameObject.GetComponent<Rigidbody2D>();
             listeners = gameObject.GetComponent<PhysicsControlListeners>();
             actionController = gameObject.GetComponent<ActionController>();
+            _otherPlayers = GetOtherPlayer();
+            SetUpLocalEvent();
+            //set team Layer
+            //dataIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE];
 
             string _head_path = "Prefab/Online/Head/" + PlayerSlot.heads_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.HEAD_CDOE]].name;
             string _body_path = "Prefab/Online/Body/" + PlayerSlot.body_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.BODY_CODE]].name;
             Head _newHead =
                              PhotonNetwork.Instantiate(
                              _head_path,
+                             //Instantiate(
+                             //Resources.Load<Head>(_head_path),
                              head.transform.position,
                              Quaternion.identity
                              ).GetComponent<Head>();
             Body _newBody =
                             PhotonNetwork.Instantiate(
                             _body_path,
+                            //Instantiate(
+                            //Resources.Load<Body>(_body_path),
                             body.transform.position,
                             Quaternion.identity
                             ).GetComponent<Body>();
 
-            _newBody.transform.SetParent(body.transform.parent);
-            _newHead.transform.SetParent(head.transform.parent);
+            //_newBody.transform.SetParent(body.transform.parent);
+            _newBody.transform.SetParent(transform);
+            _newHead.transform.SetParent(transform);
+            //_newHead.transform.SetParent(head.transform.parent);
             Destroy(head.gameObject);
             Destroy(body.gameObject);
 
             head = _newHead;
             body = _newBody;
-
-            //set team Layer
-            gameObject.layer = LayerMask.NameToLayer("Player" + PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE]);
-
-            int _team_code = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE];
-            Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
-
-            //set team color        
-            head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
-            body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+            RpcSetUPParent();
+            _pv.RPC("RpcSetupTeam", RpcTarget.All, (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE]);
 
             SetKey(0);
+
+            SetupRpcFunction();
+            //temp
+            //AddLanding();
         }
+    }
+    public void RpcSetUPParent()
+    {
+        head.GetComponent<PhotonView>().RPC("RpcSetParent", RpcTarget.All, dataIndex);
+        body.GetComponent<PhotonView>().RPC("RpcSetParent", RpcTarget.All, dataIndex);
+    }
+    [PunRPC]
+    public void RpcSetupTeam(int _colorIndex)
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player" + _colorIndex);
+        int _team_code = _colorIndex;
+        Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
+
+        //set team color        
+        head.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+        body.GetComponent<SpriteRenderer>().color = CustomPropertyCode.TEAMCOLORS[_team_code];
+    }
+    private void SetupRpcFunction()
+    {
+        Debug.Log("pv " + _pv.ViewID + " set up act ");
+        walk.action.AddListener(delegate { DoRpcOnAllOtherPlayers("Walk_animation"); });
+        idle.action.AddListener(delegate { DoRpcOnAllOtherPlayers("Idle"); });
+
+        hurt.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Hurt");
+        });
+        hurt.callbackEvent.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("ResetHitCombo");
+        });
+        hurt_falling.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Hurt_Fly");
+        });
+        hurt_falling.callbackEvent.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("ResetHitCombo");
+            DoRpcOnAllOtherPlayers("Jump_start");
+        });
+
+        jump_start.action.AddListener(delegate
+        {
+            //DoRpcOnAllOtherPlayers("Move");
+            DoRpcOnAllOtherPlayers("Jump_start");
+        });
+        jumping.action.AddListener(delegate
+        {
+            //DoRpcOnAllOtherPlayers("Move");
+            DoRpcOnAllOtherPlayers("Jumping");
+        });
+        falling.action.AddListener(delegate
+        {
+            //DoRpcOnAllOtherPlayers("Move");
+            DoRpcOnAllOtherPlayers("Falling");
+        });
+        jump_end.action.AddListener(delegate
+        {
+            //DoRpcOnAllOtherPlayers("Move");
+            DoRpcOnAllOtherPlayers("Jump_End");
+        });
+
+        dash.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Dash");
+        });
+        dash.callbackEvent.AddListener(delegate
+        {
+            //DoRpcOnAllOtherPlayers("Stop");
+            DoRpcOnAllOtherPlayers("DashCallBack");
+        });
+
+        duck.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Duck");
+        });
+        duck.callbackEvent.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("DashCallBack");
+        });
+
+        landing.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Landing");
+        });
+
+        land_end.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("LandingEnd");
+        });
+
     }
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
@@ -160,7 +284,7 @@ public class PlayerControl : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         listeners = gameObject.GetComponent<PhysicsControlListeners>();
         actionController = gameObject.GetComponent<ActionController>();
-
+        SetUpLocalEvent();
         dataIndex = _i;
 
         Head _newHead =
@@ -184,7 +308,7 @@ public class PlayerControl : MonoBehaviour
 
         head = _newHead;
         body = _newBody;
-
+        body.GetComponent<PlayerAttackControl>()._player = this;
         head.ApplyBuff();
 
         //********Set Keys *****************
@@ -333,13 +457,13 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
-
+    [PunRPC]
     void OnJumpEnd()
     {
         actionController.AddAction(jump_end);
     }
 
-
+    [PunRPC]
     public void Move()
     {
         rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
@@ -367,6 +491,7 @@ public class PlayerControl : MonoBehaviour
 
 
     }
+    [PunRPC]
     public void OnHurt()
     {
         SFXManager.instance.PlaySoundInstance(SFXManager.HURT);
@@ -385,23 +510,25 @@ public class PlayerControl : MonoBehaviour
             actionController.AddAction(hurt_falling);
         }
     }
+    [PunRPC]
     public void ResetHitCombo()
     {
         _isHurting = false;
         hitable.hit_combo = 0;
     }
+    [PunRPC]
     public void Walk_animation()
     {
         head.PlayAnimation("Walk");
         body.PlayAnimation("Walk");
     }
-
+    [PunRPC]
     public void Idle()
     {
         head.PlayAnimation("Idle");
         body.PlayAnimation("Idle");
     }
-
+    [PunRPC]
     public void Jump_start()
     {
         head.PlayAnimation("Jump Falling");
@@ -409,29 +536,37 @@ public class PlayerControl : MonoBehaviour
         SFXManager.instance.PlaySoundInstance(SFXManager.JUMP);
         Effect("Jump Smoke", "jump smoke");
     }
+    [PunRPC]
     public void Jumping()
     {
         head.PlayAnimation("Jumping");
         body.PlayAnimation("Jumping");
     }
+    [PunRPC]
     public void Falling()
     {
         head.PlayAnimation("Jump Falling");
         body.PlayAnimation("Jump Falling");
-
-        Debug.Log("falling v " + rigid.velocity);
     }
+    [PunRPC]
     public void Jump_End()
     {
         head.PlayAnimation("Jump-End");
         body.PlayAnimation("Jump-End");
     }
+    [PunRPC]
+    public void Landing()
+    {
+        PlayAniamtion("Landing");
+    }
+    [PunRPC]
     public void LandingEnd()
     {
         head.PlayAnimation("Landing Fall");
         body.PlayAnimation("Landing Fall");
         Effect("landing effect", "Landing");
     }
+    [PunRPC]
     public void Dash()
     {
         head.PlayAnimation("Dash");
@@ -449,7 +584,7 @@ public class PlayerControl : MonoBehaviour
         {
             _endPos = transform.position - transform.right * dashForce;
         }
-        Effect("dash smoke", "dash smoke",transform.rotation);
+        Effect("dash smoke", "dash smoke", transform.rotation);
 
         DOTween.Sequence().
             Append(transform.DOMove(_endPos, dash.duration)).SetEase(easeType);
@@ -457,18 +592,20 @@ public class PlayerControl : MonoBehaviour
         StartCreateTrail();
 
     }
+    [PunRPC]
     public void DashCallBack()
     {
         //reset
         hitable.isHitable = true;
         StopCreateTrail();
     }
-
+    [PunRPC]
     public void Duck()
     {
         head.PlayAnimation("Duck");
         body.PlayAnimation("Duck");
     }
+    [PunRPC]
     public void DuckCallback()
     {
         StopCoroutine(c_heal);
@@ -476,6 +613,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     //first time to join the game
+    [PunRPC]
     public void AddLanding()
     {
         if (actionController == null)
@@ -497,11 +635,12 @@ public class PlayerControl : MonoBehaviour
         head.CreateImageTrail();
         body.CreateImageTrail();
     }
-
+    [PunRPC]
     public void AddRevive()
     {
         actionController.AddAction(revive);
     }
+    [PunRPC]
     public void ReviveMove()
     {
         rigid.Sleep();
@@ -561,7 +700,6 @@ public class PlayerControl : MonoBehaviour
             yield return _wait;
         }
     }
-
     public void Stop()
     {
         actionController.AddAction(stop);
@@ -574,11 +712,13 @@ public class PlayerControl : MonoBehaviour
         if (_effect != null)
         {
             _effect.GetComponent<Animator>().Play(_clip_name);
-            _effect.transform.position = listeners.footPositon.transform.position;
+            //_effect.transform.position = listeners.footPositon.transform.position;
+            _effect.transform.position = _footPosition;
         }
     }
     [SerializeField]
     bool _isHurting = false;
+    [PunRPC]
     public void Hurt()
     {
         //add force
@@ -587,16 +727,19 @@ public class PlayerControl : MonoBehaviour
         CameraControl.CameraShake(0.25f, 1);
     }
     //hit to sky
+    [PunRPC]
     public void Hurt_Fly()
     {
-        const float _dashForceMultipier = 100;
-        //add force to sky 
-        Vector2 _dir = new Vector2(transform.right.x * 0.5f, 1);
-        rigid.AddForce(_dir * dashForce * _dashForceMultipier);
-
+        if (rigid != null)
+        {
+            const float _dashForceMultipier = 100;
+            //add force to sky 
+            Vector2 _dir = new Vector2(transform.right.x * 0.5f, 1);
+            rigid.AddForce(_dir * dashForce * _dashForceMultipier);
+        }
         PlayAniamtion("Hurt Falling");
     }
-
+    [PunRPC]
     void Die()
     {
         Debug.Log("玩家死亡");
@@ -628,10 +771,42 @@ public class PlayerControl : MonoBehaviour
         actionController.AddAction(jump_end);
         //animator.Play("Idle");
     }
-
+    [PunRPC]
     public void PlayAniamtion(string _clipName)
     {
         head.PlayAnimation(_clipName);
         body.PlayAnimation(_clipName);
+    }
+    private Player[] GetOtherPlayer()
+    {
+        return PhotonNetwork.PlayerListOthers;
+    }
+    [PunRPC]
+    public void DoRpcOnAllOtherPlayers(string _functionName)
+    {
+        for (int i = 0; i < _otherPlayers.Length; i++)
+        {
+            _pv.RPC(_functionName, _otherPlayers[i]);
+        }
+    }
+    [PunRPC]
+    public void DoRpcOnAllOtherPlayers(string _functionName, PhotonView _sourcePv)
+    {
+        for (int i = 0; i < _otherPlayers.Length; i++)
+        {
+            _sourcePv.RPC(_functionName, _otherPlayers[i]);
+        }
+    }
+
+    public static PlayerControl FindPlayerControlByIndex(int _i)
+    {
+        foreach (PlayerControl _p in FindObjectsOfType<PlayerControl>())
+        {
+            if (_p.dataIndex == _i)
+                return _p;
+
+            Debug.Log("FindPlayerControlByIndex " + _p.dataIndex);
+        }
+        return null;
     }
 }
