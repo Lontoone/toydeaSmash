@@ -305,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Heal Effect
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &30315056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: landing effect
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &40918896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +761,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1669,6 +1671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: die disappear
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &833636631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2445,6 +2448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: up attack
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &1123874593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,6 +2721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: attack effect
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &1189117379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3279,6 +3284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Jump Smoke
   lifeTime: 1
+  unRegisterWhenDestory: 1
 --- !u!114 &1547448996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3546,6 +3552,7 @@ GameObject:
   - component: {fileID: 1587101449}
   - component: {fileID: 1587101450}
   - component: {fileID: 1587101451}
+  - component: {fileID: 1587101452}
   m_Layer: 0
   m_Name: Map Wall (1)
   m_TagString: Untagged
@@ -3576,11 +3583,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 1587101448}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b0d90173b7d5afe499688917046bf4dd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17664242, y: 0}
+  m_Offset: {x: -11.550583, y: -16.185562}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3591,7 +3598,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 30.66374, y: 170.7479}
+  m_Size: {x: 7.2092896, y: 42.621643}
   m_EdgeRadius: 0
 --- !u!68 &1587101451
 EdgeCollider2D:
@@ -3607,10 +3614,32 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.25
+  m_EdgeRadius: 0.5
   m_Points:
-  - {x: -15.245205, y: -33.532993}
-  - {x: -15.20018, y: 3.2937393}
+  - {x: -15.189739, y: -37.623898}
+  - {x: -15.156931, y: 5.1772537}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1587101452
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587101448}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 291eee05e962cf546bbc45c299e51ce2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.5
+  m_Points:
+  - {x: -7.8182983, y: 5.126828}
+  - {x: -7.8250465, y: -37.59157}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3626,6 +3655,7 @@ GameObject:
   - component: {fileID: 1588739843}
   - component: {fileID: 1588739844}
   - component: {fileID: 1588739845}
+  - component: {fileID: 1588739846}
   m_Layer: 0
   m_Name: Map Wall
   m_TagString: Untagged
@@ -3656,11 +3686,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 1588739842}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b0d90173b7d5afe499688917046bf4dd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 13.5733, y: -16.234802}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3671,7 +3701,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 31.017025, y: 170.7479}
+  m_Size: {x: 3.8704243, y: 39.295563}
   m_EdgeRadius: 0
 --- !u!68 &1588739845
 EdgeCollider2D:
@@ -3687,10 +3717,32 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.25
+  m_EdgeRadius: 0.5
   m_Points:
-  - {x: 15.657326, y: 3.6333075}
-  - {x: 15.619247, y: -34.106213}
+  - {x: 15.535173, y: 3.546486}
+  - {x: 15.599575, y: -36.391285}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1588739846
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588739842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 291eee05e962cf546bbc45c299e51ce2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.5
+  m_Points:
+  - {x: 11.474007, y: -36.350742}
+  - {x: 11.505135, y: 3.4015884}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -4154,6 +4206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: ImageTrail
   lifeTime: 0.15
+  unRegisterWhenDestory: 1
 --- !u!114 &1762732383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,6 +4381,7 @@ GameObject:
   - component: {fileID: 1838624525}
   - component: {fileID: 1838624524}
   - component: {fileID: 1838624523}
+  - component: {fileID: 1838624526}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4352,8 +4406,8 @@ Camera:
   m_GameObject: {fileID: 1838624522}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4400,6 +4454,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838624526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838624522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1867127331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,6 +5278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: down attack
   lifeTime: 0.75
+  unRegisterWhenDestory: 1
 --- !u!114 &2102308850
 MonoBehaviour:
   m_ObjectHideFlags: 0
