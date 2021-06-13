@@ -57,7 +57,7 @@ public class PlayerAttackControl : MonoBehaviour
             actionController = transform.parent.GetComponent<ActionController>();
             rigid = GetComponent<Rigidbody2D>();
         }
-        else if (_pv != null && _pv.IsMine)
+        if (_pv != null )
         {
             SetupOnlineAction();
         }
