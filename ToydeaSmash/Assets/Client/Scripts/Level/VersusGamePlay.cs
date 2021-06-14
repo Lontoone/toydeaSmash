@@ -84,7 +84,7 @@ public class VersusGamePlay : MonoBehaviour
         bool is_team_win = true;
         for (int i = 0; i < other_teams.Length; i++)
         {
-            if (playerLifeStock[other_teams[i]] > 0)
+            if (playerLifeStock[other_teams[i]] > 1)
             {
                 is_team_win = false;
             }
@@ -94,7 +94,7 @@ public class VersusGamePlay : MonoBehaviour
             //WIN
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
-            StartCoroutine(EndGamePlayCoro(5));
+            StartCoroutine(EndGamePlayCoro(3));
                   
 
         }

@@ -737,23 +737,33 @@ public class PlayerControl : MonoBehaviour
         }
         PlayAniamtion("Hurt Falling");
     }
+
     [PunRPC]
     void Die()
     {
         Debug.Log("玩家死亡");
         SFXManager.instance.PlaySoundInstance(SFXManager.EXPLODE);
         Effect("die disappear", "die disappear");
+        SlowMotionEffector.instance?.DoSlowMotion();
 
         //disable control
         hitable.isHitable = false;
         actionController.StopAllCoroutines();
 
         PlayAniamtion("Die");
-        this.enabled = false;
-        OnDestory?.Invoke(dataIndex);
+        //this.enabled = false;
+        //OnDestory?.Invoke(dataIndex);
 
-        Destroy(actionController);
+        //Destroy(gameObject);
+        Invoke("DestoryObject",3);
+    }
+    [PunRPC]
+    private void DestoryObject() {
+        //TODO: Use GC
+        OnDestory?.Invoke(dataIndex);
         Destroy(gameObject);
+        Destroy(actionController);
+        this.enabled = false;
     }
     //create new player 3sec after die
     void RecreatePlayer()
