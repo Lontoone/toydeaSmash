@@ -54,6 +54,7 @@ public class PlayerControl : MonoBehaviour
     private Coroutine c_heal;
     private Coroutine cCreateImageTrail;
     private bool _isOnline = false;
+    private Transform _lastHitSource;
     public Player[] _otherPlayers;
     private Vector2 _footPosition
     {
@@ -69,10 +70,25 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
+    private bool isGrounded
+    {
+        get
+        {
+            if (listeners != null)
+            {
+                return listeners.isGrounded;
+            }
+            else
+            {
+                return Physics2D.Raycast(_footPosition, -transform.up, 0.2f, LayerMask.NameToLayer("Ground"));
+            }
+        }
+    }
 
     private void SetUpLocalEvent()
     {
         hitable = gameObject.GetComponent<HitableObj>();
+        listeners = gameObject.GetComponent<PhysicsControlListeners>();
         if (actionController != null)
         {
             actionController.eActionQueueCleared += AddDefault;
@@ -94,7 +110,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
-
+        //SetUpLocalEvent();
     }
     private void OnDestroy()
     {
@@ -109,8 +125,6 @@ public class PlayerControl : MonoBehaviour
             hitable.HitBy_event -= OnHurt;
             //hitable.HitBy_event -= HurtDirectionCheck;
         }
-        if (listeners != null)
-            listeners.eOnTouchGround -= ResetJumpCount;
         if (listeners != null)
         {
             listeners.eOnTouchGround -= OnJumpEnd;
@@ -145,8 +159,6 @@ public class PlayerControl : MonoBehaviour
             actionController = gameObject.GetComponent<ActionController>();
             _otherPlayers = GetOtherPlayer();
             SetUpLocalEvent();
-            //set team Layer
-            //dataIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE];
 
             string _head_path = "Prefab/Online/Head/" + PlayerSlot.heads_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.HEAD_CDOE]].name;
             string _body_path = "Prefab/Online/Body/" + PlayerSlot.body_res[(int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.BODY_CODE]].name;
@@ -478,9 +490,17 @@ public class PlayerControl : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
-    [PunRPC]
+
+    /*[PunRPC]
+    public void OnHurtEffectRpc()
+    {
+        if (_lastHitSource != null)
+            HurtDirectionCheck(_lastHitSource.gameObject);
+    }*/
     public void OnHurt(GameObject _source)
     {
+        //_lastHitSource = _source.transform;
+        Debug.Log(gameObject.name + " onHurt");
         SFXManager.instance.PlaySoundInstance(SFXManager.HURT);
         //Defense Check
         bool _isInBack = IsInBack(_source);
@@ -502,7 +522,7 @@ public class PlayerControl : MonoBehaviour
         HurtDirectionCheck(_source);
         if (hitable.isHitable && !_isHurting)
         {
-            if (listeners.isGrounded)
+            if (isGrounded)
                 actionController.AddAction(hurt);
             else
                 actionController.AddAction(hurt_falling);
@@ -679,7 +699,7 @@ public class PlayerControl : MonoBehaviour
         }
         while (true)
         {
-            Animator _effect = GCManager.Instantiate("Heal Effect", _position: listeners.footPositon.transform.position).GetComponent<Animator>();
+            Animator _effect = GCManager.Instantiate("Heal Effect", _position: _footPosition).GetComponent<Animator>();
             _effect.Play("heal");
             hitable.Heal(healAmount);
             yield return _oneSec;
@@ -748,16 +768,28 @@ public class PlayerControl : MonoBehaviour
 
         if (_isBackAttack)
         {
-            Effect("back hit effect", "back hit effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
-            Effect("back hit blood effect", "back hit blood effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+            DoBackHitEffect(_rotateQ, transform.TransformPoint(0f, 2f, 0));
+            DoRpcOnAllOtherPlayers("DoBackHitEffect", _rotateQ, transform.TransformPoint(0f, 2f, 0));
         }
         else
         {
-            Effect("front hit effect", "front hit effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
-            Effect("front hit blood effect", "front hit blood effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+            DoFrontHitEffect(_rotateQ, transform.TransformPoint(0f, 2f, 0));
+            DoRpcOnAllOtherPlayers("DoFrontHitEffect", _rotateQ, transform.TransformPoint(0f, 2f, 0));
         }
-
     }
+    [PunRPC]
+    private void DoBackHitEffect(Quaternion _rotation, Vector3 _position)
+    {
+        Effect("back hit effect", "back hit effect", _rotation, _position);
+        Effect("back hit blood effect", "back hit blood effect", _rotation, _position);
+    }
+    [PunRPC]
+    private void DoFrontHitEffect(Quaternion _rotation, Vector3 _position)
+    {
+        Effect("front hit effect", "front hit effect", _rotation, _position);
+        Effect("front hit blood effect", "front hit blood effect", _rotation, _position);
+    }
+
     private bool IsInBack(GameObject _source)
     {
         return Vector2.Dot(transform.right, _source.transform.right) > 0;
@@ -844,6 +876,9 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void DoRpcOnAllOtherPlayers(string _functionName)
     {
+        if (!PhotonNetwork.IsConnected) {
+            return;
+        }
         for (int i = 0; i < _otherPlayers.Length; i++)
         {
             _pv.RPC(_functionName, _otherPlayers[i]);
@@ -852,9 +887,25 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void DoRpcOnAllOtherPlayers(string _functionName, PhotonView _sourcePv)
     {
+        if (!PhotonNetwork.IsConnected)
+        {
+            return;
+        }
         for (int i = 0; i < _otherPlayers.Length; i++)
         {
             _sourcePv.RPC(_functionName, _otherPlayers[i]);
+        }
+    }
+    [PunRPC]
+    public void DoRpcOnAllOtherPlayers(string _functionName, params object[] _objs)
+    {
+        if (!PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+        for (int i = 0; i < _otherPlayers.Length; i++)
+        {
+            _pv.RPC(_functionName, _otherPlayers[i], _objs);
         }
     }
 
