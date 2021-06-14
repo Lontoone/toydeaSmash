@@ -932,6 +932,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7923640693875145253, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
+      propertyPath: attack.priority
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923640693875145253, guid: 3b3d56cbdc1807748814f2bdba16551d, type: 3}
       propertyPath: down_attack.action.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}

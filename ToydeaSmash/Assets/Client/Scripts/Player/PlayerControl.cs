@@ -359,7 +359,7 @@ public class PlayerControl : MonoBehaviour
             if (__ground != null && __ground.tag == "ThinWall")
                 transform.DOMoveY(transform.position.y - 3.5f, 0.1f);
         }
-        else if (Input.GetKeyDown(jump_key) && (jumpCount < 1))
+        else if (Input.GetKeyDown(jump_key) && (jumpCount < 2))
         {
             Debug.Log("jump");
             if (jumpCount == 0)
@@ -368,17 +368,15 @@ public class PlayerControl : MonoBehaviour
                 Jump_start();
                 AddJumpForce();
                 actionController.AddAction(jump_start);
-                jumpCount++;
             }
             //else if (!listeners.isGrounded)
-            else
+            else if (jumpCount == 1)
             {
                 Debug.Log("Jump double");
                 actionController.AddAction(doubleJump);
-                jumpCount++;
             }
+            jumpCount++;
             Debug.Log("jump count" + jumpCount);
-            //jump_count++;
         }
 
         //Dash
@@ -448,7 +446,7 @@ public class PlayerControl : MonoBehaviour
             actionController.AddAction(walk);
 
             //animator.Play("Walk");
-            jumpCount = 0; //TODO:暫時的
+            //jumpCount = 0; //TODO:暫時的
 
         }
         else
@@ -486,10 +484,6 @@ public class PlayerControl : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-
-
-
-
     }
     [PunRPC]
     public void OnHurt()
