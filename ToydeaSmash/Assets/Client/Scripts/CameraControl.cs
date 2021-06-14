@@ -10,12 +10,11 @@ public class CameraControl : MonoBehaviour
     public Vector2 centerOffset;
     public float threshold = 0.01f;
 
-
     private static float s_min_camera_width, s_max_camera_width;
     private PlayerControl[] s_players;
     private static Camera s_camera;
     private static Coroutine s_c_checkPlayersInSight;
-    
+
     public IEnumerator Start()
     {
         //wait for all player
@@ -85,7 +84,7 @@ public class CameraControl : MonoBehaviour
             this.enabled = false;
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
-      
+
         Vector2 _min = s_players[0].transform.position;
         Vector2 _max = s_players[0].transform.position;
         if (s_players.Length < 2)
@@ -143,7 +142,6 @@ public class CameraControl : MonoBehaviour
             }
         }
     }
-
     public static void CameraShake(float _duration, float _strength)
     {
         s_camera.transform.DOShakePosition(_duration, _strength);

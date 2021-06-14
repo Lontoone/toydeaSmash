@@ -719,7 +719,7 @@ public class PlayerControl : MonoBehaviour
     {
         //add force
         PlayAniamtion("Hurt");
-        CameraControl.CameraShake(0.25f, 5);
+        //CameraControl.CameraShake(0.25f, 5);
     }
     public void HurtDirectionCheck(GameObject _hitBy)
     {
