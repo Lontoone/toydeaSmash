@@ -263,7 +263,7 @@ public class PlayerControl : MonoBehaviour
         });
         duck.callbackEvent.AddListener(delegate
         {
-            DoRpcOnAllOtherPlayers("DashCallBack");
+            DoRpcOnAllOtherPlayers("DuckCallback");
         });
 
         landing.action.AddListener(delegate
@@ -392,14 +392,14 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(duck_key))
         {
             actionController.AddAction(duck);
-            c_heal = StartCoroutine(HealCoro());
+
         }
 
         //Duck Finish
-        else if (Input.GetKeyUp(duck_key))
+        if (Input.GetKeyUp(duck_key))
         {
             actionController.AddAction(stop);
-            StopCoroutine(c_heal);
+            //StopCoroutine(c_heal);
         }
 
     }
@@ -604,10 +604,13 @@ public class PlayerControl : MonoBehaviour
     {
         head.PlayAnimation("Duck");
         body.PlayAnimation("Duck");
+        if (c_heal == null)
+            c_heal = StartCoroutine(HealCoro());
     }
     [PunRPC]
     public void DuckCallback()
     {
+        Debug.Log("duck call back");
         StopCoroutine(c_heal);
         c_heal = null;
     }
@@ -662,11 +665,11 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator HealCoro()
     {
-        WaitForSeconds _oneSec = new WaitForSeconds(1);
-        int _prewait = 2;
+        WaitForSeconds _oneSec = new WaitForSeconds(0.5f);
+        float _prewait = 1.5f;
         while (_prewait > 0)
         {
-            _prewait--;
+            _prewait -= 0.5f;
             yield return _oneSec;
         }
         while (true)
@@ -681,7 +684,8 @@ public class PlayerControl : MonoBehaviour
 
     private void StartCreateTrail()
     {
-        cCreateImageTrail = StartCoroutine(CreateTrailCoro());
+        if (cCreateImageTrail == null)
+            cCreateImageTrail = StartCoroutine(CreateTrailCoro());
     }
     private void StopCreateTrail()
     {
