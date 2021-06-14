@@ -23,6 +23,10 @@ public class OptionsSettingMenu : MonoBehaviour
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string __opts = _resolutions[i].width + " x " + _resolutions[i].height;
+            if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
+            {
+                _currentResIndex = i;
+            }
             if (!_options.Contains(__opts))
             {
                 _options.Add(__opts);
@@ -32,10 +36,6 @@ public class OptionsSettingMenu : MonoBehaviour
                 continue;
             }
 
-            if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
-            {
-                _currentResIndex = i;
-            }
         }
         resolutionDropDown.AddOptions(_options);
         resolutionDropDown.value = _currentResIndex;
@@ -63,5 +63,6 @@ public class OptionsSettingMenu : MonoBehaviour
     public void SetResolution(int _index)
     {
         Screen.SetResolution(_resolutions[_index].width, _resolutions[_index].height, Screen.fullScreen);
+        Debug.Log("set res "+ _index +" "+ _resolutions[_index]);
     }
 }

@@ -18,6 +18,10 @@ public class PauseMenuControl : MonoBehaviour
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
+    public void OnDestroy()
+    {
+        Time.timeScale = 1;
+    }
     public void Start()
     {
         if (panel != null)
@@ -57,7 +61,7 @@ public class PauseMenuControl : MonoBehaviour
     {
         WaitForSecondsRealtime _wait = new WaitForSecondsRealtime(1);
         Time.timeScale = 0;
-        const int _TIME = 5;
+        const int _TIME = 3;
         int _counter = 0;
         resumeConuntDownPanel.SetActive(true);
         while (_counter < _TIME)
