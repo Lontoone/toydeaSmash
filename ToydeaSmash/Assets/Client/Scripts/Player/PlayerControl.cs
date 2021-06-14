@@ -69,11 +69,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-    /*
-    public void Awake()
-    {
-        SetUpOnline();
-    }*/
+
     private void SetUpLocalEvent()
     {
         hitable = gameObject.GetComponent<HitableObj>();
@@ -85,8 +81,9 @@ public class PlayerControl : MonoBehaviour
         {
             hitable.Die_event += Die;
             //hitable.gotHit_event += Hurt;
-            hitable.gotHit_event += OnHurt;
-            hitable.HitBy_event += HurtDirectionCheck;
+            //hitable.gotHit_event += OnHurt;
+            hitable.HitBy_event += OnHurt;
+            //hitable.HitBy_event += HurtDirectionCheck;
         }
         if (listeners != null)
         {
@@ -108,8 +105,9 @@ public class PlayerControl : MonoBehaviour
         if (hitable != null)
         {
             hitable.Die_event -= Die;
-            hitable.gotHit_event -= OnHurt;
-            hitable.HitBy_event -= HurtDirectionCheck;
+            //hitable.gotHit_event -= OnHurt;
+            hitable.HitBy_event -= OnHurt;
+            //hitable.HitBy_event -= HurtDirectionCheck;
         }
         if (listeners != null)
             listeners.eOnTouchGround -= ResetJumpCount;
@@ -481,9 +479,25 @@ public class PlayerControl : MonoBehaviour
         }
     }
     [PunRPC]
-    public void OnHurt()
+    public void OnHurt(GameObject _source)
     {
         SFXManager.instance.PlaySoundInstance(SFXManager.HURT);
+        bool _isInBack = IsInBack(_source);
+        if (body.attackControl.isDefending && !_isInBack)
+        {
+            //no damage
+            return;
+        }
+        else if (body.attackControl.isDefending && _isInBack)
+        {
+            Debug.Log("back attack!");
+            //back attack
+            HurtDirectionCheck(_source);
+            actionController.AddAction(stop);
+            actionController.AddAction(hurt_falling);
+            return;
+        }
+
         if (hitable.isHitable && !_isHurting)
         {
             if (listeners.isGrounded)
@@ -725,7 +739,7 @@ public class PlayerControl : MonoBehaviour
     {
         //Check back attack or front attack
         bool _isBackAttack = IsBackAttack(_hitBy);
-     
+
         Vector3 dir = transform.position - _hitBy.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion _rotateQ = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -742,10 +756,14 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
+    private bool IsInBack(GameObject _source)
+    {
+        return Vector2.Dot(transform.right, _source.transform.right) > 0;
+    }
     private bool IsBackAttack(GameObject _source)
     {
         //Turn to hit sources
-        if (_source != null && Vector2.Dot(transform.right, _source.transform.right) > 0)
+        if (_source != null && IsInBack(_source))
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
             return true;

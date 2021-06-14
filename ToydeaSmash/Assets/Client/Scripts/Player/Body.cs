@@ -7,6 +7,8 @@ public class Body : MonoBehaviour
 {
 
     public SpriteMaskPair spriteMask;
+    [HideInInspector]
+    public PlayerAttackControl attackControl;
     Material _sprite_mat;
     //TODO: attack action
     Animator animator;
@@ -22,7 +24,7 @@ public class Body : MonoBehaviour
     {
         SetUpSpriteMaskMatetial();
         animator = GetComponent<Animator>();
-
+        attackControl = GetComponent<PlayerAttackControl>();
     }
 
     private void SetUpSpriteMaskMatetial() {

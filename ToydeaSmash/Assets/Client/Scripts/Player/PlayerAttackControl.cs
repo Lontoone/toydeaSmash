@@ -15,6 +15,8 @@ public class PlayerAttackControl : MonoBehaviour
     public Collider2D down_attackCollider;
     public LayerMask targetLayer;
 
+    public bool isDefending = false;
+
     private ActionController actionController;
     private static Collider2D[] _res = new Collider2D[10];
     private ContactFilter2D _filter;
@@ -57,7 +59,7 @@ public class PlayerAttackControl : MonoBehaviour
             actionController = transform.parent.GetComponent<ActionController>();
             rigid = GetComponent<Rigidbody2D>();
         }
-        if (_pv != null )
+        if (_pv != null)
         {
             SetupOnlineAction();
         }
@@ -139,6 +141,10 @@ public class PlayerAttackControl : MonoBehaviour
             //DoRpcOnAllOtherPlayers("DownAttack");
             //DownAttack();
         });
+        defense.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("Defense");
+        });
     }
     [PunRPC]
     public virtual void AttackCheck()
@@ -180,17 +186,19 @@ public class PlayerAttackControl : MonoBehaviour
         SFXManager.instance.PlaySoundInstance(SFXManager.HEAVY_PUNCH);
         _player.Effect("down attack", "down attack", transform.rotation);
     }
-
+    [PunRPC]
     public virtual void Defense()
     {
+        isDefending = true;
         _player.PlayAniamtion("Defense");
     }
-
     [PunRPC]
-    private void PlayerEffect(string _gcKey, string _clipName)
+    public virtual void DefenseCallback()
     {
-
+        isDefending = false;
+        //_player.PlayAniamtion("Defense");
     }
+
 
 
     /*   TEST   */
