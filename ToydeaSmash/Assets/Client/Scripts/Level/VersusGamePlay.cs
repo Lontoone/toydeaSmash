@@ -73,9 +73,14 @@ public class VersusGamePlay : MonoBehaviour
 
     public void CheckTeamWinLose(GameObject target, GameObject killer)
     {
-        PlayerControl kpc = killer.GetComponent<PlayerControl>();
+        StartCoroutine(CheckTeamWinLoseCoro(target, killer));
+    }
+    public IEnumerator CheckTeamWinLoseCoro(GameObject _target, GameObject _killer)
+    {
+        yield return new WaitForFixedUpdate();
+        PlayerControl kpc = _killer.GetComponent<PlayerControl>();
         if (kpc == null)
-            return;
+            yield break;
 
         int killer_teamCode = (int)LocalRoomManager.instance.players[kpc.dataIndex].playerProperty[CustomPropertyCode.TEAM_CODE];
 
@@ -95,11 +100,8 @@ public class VersusGamePlay : MonoBehaviour
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
             StartCoroutine(EndGamePlayCoro(3));
-                  
-
         }
     }
-
     //Temp
     IEnumerator EndGamePlayCoro(int _duration)
     {

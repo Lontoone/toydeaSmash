@@ -54,7 +54,7 @@ public class GameResultManager : MonoBehaviour
             else
             {
                 //init value
-                LocalRoomManager.instance.players[player.dataIndex].SetProperty(_key, 0);
+                LocalRoomManager.instance.players[player.dataIndex].SetProperty(_key, data_to_add);
             }
 
         }
