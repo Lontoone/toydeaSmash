@@ -86,6 +86,7 @@ public class PlayerControl : MonoBehaviour
             hitable.Die_event += Die;
             //hitable.gotHit_event += Hurt;
             hitable.gotHit_event += OnHurt;
+            hitable.HitBy_event += HurtDirectionCheck;
         }
         if (listeners != null)
         {
@@ -108,6 +109,7 @@ public class PlayerControl : MonoBehaviour
         {
             hitable.Die_event -= Die;
             hitable.gotHit_event -= OnHurt;
+            hitable.HitBy_event -= HurtDirectionCheck;
         }
         if (listeners != null)
             listeners.eOnTouchGround -= ResetJumpCount;
@@ -465,19 +467,12 @@ public class PlayerControl : MonoBehaviour
     public void Move()
     {
         rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
-        //rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y - Mathf.Pow(rigid.gravityScale, 0.5f));
-        /*
-        float _x_input = Input.GetAxis(horizontal_axis_name);
-        Vector3 _move = new Vector2((_x_input+rigid.velocity.x )* speed * Time.deltaTime, 0);
-        transform.position = _move + transform.position;
-        Debug.Log("not wall v " + rigid.velocity+" "+_move);*/
 
         //左右翻轉:
         //if (_x_input> 0)
         if (rigid.velocity.x > 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
-
         }
         //else if (_x_input< 0)
         else if (rigid.velocity.x < 0)
@@ -704,14 +699,17 @@ public class PlayerControl : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
 
-    public void Effect(string _gc_key, string _clip_name, Quaternion _rotation = default)
+    public void Effect(string _gc_key, string _clip_name, Quaternion _rotation = default, Vector3 _position = default)
     {
-        GameObject _effect = GCManager.Instantiate(_gc_key, _rotation: _rotation);
+        GameObject _effect = GCManager.Instantiate(_gc_key, _rotation: _rotation, _position: _position);
         if (_effect != null)
         {
             _effect.GetComponent<Animator>().Play(_clip_name);
-            //_effect.transform.position = listeners.footPositon.transform.position;
-            _effect.transform.position = _footPosition;
+
+            if (_position == default)
+                _effect.transform.position = _footPosition;
+            //_effect.transform.rotation = _rotation;
+            Debug.Log(_rotation + " " + _effect.transform.rotation + " ");
         }
     }
     [SerializeField]
@@ -720,9 +718,42 @@ public class PlayerControl : MonoBehaviour
     public void Hurt()
     {
         //add force
-        //rigid.AddForce(transform.right * dash_force * 0.5f);
         PlayAniamtion("Hurt");
-        CameraControl.CameraShake(0.25f, 1);
+        CameraControl.CameraShake(0.25f, 5);
+    }
+    public void HurtDirectionCheck(GameObject _hitBy)
+    {
+        //Check back attack or front attack
+        bool _isBackAttack = IsBackAttack(_hitBy);
+     
+        Vector3 dir = transform.position - _hitBy.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion _rotateQ = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (_isBackAttack)
+        {
+            Effect("back hit effect", "back hit effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+            Effect("back hit blood effect", "back hit blood effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+        }
+        else
+        {
+            Effect("front hit effect", "front hit effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+            Effect("front hit blood effect", "front hit blood effect", _rotateQ, _position: transform.TransformPoint(0f, 2f, 0));
+        }
+
+    }
+    private bool IsBackAttack(GameObject _source)
+    {
+        //Turn to hit sources
+        if (_source != null && Vector2.Dot(transform.right, _source.transform.right) > 0)
+        {
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     //hit to sky
     [PunRPC]
@@ -755,10 +786,11 @@ public class PlayerControl : MonoBehaviour
         //OnDestory?.Invoke(dataIndex);
 
         //Destroy(gameObject);
-        Invoke("DestoryObject",3);
+        Invoke("DestoryObject", 3);
     }
     [PunRPC]
-    private void DestoryObject() {
+    private void DestoryObject()
+    {
         //TODO: Use GC
         OnDestory?.Invoke(dataIndex);
         Destroy(gameObject);

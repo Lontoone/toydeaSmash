@@ -80,12 +80,7 @@ public class HitableObj : MonoBehaviour
 
             if (isHitable)
             {
-                //Turn to hit sources
-                if (sources != null && Vector2.Dot(target.transform.right, sources.transform.right) > 0)
-                {
-                    target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y + 180, 0);
-                }
-
+              
                 //HP -= damage;
                 HP = Mathf.Clamp(HP - damage * damage_taking_rate, 0, maxHP);
                 //特效:
