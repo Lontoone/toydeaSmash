@@ -482,6 +482,7 @@ public class PlayerControl : MonoBehaviour
     public void OnHurt(GameObject _source)
     {
         SFXManager.instance.PlaySoundInstance(SFXManager.HURT);
+        //Defense Check
         bool _isInBack = IsInBack(_source);
         if (body.attackControl.isDefending && !_isInBack)
         {
@@ -497,7 +498,8 @@ public class PlayerControl : MonoBehaviour
             actionController.AddAction(hurt_falling);
             return;
         }
-
+        //Normal situation Check
+        HurtDirectionCheck(_source);
         if (hitable.isHitable && !_isHurting)
         {
             if (listeners.isGrounded)
