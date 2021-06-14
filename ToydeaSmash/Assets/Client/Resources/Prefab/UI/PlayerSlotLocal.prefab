@@ -1798,6 +1798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_index: 0
   name_text: {fileID: 5840606476667959386}
+  readyCanvas: {fileID: 535120107974632062}
   readyHint: {fileID: 6968407010875514021}
   unReadyHint: {fileID: 5383913544633589366}
   btn_group: {fileID: 5840606475597686108}
@@ -2844,6 +2845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteMask: {fileID: 11400000, guid: a2e7891f494d2b74f98925bbf302e6b6, type: 2}
+  _sprite_mat: {fileID: 0}
   sp: {fileID: 0}
   buffs:
     m_PersistentCalls:
@@ -3027,7 +3029,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteMask: {fileID: 11400000, guid: 60b4fd3e41dbdd444b24e668c890d400, type: 2}
+  attackControl: {fileID: 0}
   sp: {fileID: 0}
+  _player: {fileID: 0}
   damage: 100
 --- !u!95 &1050005686150925537
 Animator:

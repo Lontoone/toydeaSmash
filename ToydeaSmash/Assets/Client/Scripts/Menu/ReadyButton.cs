@@ -58,6 +58,7 @@ public class ReadyButton : MonoBehaviourPunCallbacks
     {
         base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
         Debug.Log("ready btn update");
+
         object _isReady;
         if (changedProps.TryGetValue(READY, out _isReady))
         {
@@ -70,6 +71,7 @@ public class ReadyButton : MonoBehaviourPunCallbacks
             {
                 m_playerReadyState.Add(targetPlayer, (bool)_isReady);
             }
+
             Debug.Log("Is maseter? " + PhotonNetwork.IsMasterClient);
             if (!(bool)_isReady)
             {
@@ -80,8 +82,15 @@ public class ReadyButton : MonoBehaviourPunCallbacks
             {
                 CheckAllOnlinePlayerIsReady();
             }
-        }
 
+            //Sync UI
+            int _targetIndex = (int)targetPlayer.CustomProperties["PlayerIndex"];
+            if (_targetIndex == playerSlot.player_index)
+            {
+                playerSlot.SetReady((bool)_isReady);
+                playerSlot.SetColor((int)targetPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE]);
+            }
+        }
     }
     public static void CancelAllPlayerReady()
     {

@@ -10,7 +10,7 @@ using TMPro;
 using System;
 public class PlayerSlot : MonoBehaviourPunCallbacks
 {
-
+    public const byte PUN_SLOT_READY_EVENT_CODE = 2;
     //public event Action<LocalPlayerProperty> OnValueChange;
     public event Action<int> OnTeamChanged;
     public event Action<int> OnHeadChanged;
@@ -19,6 +19,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public int player_index = 0;
 
     public TextMeshProUGUI name_text;
+    public GameObject readyCanvas;
     public GameObject readyHint;
     public GameObject unReadyHint;
     public GameObject btn_group;
@@ -60,7 +61,6 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public void SetUpPlayer(Player _p, int _index) //call from player slot manager
     {
         Debug.Log("slot set up Player " + _p.NickName + " local " + PhotonNetwork.LocalPlayer.NickName);
-        //if (thisPlayer == PhotonNetwork.LocalPlayer)
 
         thisPlayer = _p;
         player_index = _index;
@@ -73,17 +73,13 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         else
         {
             btn_group.SetActive(false);
-            //Destroy(btn_group);
+            Destroy(readyHint);
+            Destroy(unReadyHint);
         }
-        //update online data
-        //OnTeamChanged += delegate { SendCP(CustomPropertyCode.TEAM_CODE, current_team); };
-        //OnHeadChanged += delegate { SendCP(CustomPropertyCode.HEAD_CDOE, current_head); };
-        //OnBodyChanged += delegate { SendCP(CustomPropertyCode.BODY_CODE, current_body); };
     }
 
     void InitPropertyDict()
     {
-
         //dict init
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, current_head);
@@ -131,13 +127,22 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
 
     public void SetReady(bool _isReady)
     {
-        readyHint.SetActive(!_isReady);
+        if (readyHint != null)
+        {
+            readyHint.SetActive(!_isReady);
+        }
+        if (unReadyHint != null)
+        {
+            unReadyHint.SetActive(_isReady);
+        }
         btn_group.SetActive(!_isReady);
-        unReadyHint.SetActive(_isReady);
 
         readyOkHint.SetActive(_isReady);
-        readyOkHint.GetComponent<UnityEngine.UI.Image>().color =CustomPropertyCode.TEAMCOLORS[
-                                                                LocalRoomManager.instance.players[player_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)];
+        SetColor(LocalRoomManager.instance.players[player_index].GetValue<int>(CustomPropertyCode.TEAM_CODE));
+    }
+    public void SetColor(int _colorIndex)
+    {
+        readyOkHint.GetComponent<UnityEngine.UI.Image>().color = CustomPropertyCode.TEAMCOLORS[_colorIndex];
     }
 
     public void Team_btn(int _opt)

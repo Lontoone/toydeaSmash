@@ -29,17 +29,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 535120107974632062, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933071408260989556, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3531663427572247547, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
       propertyPath: viewIdField
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358511154480628154, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4782255823743666370, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnlineReady
       objectReference: {fileID: 0}
     - target: {fileID: 5508494017501039222, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508494017501039222, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnlineReady
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840606475597686108, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5840606475905654653, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
       propertyPath: m_RootOrder
@@ -90,6 +110,10 @@ PrefabInstance:
       value: PlayerSlotOnline
       objectReference: {fileID: 0}
     - target: {fileID: 6898464566696513950, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968407010875514021, guid: d08f3f2f0532862459bf97b54d11894e, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
