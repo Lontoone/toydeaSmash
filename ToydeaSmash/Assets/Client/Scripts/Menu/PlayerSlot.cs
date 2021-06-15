@@ -28,8 +28,6 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     public static Head[] heads_res;
     public static Body[] body_res;
 
-    public Color[] teamColors = new Color[] { Color.red, Color.white, Color.green };
-
     int current_team = 0;
     int current_head = 0;
     int current_body = 0;
