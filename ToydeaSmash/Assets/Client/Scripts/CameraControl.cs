@@ -144,6 +144,9 @@ public class CameraControl : MonoBehaviour
     }
     public static void CameraShake(float _duration, float _strength)
     {
-        s_camera.transform.DOShakePosition(_duration, _strength);
+        if (s_camera != null)
+        {
+            s_camera.transform.DOShakePosition(_duration, _strength);
+        }
     }
 }
