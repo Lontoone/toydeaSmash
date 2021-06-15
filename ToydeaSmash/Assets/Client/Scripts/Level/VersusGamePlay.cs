@@ -4,12 +4,12 @@ using UnityEngine;
 
 //Versus Game mode
 public class VersusGamePlay : MonoBehaviour
-{
+{    
     public GameObject lifeStockUIContainer;
     public PlayerLifeStockControl lifeStockItem_prefab;
 
     public Dictionary<int, int> playerLifeStock = new Dictionary<int, int>();
-    Dictionary<int, PlayerLifeStockControl> lifeStockUI = new Dictionary<int, PlayerLifeStockControl>();
+    private Dictionary<int, PlayerLifeStockControl> lifeStockUI = new Dictionary<int, PlayerLifeStockControl>();
 
     public void Awake()
     {

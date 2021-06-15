@@ -27,20 +27,25 @@ public class MapControl : MonoBehaviour
     //load map
     public void LoadMapPrefab()
     {
+        string _path = MAP_DATA_PATH + LocalRoomManager.instance.gamePlaySetting.GetValue<string>(GameplaySettingControl.MAP_OPT);
+        Debug.Log(_path);
+        GameObject _map = Instantiate(Resources.Load<GameObject>(_path), Vector2.zero, Quaternion.identity);
+        /*
         //if online
         if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
         {
-            string _path = MAP_DATA_PATH + PhotonNetwork.MasterClient.CustomProperties[GameplaySettingControl.MAP_OPT];
+            //string _path = MAP_DATA_PATH + PhotonNetwork.MasterClient.CustomProperties[GameplaySettingControl.MAP_OPT];
+            string _path = MAP_DATA_PATH + LocalRoomManager.instance.gamePlaySetting.GetValue<string>(GameplaySettingControl.MAP_OPT);
             GameObject _map = PhotonNetwork.Instantiate(_path, Vector2.zero, Quaternion.identity);
         }
         //if local
-        else
+        else if (!PhotonNetwork.IsConnected) 
         {
             string _path = MAP_DATA_PATH + LocalRoomManager.instance.gamePlaySetting.GetValue<string>(GameplaySettingControl.MAP_OPT);
             Debug.Log(_path);
             GameObject _map = Instantiate( Resources.Load<GameObject>(_path),Vector2.zero,Quaternion.identity);
             
-        }
+        }*/
     }
 
 }

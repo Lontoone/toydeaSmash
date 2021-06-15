@@ -136,6 +136,7 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void SetUpOnline(int _playerIndex)
     {
+        OnCreate?.Invoke(_playerIndex);
         _pv = GetComponent<PhotonView>();
         hitable = gameObject.GetComponent<HitableObj>();
         if (_pv == null)

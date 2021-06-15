@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +12,7 @@ public class GameResultManager : MonoBehaviour
     public const string KILL = "KILL";
     public const string DAMAGE = "DAMAGE";
     public const string DAMAGETAKE = "DAMAGETAKE";
+    public const byte PUN_ON_RESULT_EVENT_CODE =3;
 
     public void Awake()
     {
@@ -58,5 +62,12 @@ public class GameResultManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void PunRaiseWinLoseEvent()
+    {
+        object[] content = new object[] { new Vector3(10.0f, 2.0f, 5.0f), 1, 2, 5, 10 }; 
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; 
+        PhotonNetwork.RaiseEvent(PUN_ON_RESULT_EVENT_CODE, content, raiseEventOptions, SendOptions.SendReliable);
     }
 }
