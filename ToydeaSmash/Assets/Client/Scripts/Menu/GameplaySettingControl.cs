@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
@@ -39,7 +40,8 @@ public class GameplaySettingControl : MonoBehaviour
         SetMapIndex(0);
         SetMinutesIndex(0);
         SetLifeStockIndex(0);
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+        //PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+        PhotonNetwork.NetworkingClient.EventReceived+= OnEvent;
     }
     public void OnDestroy()
     {
@@ -70,9 +72,10 @@ public class GameplaySettingControl : MonoBehaviour
         LocalRoomManager.instance.gamePlaySetting.SetProperty(LIFESTOCK_OPT, lifeStock_opts[life_stock_index]);
 
         //TODO TEST:直接開始
-        LocalRoomManager.instance.StartGamePlay();
+        //LocalRoomManager.instance.StartGamePlay();
+        //Load GamePlay
+        SceneManager.LoadScene("GamePlay");
     }
-
     public void Confirm(int _maxIndex, int _minutes_index, int _lifeStock)
     {
         LocalRoomManager.instance.gamePlaySetting.SetProperty(MAP_OPT, map_opts[_maxIndex]);
@@ -97,6 +100,7 @@ public class GameplaySettingControl : MonoBehaviour
         //TODO TEST:直接開始
         //LocalRoomManager.instance.StartGamePlay();
     }
+    //For Online
     private void OnEvent(EventData photonEvent)
     {
         byte eventCode = photonEvent.Code;
@@ -104,9 +108,15 @@ public class GameplaySettingControl : MonoBehaviour
         {
             object[] data = (object[])photonEvent.CustomData;
             Confirm((int)data[0], (int)data[1], (int)data[2]);
-        }
 
-        //PhotonNetwork.LoadLevel("GamePlay");
-        PhotonNetwork.LoadLevel(map_opts[map_index]);
+            Debug.Log("on scene Confirm");
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("GamePlay");
+            }
+        }
+        
+        //PhotonNetwork.LoadLevel(map_opts[map_index]);
     }
 }
