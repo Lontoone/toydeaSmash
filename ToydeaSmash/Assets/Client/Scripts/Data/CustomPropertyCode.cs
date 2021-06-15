@@ -10,10 +10,10 @@ public class CustomPropertyCode : MonoBehaviour
     public const string ROOM_READY = "ROOMREADY";
 
 
-    public static readonly Color[] TEAMCOLORS = { new Color(1,1,1,1),new Color(0,97,253,256)/256,
-                                                  new Color(146,0,0,256)/256,new Color(255,207,19,256)/256,
-                                                  new Color(165,133,255,256)/256,new Color(55,55,55,256)/256,
-                                                  new Color(0,94,10,256)/256,new Color(236,76,0,256)/256
+    public static readonly Color32[] TEAMCOLORS = { new Color32(255, 255, 255, 255),new Color32(0,97,253,255),
+                                                  new Color32(146,0,0,255),new Color32(255,207,19,255),
+                                                  new Color32(165,133,255,255),new Color32(55,55,55,255),
+                                                  new Color32(0,94,10,255),new Color32(236,76,0,255)
     };
     public static readonly KeyCode[] JumpKeys = { KeyCode.G, KeyCode.Period };
     public static readonly KeyCode[] DashKyes = { KeyCode.LeftShift, KeyCode.Space };
