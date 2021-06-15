@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public HitableObj hitable;
 
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive;
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive,die;
     public ActionController.mAction landing, land_end;
 
     /*control keys*/
@@ -100,7 +100,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (hitable != null)
         {
-            hitable.Die_event += Die;
+            hitable.Die_event += AddDie;
             //hitable.gotHit_event += Hurt;
             //hitable.gotHit_event += OnHurt;
             hitable.HitBy_event += OnHurt;
@@ -125,7 +125,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (hitable != null)
         {
-            hitable.Die_event -= Die;
+            hitable.Die_event -= AddDie;
             //hitable.gotHit_event -= OnHurt;
             hitable.HitBy_event -= OnHurt;
             //hitable.HitBy_event -= HurtDirectionCheck;
@@ -298,7 +298,9 @@ public class PlayerControl : MonoBehaviour
         {
             DoRpcOnAllOtherPlayers("ReviveAnimation");
         });
-
+        die.action.AddListener(delegate{
+            DoRpcOnAllOtherPlayers("Die");
+        });
     }
     public void SetUp(LocalPlayerProperty _data, int _i)
     {
@@ -838,26 +840,24 @@ public class PlayerControl : MonoBehaviour
         }
         PlayAniamtion("Hurt Falling");
     }
-
+    public void AddDie() {
+        actionController.AddAction(die);
+        //disable control
+        hitable.isHitable = false;
+        actionController.StopAllCoroutines();
+    }
     [PunRPC]
-    void Die()
+    public void Die()
     {
         Debug.Log("玩家死亡");
         SFXManager.instance.PlaySoundInstance(SFXManager.EXPLODE);
         Effect("die disappear", "die disappear");
-        SlowMotionEffector.instance?.DoSlowMotion();
-
-        //disable control
-        hitable.isHitable = false;
-        actionController.StopAllCoroutines();
+        SlowMotionEffector.instance?.DoSlowMotion();      
 
         PlayAniamtion("Die");
-        //this.enabled = false;
-        //OnDestory?.Invoke(dataIndex);
-
-        //Destroy(gameObject);
         Invoke("DestoryObject", 3);
     }
+
     [PunRPC]
     private void DestoryObject()
     {

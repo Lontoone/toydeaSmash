@@ -86,7 +86,7 @@ public class VersusGamePlay : MonoBehaviourPun
         playerLifeStock[_index]--;
         int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
-        SetLifeStockColor(_index, _index); //TODO:可能會出錯
+        SetLifeStockColor(_index, _index); //TODO:可能會出錯?
         PunSendLifeStockChangeEvent(_index);
         //lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
     }
@@ -94,18 +94,35 @@ public class VersusGamePlay : MonoBehaviourPun
     public void CheckPlayerRevive(int _i)
     {
         MinusLifeStock(_i);
-
-        //if (playerLifeStock[_i] <= 0)
-        if (LocalRoomManager.instance.players[_i].GetValue<int>(CustomPropertyCode.LIFESTOCK) <= 0)
+        if (PhotonNetwork.IsConnected)
         {
-            //player i lose!
-            Debug.Log("player " + _i + " lose !");
-            LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
+            //Online
+            Player _deadPlayer = LocalRoomManager.instance.players[_i].GetValue<Player>(CustomPropertyCode.PLAYER);
+            if ((int)_deadPlayer.CustomProperties[CustomPropertyCode.LIFESTOCK] <= 0)
+            {
+                Debug.Log("player " + _i + " lose !");
+                LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
+            }
+            else {
+                //create player:
+                PlayerControl _player =LocalRoomManager.instance.InstantiateOnlinePlayer(_i);
+                _player.AddRevive();
+            }
         }
         else
         {
-            //create player:
-            LocalRoomManager.instance.Revive(_i);
+            //Local
+            if (LocalRoomManager.instance.players[_i].GetValue<int>(CustomPropertyCode.LIFESTOCK) <= 0)
+            {
+                //player i lose!
+                Debug.Log("player " + _i + " lose !");
+                LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
+            }
+            else
+            {
+                //create player:
+                LocalRoomManager.instance.Revive(_i);
+            }
         }
     }
 
@@ -147,7 +164,9 @@ public class VersusGamePlay : MonoBehaviourPun
             //WIN
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
-            StartCoroutine(EndGamePlayCoro(3));
+            //StartCoroutine(EndGamePlayCoro(3));
+            yield return new WaitForSeconds(3);
+            EndGamePlay();
         }
     }
 
@@ -175,13 +194,13 @@ public class VersusGamePlay : MonoBehaviourPun
             //WIN
             Debug.Log("Winner is team " + killer_teamCode);
             //TODO: win hint change to result scene
-            StartCoroutine(EndGamePlayCoro(3));
+            yield return new WaitForSeconds(3);
+            EndGamePlay();
         }
     }
     //Temp
-    IEnumerator EndGamePlayCoro(int _duration)
+    void EndGamePlay()
     {
-        yield return new WaitForSeconds(_duration);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
 }

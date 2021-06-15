@@ -106,14 +106,14 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
             }
         }
     }
-    public void InstantiateOnlinePlayer(int i)
+    public PlayerControl InstantiateOnlinePlayer(int i)
     {
         PlayerControl _player = PhotonNetwork.Instantiate("Prefab/Player_Variant_Online", Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
         Debug.Log("player i " + i + " local index " + (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX]);
         //_player.SetUpOnline(i);
         _player.GetComponent<PhotonView>().RPC("SetUpOnline", RpcTarget.All, i);
         _player.transform.position = MapControl.instance.viewWorldCenter;
-        //_player.SetUp(players[i], 0);
+        return _player;
         //_player.AddLanding();
     }
     public PlayerControl Revive(int _playerData_index)
