@@ -413,12 +413,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 1
-  m_BlendStyleIndex: 2
+  m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0, g: 0.44004294, b: 0.78699994, a: 1}
   m_Intensity: 1.23
-  m_LightVolumeOpacity: 1
-  m_ApplyToSortingLayers: 00000000e9415fb0bdece9e1e36690fe811f12df49c037de
+  m_LightVolumeOpacity: 0.52
+  m_ApplyToSortingLayers: 811f12df
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -919,12 +919,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 1
-  m_BlendStyleIndex: 2
+  m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0, g: 0.44004294, b: 0.78699994, a: 1}
   m_Intensity: 1.23
-  m_LightVolumeOpacity: 1
-  m_ApplyToSortingLayers: 00000000e9415fb0bdece9e1e36690fe811f12df49c037de
+  m_LightVolumeOpacity: 0.52
+  m_ApplyToSortingLayers: 811f12df
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   - {x: -9.872505, y: -13.939541, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292002
+  m_InstanceId: -885806
 --- !u!1 &6186435008730463619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   - {x: -0.07935522, y: 0.07465446, z: 0}
   m_ShapePathHash: 1362340157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292012
+  m_InstanceId: -885818
 --- !u!1 &6186435008887687971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   - {x: -9.872505, y: -26.049057, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292060
+  m_InstanceId: -885840
 --- !u!1 &6186435009135647442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2146,7 @@ MonoBehaviour:
   - {x: -9.872505, y: -26.049034, z: 0}
   m_ShapePathHash: 731420449
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292082
+  m_InstanceId: -885854
 --- !u!1 &6186435009196335614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   - {x: -0.07712478, y: 0.085210435, z: 0}
   m_ShapePathHash: -696009479
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292104
+  m_InstanceId: -885874
 --- !u!1 &6186435009240428179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   - {x: -9.872505, y: -26.049057, z: 0}
   m_ShapePathHash: -2119357463
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292140
+  m_InstanceId: -885894
 --- !u!1 &6186435009356492367
 GameObject:
   m_ObjectHideFlags: 0
@@ -4117,7 +4117,7 @@ MonoBehaviour:
   - {x: -0.07390468, y: 0.0881613, z: 0}
   m_ShapePathHash: 1713526280
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292246
+  m_InstanceId: -885946
 --- !u!1 &6186435009610177383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,7 +4663,7 @@ MonoBehaviour:
   - {x: 0.0026189021, y: 0.08944605, z: 0}
   m_ShapePathHash: -1677041401
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292290
+  m_InstanceId: -885974
 --- !u!1 &6186435009938330754
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,7 +5069,7 @@ MonoBehaviour:
   - {x: -9.872501, y: -26.049057, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292318
+  m_InstanceId: -885988
 --- !u!1 &6186435010009366908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,7 +5509,7 @@ MonoBehaviour:
   - {x: -9.872501, y: -32.020973, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292352
+  m_InstanceId: -886002
 --- !u!1 &6186435010127753597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6043,7 +6043,7 @@ MonoBehaviour:
   - {x: -0.07870017, y: 0.075132996, z: 0}
   m_ShapePathHash: -360858409
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292394
+  m_InstanceId: -886026
 --- !u!1 &6186435010210949857
 GameObject:
   m_ObjectHideFlags: 0
@@ -7649,7 +7649,7 @@ MonoBehaviour:
   - {x: -9.872509, y: -26.049057, z: 0}
   m_ShapePathHash: 1853128089
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292524
+  m_InstanceId: -886094
 --- !u!1 &6186435010514496301
 GameObject:
   m_ObjectHideFlags: 0
@@ -8449,7 +8449,7 @@ MonoBehaviour:
   - {x: -0.079814754, y: 0.0803825, z: -0.0000000022719178}
   m_ShapePathHash: -80421844
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292586
+  m_InstanceId: -886134
 --- !u!1 &6186435010783051932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8585,7 +8585,7 @@ MonoBehaviour:
   - {x: -0.07973138, y: 0.07168426, z: 0}
   m_ShapePathHash: -1363504221
   m_Mesh: {fileID: 0}
-  m_InstanceId: 292596
+  m_InstanceId: -886140
 --- !u!1 &6186435010831165575
 GameObject:
   m_ObjectHideFlags: 0
@@ -9167,12 +9167,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 1
-  m_BlendStyleIndex: 2
+  m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0, g: 0.44004294, b: 0.78699994, a: 1}
   m_Intensity: 1.23
-  m_LightVolumeOpacity: 1
-  m_ApplyToSortingLayers: 00000000e9415fb0bdece9e1e36690fe811f12df49c037de
+  m_LightVolumeOpacity: 0.52
+  m_ApplyToSortingLayers: 811f12df
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
