@@ -572,7 +572,19 @@ MonoBehaviour:
           m_CallState: 2
     callbackEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7923640692456162592}
+          m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+          m_MethodName: SetCollider
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     priority: 1000
     force: 1
     duration: 5
@@ -653,6 +665,7 @@ MonoBehaviour:
   obsticalLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  _mainCollider: {fileID: 8613946847290611853}
   _isHurting: 0
 --- !u!114 &7923640692456162593
 MonoBehaviour:

@@ -50,6 +50,8 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rigid;
     private ActionController actionController;
     private PhysicsControlListeners listeners;
+    [SerializeField]
+    private Collider2D _mainCollider;
 
     private Coroutine c_heal;
     private Coroutine cCreateImageTrail;
@@ -287,6 +289,10 @@ public class PlayerControl : MonoBehaviour
         {
             DoRpcOnAllOtherPlayers("LandingEnd");
         });
+        revive.action.AddListener(delegate
+        {
+            DoRpcOnAllOtherPlayers("ReviveAnimation");
+        });
 
     }
     public void SetUp(LocalPlayerProperty _data, int _i)
@@ -491,12 +497,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    /*[PunRPC]
-    public void OnHurtEffectRpc()
-    {
-        if (_lastHitSource != null)
-            HurtDirectionCheck(_lastHitSource.gameObject);
-    }*/
+  
     public void OnHurt(GameObject _source)
     {
         //_lastHitSource = _source.transform;
@@ -664,11 +665,16 @@ public class PlayerControl : MonoBehaviour
         body.CreateImageTrail();
     }
     [PunRPC]
+    public void ReviveAnimation() {
+        head.PlayAnimation("Revive");
+        body.PlayAnimation("Revive");
+    }
     public void AddRevive()
     {
         actionController.AddAction(revive);
+        SetCollider(false);
     }
-    [PunRPC]
+    
     public void ReviveMove()
     {
         rigid.Sleep();
@@ -685,6 +691,11 @@ public class PlayerControl : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
+    }
+    [PunRPC]
+    public void SetCollider(bool _isEnable)
+    {
+        _mainCollider.enabled = _isEnable;
     }
 
 
@@ -753,9 +764,7 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void Hurt()
     {
-        //add force
         PlayAniamtion("Hurt");
-        //CameraControl.CameraShake(0.25f, 5);
     }
     public void HurtDirectionCheck(GameObject _hitBy)
     {
@@ -876,7 +885,8 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void DoRpcOnAllOtherPlayers(string _functionName)
     {
-        if (!PhotonNetwork.IsConnected) {
+        if (!PhotonNetwork.IsConnected)
+        {
             return;
         }
         for (int i = 0; i < _otherPlayers.Length; i++)
