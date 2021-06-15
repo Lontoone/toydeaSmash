@@ -43,7 +43,7 @@ public class VersusGamePlay : MonoBehaviour
             //generate life stock ui item for each player
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
-            _ui.SetUp(CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)]);
+            //_ui.SetUp(CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)]);
             _ui.lifeStock_number_text.text = playerLifeStock[_index].ToString();
         }
     }
