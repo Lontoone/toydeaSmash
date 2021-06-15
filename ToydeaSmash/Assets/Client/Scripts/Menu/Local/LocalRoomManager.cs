@@ -58,8 +58,8 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     public void AddOnlinePlayer(Player _player, int _index)
     {
         LocalPlayerProperty _local = new LocalPlayerProperty();
-        _local.SetProperty("Player", _player);
-        _local.SetProperty("PlayerIndex", _index);
+        _local.SetProperty(CustomPropertyCode.PLAYER, _player);
+        _local.SetProperty(CustomPropertyCode.PLAYER_INDEX, _index);
         players.Add(_local);
         Debug.Log("Photon Add Player " + _player.NickName);
         OnOnlinePlayerAdded?.Invoke(_local);
@@ -109,7 +109,7 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     public void InstantiateOnlinePlayer(int i)
     {
         PlayerControl _player = PhotonNetwork.Instantiate("Prefab/Player_Variant_Online", Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
-        Debug.Log("player i " + i + " local index " + (int)PhotonNetwork.LocalPlayer.CustomProperties["PlayerIndex"]);
+        Debug.Log("player i " + i + " local index " + (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX]);
         //_player.SetUpOnline(i);
         _player.GetComponent<PhotonView>().RPC("SetUpOnline", RpcTarget.All, i);
         _player.transform.position = MapControl.instance.viewWorldCenter;
@@ -127,6 +127,7 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         return _player;
     }
 
+    //Local----------------------------------------------
     public int[] Get_Index_In_Same_Team(int teamCode)
     {
         return team_player_dict[teamCode].ToArray();
@@ -143,6 +144,24 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         }
         return _res.ToArray();
     }
+    //Local----------------------------------------------
+
+    //Online----------------------------------------------
+    public List<Player> Get_Players_In_Different_Team_Online(int teamCode)
+    {
+        List<Player> _res = new List<Player>();
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            int _teamCode = (int)PhotonNetwork.PlayerList[i].CustomProperties[CustomPropertyCode.TEAM_CODE];
+            if (_teamCode != teamCode)
+            {
+                _res.Add(PhotonNetwork.PlayerList[i]);
+            }
+        }
+        return _res;
+    }
+    //Online----------------------------------------------
+
 
     public void ClearPlayerDatas()
     {

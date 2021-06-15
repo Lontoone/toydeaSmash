@@ -42,8 +42,8 @@ public class GameResultManager : MonoBehaviour
     }
     void AddDamageCount(GameObject t, float d, GameObject s)
     {
-        SetProperty(t.GetComponent<PlayerControl>(), DAMAGE, (int)d);
-        SetProperty(s?.GetComponent<PlayerControl>(), DAMAGETAKE, (int)d);
+        SetProperty(t.GetComponent<PlayerControl>(), DAMAGETAKE, (int)d);
+        SetProperty(s?.GetComponent<PlayerControl>(), DAMAGE, (int)d);
     }
     void SetProperty(PlayerControl player, string _key, int data_to_add)
     {

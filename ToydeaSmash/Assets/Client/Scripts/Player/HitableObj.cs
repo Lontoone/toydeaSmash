@@ -25,13 +25,11 @@ public class HitableObj : MonoBehaviour
     public float hit_combo = 0;
 
     private Camera _camera;
-
-
+    private HPBarControl hpbar;
 
     [Range(0, 1)]
     public float damage_taking_rate = 1; // 0%~100%
 
-    HPBarControl hpbar;
     private IEnumerator Start()
     {
         //wait for hp bar to finish regiester:
@@ -42,6 +40,7 @@ public class HitableObj : MonoBehaviour
         {
             hpbar = _bar.GetComponent<HPBarControl>();
             hpbar.SetHitable(this);
+            hpbar.UpdateHPBar();
         }
 
         maxHP = HP;
@@ -58,8 +57,6 @@ public class HitableObj : MonoBehaviour
     {
         if (Hit_event != null)
         {
-
-
             Hit_event(t, d, attackSource); //被攻擊的,傷害,攻擊者
         }
     }
@@ -80,7 +77,6 @@ public class HitableObj : MonoBehaviour
 
             if (isHitable)
             {
-              
                 //HP -= damage;
                 HP = Mathf.Clamp(HP - damage * damage_taking_rate, 0, maxHP);
                 //特效:
@@ -89,13 +85,10 @@ public class HitableObj : MonoBehaviour
 
                 //傷害文字
                 //Effecter.PopupTextUI(target, damage.ToString(), 1);
-
             }
-
             //判斷死亡
             if (HP <= 0)
             {
-
                 if (!isDead)
                 {
                     if (Die_event != null)
@@ -120,7 +113,6 @@ public class HitableObj : MonoBehaviour
                 if (HitBy_event != null)
                     HitBy_event(sources);
             }
-
         }
     }
 
@@ -133,6 +125,14 @@ public class HitableObj : MonoBehaviour
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_LINE_SMALL, 2);
         //Effecter.BreakParticleEffect(gameObject.GetComponent<SpriteRenderer>(), Effecter.BLAST_Particle_SMALL, 5);
         _camera.transform.DOScale(1, 1);
+    }
 
+    public void SetHP(float _newHP)
+    {
+        HP = _newHP;
+        if (hpbar != null)
+        {
+            hpbar.UpdateHPBar();
+        }
     }
 }

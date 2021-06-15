@@ -64,7 +64,7 @@ public class InstancitatePlayerControl : MonoBehaviourPun
         Debug.Log(" Create player!");
 
         LocalRoomManager.instance.InstantiateOnlinePlayer(
-            (int)PhotonNetwork.LocalPlayer.CustomProperties["PlayerIndex"]
+            (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX]
             );
 
         //if (base.photonView.Owner == PhotonNetwork.LocalPlayer)

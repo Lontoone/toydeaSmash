@@ -58,6 +58,9 @@ public class PlayerControl : MonoBehaviour
     private bool _isOnline = false;
     private Transform _lastHitSource;
     public Player[] _otherPlayers;
+
+    [SerializeField]
+    private bool _isHurting = false;
     private Vector2 _footPosition
     {
         get
@@ -226,6 +229,7 @@ public class PlayerControl : MonoBehaviour
         hurt.action.AddListener(delegate
         {
             DoRpcOnAllOtherPlayers("Hurt");
+            DoRpcOnAllOtherPlayers("SyncHPOnHurt", hitable.HP);
         });
         hurt.callbackEvent.AddListener(delegate
         {
@@ -498,7 +502,16 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-  
+    [PunRPC]
+    public void Hurt()
+    {
+        PlayAniamtion("Hurt");
+    }
+    [PunRPC]
+    public void SyncHPOnHurt(float _hp)
+    {
+        hitable.SetHP(_hp);
+    }
     public void OnHurt(GameObject _source)
     {
         //_lastHitSource = _source.transform;
@@ -666,7 +679,8 @@ public class PlayerControl : MonoBehaviour
         body.CreateImageTrail();
     }
     [PunRPC]
-    public void ReviveAnimation() {
+    public void ReviveAnimation()
+    {
         head.PlayAnimation("Revive");
         body.PlayAnimation("Revive");
     }
@@ -675,7 +689,7 @@ public class PlayerControl : MonoBehaviour
         actionController.AddAction(revive);
         SetCollider(false);
     }
-    
+
     public void ReviveMove()
     {
         rigid.Sleep();
@@ -760,13 +774,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log(_rotation + " " + _effect.transform.rotation + " ");
         }
     }
-    [SerializeField]
-    bool _isHurting = false;
-    [PunRPC]
-    public void Hurt()
-    {
-        PlayAniamtion("Hurt");
-    }
+
     public void HurtDirectionCheck(GameObject _hitBy)
     {
         //Check back attack or front attack

@@ -1,14 +1,20 @@
-﻿using System.Collections;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Versus Game mode
-public class VersusGamePlay : MonoBehaviour
-{    
+public class VersusGamePlay : MonoBehaviourPun
+{
+    public const string ISLOSE = "ISLOSE";
+    public const byte PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE = 5;
+    //public const string LIFESTOCK = "LIFESTOCK";
     public GameObject lifeStockUIContainer;
     public PlayerLifeStockControl lifeStockItem_prefab;
 
-    public Dictionary<int, int> playerLifeStock = new Dictionary<int, int>();
+    public Dictionary<int, int> playerLifeStock = new Dictionary<int, int>(); //playerIndex, life stock
     private Dictionary<int, PlayerLifeStockControl> lifeStockUI = new Dictionary<int, PlayerLifeStockControl>();
 
     public void Awake()
@@ -17,6 +23,7 @@ public class VersusGamePlay : MonoBehaviour
         PlayerControl.OnDestory += CheckPlayerRevive;
 
         HitableObj.OnKilled += CheckTeamWinLose;
+        PhotonNetwork.AddCallbackTarget(this);
     }
     public void OnDestroy()
     {
@@ -24,43 +31,72 @@ public class VersusGamePlay : MonoBehaviour
         PlayerControl.OnDestory -= CheckPlayerRevive;
 
         HitableObj.OnKilled -= CheckTeamWinLose;
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public const string ISLOSE = "ISLOSE";
 
     //players first join the game
     public void RegisterPlayer(int _index)
     {
         if (!playerLifeStock.ContainsKey(_index))
         {
-            playerLifeStock.Add(_index, (int)LocalRoomManager.instance.gamePlaySetting.playerProperty[GameplaySettingControl.LIFESTOCK_OPT]);
             LocalRoomManager.instance.players[_index].SetProperty(ISLOSE, false);
-            //PlayerControl.OnCreate -= RegisterPlayer;
-            //PlayerControl.OnCreate += MinusLifeStock;
+            LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
+            //int _playerIndex = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.PLAYER_INDEX);
+            playerLifeStock.Add(_index, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
 
-            Debug.Log("player " + _index + " has lifes " + playerLifeStock[_index]);
+
+            //base.photonView.RPC("SetLifeStockColor", RpcTarget.All,_index, _index);
+            PunSendLifeStockChangeEvent(_index);
+
 
             //generate life stock ui item for each player
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
-            _ui.SetUp(CustomPropertyCode.TEAMCOLORS[LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.TEAM_CODE)]);
-            _ui.lifeStock_number_text.text = playerLifeStock[_index].ToString();
+            SetLifeStockColor(_index, _index);
         }
+    }
+
+    private void PunSendLifeStockChangeEvent(int _index)
+    {
+        object[] content = new object[] { _index, _index };
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE, content, raiseEventOptions, SendOptions.SendReliable);
+    }
+    private void PUNOnLifeStockChangeEvent(EventData photonEvent)
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            byte eventCode = photonEvent.Code;
+            if (eventCode == PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE)
+            {
+                object[] data = (object[])photonEvent.CustomData;
+                SetLifeStockColor((int)data[0], (int)data[1]);
+            }
+        }
+    }
+
+    private void SetLifeStockColor(int _uiIndex, int _playerIndex)
+    {
+        lifeStockUI[_uiIndex].SetUp(_playerIndex);
     }
     public void MinusLifeStock(int _index)
     {
         //update ui and data
         playerLifeStock[_index]--;
-        lifeStockUI[_index].revive_animation.SetTrigger("Revive");
-        lifeStockUI[_index].popup_animation.SetTrigger("Popup");
-        lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
+        int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
+        LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
+        SetLifeStockColor(_index, _index); //TODO:可能會出錯
+        PunSendLifeStockChangeEvent(_index);
+        //lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
     }
 
     public void CheckPlayerRevive(int _i)
     {
         MinusLifeStock(_i);
 
-        if (playerLifeStock[_i] <= 0)
+        //if (playerLifeStock[_i] <= 0)
+        if (LocalRoomManager.instance.players[_i].GetValue<int>(CustomPropertyCode.LIFESTOCK) <= 0)
         {
             //player i lose!
             Debug.Log("player " + _i + " lose !");
@@ -75,7 +111,16 @@ public class VersusGamePlay : MonoBehaviour
 
     public void CheckTeamWinLose(GameObject target, GameObject killer)
     {
-        StartCoroutine(CheckTeamWinLoseCoro(target, killer));
+        if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+        {
+            //Online Check only do on master
+            StartCoroutine(CheckOnlineTeamWinLoseCoro(target, killer));
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            //Local Check
+            StartCoroutine(CheckTeamWinLoseCoro(target, killer));
+        }
     }
     public IEnumerator CheckTeamWinLoseCoro(GameObject _target, GameObject _killer)
     {
@@ -91,7 +136,36 @@ public class VersusGamePlay : MonoBehaviour
         bool is_team_win = true;
         for (int i = 0; i < other_teams.Length; i++)
         {
-            if (playerLifeStock[other_teams[i]] > 1)
+            //if (playerLifeStock[other_teams[i]] > 1)
+            if (LocalRoomManager.instance.players[other_teams[i]].GetValue<int>(CustomPropertyCode.LIFESTOCK) > 1)
+            {
+                is_team_win = false;
+            }
+        }
+        if (is_team_win)
+        {
+            //WIN
+            Debug.Log("Winner is team " + killer_teamCode);
+            //TODO: win hint change to result scene
+            StartCoroutine(EndGamePlayCoro(3));
+        }
+    }
+
+    public IEnumerator CheckOnlineTeamWinLoseCoro(GameObject _target, GameObject _killer)
+    {
+        yield return new WaitForFixedUpdate();
+        PlayerControl kpc = _killer.GetComponent<PlayerControl>();
+        if (kpc == null)
+            yield break;
+        Player _killer_player = LocalRoomManager.instance.players[kpc.dataIndex].GetValue<Player>(CustomPropertyCode.PLAYER);
+        int killer_teamCode = (int)_killer_player.CustomProperties[CustomPropertyCode.TEAM_CODE];
+
+        List<Player> _otherTeamsPlayers = LocalRoomManager.instance.Get_Players_In_Different_Team_Online(killer_teamCode);
+
+        bool is_team_win = true;
+        for (int i = 0; i < _otherTeamsPlayers.Count; i++)
+        {
+            if ((int)_otherTeamsPlayers[i].CustomProperties[CustomPropertyCode.LIFESTOCK] > 1)
             {
                 is_team_win = false;
             }

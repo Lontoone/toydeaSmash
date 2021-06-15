@@ -15,11 +15,8 @@ public class PlayerResultPanel : MonoBehaviour
     public TextMeshProUGUI kill_text;
     public TextMeshProUGUI damage_text;
     public TextMeshProUGUI damage_take_text;
-
-
     //public GameObject texts_prefab;
     //public GameObject container;
-
 
     public void SetUp(int _index)
     {

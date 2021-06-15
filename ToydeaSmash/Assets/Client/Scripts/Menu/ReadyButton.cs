@@ -84,7 +84,7 @@ public class ReadyButton : MonoBehaviourPunCallbacks
             }
 
             //Sync UI
-            int _targetIndex = (int)targetPlayer.CustomProperties["PlayerIndex"];
+            int _targetIndex = (int)targetPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX];
             if (_targetIndex == playerSlot.player_index)
             {
                 playerSlot.SetReady((bool)_isReady);

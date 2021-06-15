@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
@@ -27,9 +28,21 @@ public class LocalPlayerProperty
         OnDataUpdate?.Invoke(_key, _data, _playerData);
     }
 
-    public T GetValue<T>(string _key)
+    public T GetValue<T>(string _key, bool _useNetwork = false)
     {
         object data;
+        /*
+        if (_useNetwork)
+        {
+            Player _targetPlayer;
+            for (int i=0; i< PhotonNetwork.PlayerList.Length;i++) {
+                if (PhotonNetwork.PlayerList[i].CustomProperties[CustomPropertyCode.PLAYER_INDEX]) { }
+            }
+            return .
+        }*/
+
+
+
         if (playerProperty.TryGetValue(_key, out data))
         {
             return (T)data;
@@ -38,6 +51,7 @@ public class LocalPlayerProperty
         {
             return default;
         }
+
     }
 
 
