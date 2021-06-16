@@ -100,15 +100,16 @@ public class VersusGamePlay : MonoBehaviourPun
         {
             //Online
             Player _deadPlayer = LocalRoomManager.instance.players[_i].GetValue<Player>(CustomPropertyCode.PLAYER);
-            if (_deadPlayer!= PhotonNetwork.LocalPlayer) { return; }
+            if (_deadPlayer != PhotonNetwork.LocalPlayer) { return; }
             if ((int)_deadPlayer.CustomProperties[CustomPropertyCode.LIFESTOCK] <= 0)
             {
                 Debug.Log("player " + _i + " lose !");
                 LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
             }
-            else {
+            else
+            {
                 //create player:
-                PlayerControl _player =LocalRoomManager.instance.InstantiateOnlinePlayer(_i);
+                PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(_i);
                 _player.AddRevive();
             }
         }
