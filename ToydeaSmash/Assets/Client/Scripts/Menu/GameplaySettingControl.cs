@@ -19,6 +19,7 @@ public class GameplaySettingControl : MonoBehaviour
     private static readonly int[] minutes_opts = new int[] { 3, 5, 10 };
     private static readonly int[] lifeStock_opts = new int[] { 1, 2, 3, 4, 5, 10, 99 };
     private static List<Sprite> s_maps = new List<Sprite>();
+    private static Dictionary<int, int> s_m_teamLayerAssign = new Dictionary<int, int>(); //team code , layer code
     private const string mapResPath = "scene selection/";
 
     public TextMeshProUGUI minutesText, lifestockText;
@@ -27,8 +28,6 @@ public class GameplaySettingControl : MonoBehaviour
     public int map_index = 0;
     public int minutes_index = 0;
     public int life_stock_index = 0;
-
-
 
     public void Start()
     {
@@ -40,8 +39,7 @@ public class GameplaySettingControl : MonoBehaviour
         SetMapIndex(0);
         SetMinutesIndex(0);
         SetLifeStockIndex(0);
-        //PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
-        PhotonNetwork.NetworkingClient.EventReceived+= OnEvent;
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
     public void OnDestroy()
     {
@@ -71,8 +69,7 @@ public class GameplaySettingControl : MonoBehaviour
         LocalRoomManager.instance.gamePlaySetting.SetProperty(MINUTES_OPT, minutes_opts[minutes_index]);
         LocalRoomManager.instance.gamePlaySetting.SetProperty(LIFESTOCK_OPT, lifeStock_opts[life_stock_index]);
 
-        //TODO TEST:直接開始
-        //LocalRoomManager.instance.StartGamePlay();
+        AssignPlayerLayers();
         //Load GamePlay
         SceneManager.LoadScene("GamePlay");
     }
@@ -83,7 +80,7 @@ public class GameplaySettingControl : MonoBehaviour
         LocalRoomManager.instance.gamePlaySetting.SetProperty(LIFESTOCK_OPT, lifeStock_opts[_lifeStock]);
 
     }
-    public void ConfirmOnline()
+    public void ConfirmOnline()  //called by btn
     {
         //Store to master clientData
         if (PhotonNetwork.IsMasterClient)
@@ -94,6 +91,7 @@ public class GameplaySettingControl : MonoBehaviour
                 minutes_index,
                 life_stock_index
             };
+            AssignPlayerLayers();
             RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
             PhotonNetwork.RaiseEvent(PUN_ONCONFIRME_EVENTCODE, _content, raiseEventOptions, SendOptions.SendReliable);
         }
@@ -116,7 +114,30 @@ public class GameplaySettingControl : MonoBehaviour
                 PhotonNetwork.LoadLevel("GamePlay");
             }
         }
-        
         //PhotonNetwork.LoadLevel(map_opts[map_index]);
+    }
+
+    private void AssignPlayerLayers()
+    {
+        int _layerCounter = 0;
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            int _teamCode = LocalRoomManager.instance.players[i].GetValue<int>(CustomPropertyCode.TEAM_CODE, PhotonNetwork.IsConnected);
+            //check if the layerCode is used with other team
+            int _teamLayer = 0;
+            //is my team registered?
+            if (s_m_teamLayerAssign.TryGetValue(_teamCode, out _teamLayer))
+            {
+                //get their layer
+                LocalRoomManager.instance.players[i].SetProperty(CustomPropertyCode.TEAM_LAYER, _layerCounter);
+            }
+            else
+            {
+                //if not registered. get thier layer
+                _layerCounter++;
+                LocalRoomManager.instance.players[i].SetProperty(CustomPropertyCode.TEAM_LAYER, _layerCounter);
+                s_m_teamLayerAssign.Add(_teamCode, _layerCounter);
+            }
+        }       
     }
 }

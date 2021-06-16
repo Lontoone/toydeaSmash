@@ -31,18 +31,11 @@ public class LocalPlayerProperty
     public T GetValue<T>(string _key, bool _useNetwork = false)
     {
         object data;
-        /*
         if (_useNetwork)
         {
-            Player _targetPlayer;
-            for (int i=0; i< PhotonNetwork.PlayerList.Length;i++) {
-                if (PhotonNetwork.PlayerList[i].CustomProperties[CustomPropertyCode.PLAYER_INDEX]) { }
-            }
-            return .
-        }*/
-
-
-
+            return GetOnlineValue<T>(_key);
+        }
+        //local
         if (playerProperty.TryGetValue(_key, out data))
         {
             return (T)data;
@@ -51,7 +44,11 @@ public class LocalPlayerProperty
         {
             return default;
         }
-
+    }
+    public T GetOnlineValue<T>(string _key)
+    {
+        Player _playerData = GetValue<Player>("Player");
+        return (T)_playerData.CustomProperties[_key];
     }
 
 

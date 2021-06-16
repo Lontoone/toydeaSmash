@@ -88,9 +88,9 @@ public class VersusGamePlay : MonoBehaviourPun
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
         SetLifeStockColor(_index, _index); //TODO:可能會出錯?
         PunSendLifeStockChangeEvent(_index);
-        lifeStockUI[_index].revive_animation.SetTrigger("Revive");
-        lifeStockUI[_index].popup_animation.SetTrigger("Popup");
-        //lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
+        lifeStockUI[_index].TriggerReviveAnimation();
+        //lifeStockUI[_index].revive_animation.SetTrigger("Revive");
+        //lifeStockUI[_index].popup_animation.SetTrigger("Popup");
     }
 
     public void CheckPlayerRevive(int _i)
@@ -178,8 +178,11 @@ public class VersusGamePlay : MonoBehaviourPun
     {
         yield return new WaitForFixedUpdate();
         PlayerControl kpc = _killer.GetComponent<PlayerControl>();
+        
         if (kpc == null)
+        {
             yield break;
+        }
         Player _killer_player = LocalRoomManager.instance.players[kpc.dataIndex].GetValue<Player>(CustomPropertyCode.PLAYER);
         int killer_teamCode = (int)_killer_player.CustomProperties[CustomPropertyCode.TEAM_CODE];
 

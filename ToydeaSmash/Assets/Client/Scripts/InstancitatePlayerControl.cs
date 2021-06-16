@@ -61,23 +61,21 @@ public class InstancitatePlayerControl : MonoBehaviourPun
     private void CreateOnlinePlayer()
     {
         //generate player
+        int _playerIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX];
+        StartCoroutine(CreatePlayerDelayCoro(_playerIndex));
+        /*
         Debug.Log(" Create player!");
-
-        PlayerControl _player= LocalRoomManager.instance.InstantiateOnlinePlayer(
+        PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(
             (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX]
             );
-        _player.AddLanding();
-
-        //if (base.photonView.Owner == PhotonNetwork.LocalPlayer)
-        /*
-        if (PhotonNetwork.IsMasterClient)
-        {
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                PlayerManager _pm = PhotonNetwork.Instantiate("Prefab/PlayerManager_Online", Vector3.zero, Quaternion.identity).GetComponent<PlayerManager>();
-                _pm.CreateController(PhotonNetwork.PlayerList[i]);
-            }
-
-        }*/
+        _player.AddLanding();*/
     }
+    private IEnumerator CreatePlayerDelayCoro(int _playerIndex)
+    {
+        WaitForSeconds _wait = new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f * _playerIndex);
+        PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(_playerIndex);
+        _player.AddLanding();
+    }
+
 }

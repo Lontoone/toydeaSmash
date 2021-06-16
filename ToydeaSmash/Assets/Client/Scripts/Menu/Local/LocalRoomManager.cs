@@ -82,6 +82,11 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
     }
     public void InstantiateLocalPlayer()
     {
+        StartCoroutine(InstantiateLocalPlayerCoro());
+    }
+    private IEnumerator InstantiateLocalPlayerCoro()
+    {
+        WaitForSeconds _waitForSeconds = new WaitForSeconds(0.5f);
         //for each playerData=> Gernerate local multiplayer with id
         for (int i = 0; i < players.Count; i++)
         {
@@ -104,8 +109,10 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
                 team_player_dict.Add((int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE], new List<int>());
                 team_player_dict[(int)players[i].playerProperty[CustomPropertyCode.TEAM_CODE]].Add(i);
             }
+            yield return _waitForSeconds;
         }
     }
+
     public PlayerControl InstantiateOnlinePlayer(int i)
     {
         PlayerControl _player = PhotonNetwork.Instantiate("Prefab/Player_Variant_Online", Vector2.zero, Quaternion.identity).GetComponent<PlayerControl>();
@@ -114,7 +121,6 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         _player.GetComponent<PhotonView>().RPC("SetUpOnline", RpcTarget.All, i);
         _player.transform.position = MapControl.instance.viewWorldCenter;
         return _player;
-        //_player.AddLanding();
     }
     public PlayerControl Revive(int _playerData_index)
     {

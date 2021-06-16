@@ -44,6 +44,13 @@ public class PlayerLifeStockControl : MonoBehaviour
         lifeStock_number_text.text = _lifeStock.ToString();
         Debug.Log("set life stock ui  index " + _playerIndex + " " + _c + " " + _lifeStock);
     }
+
+    public void TriggerReviveAnimation()
+    {
+        revive_animation.SetTrigger("Revive");
+        popup_animation.SetTrigger("Popup");
+    }
+
     public void SetUp(Color _color)
     {
         panel.color = _color;

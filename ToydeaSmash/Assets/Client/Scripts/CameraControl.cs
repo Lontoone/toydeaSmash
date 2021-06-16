@@ -75,7 +75,7 @@ public class CameraControl : MonoBehaviour
 
     Vector2[] GetMinMaxPlayerPos()
     {
-        if (s_players == null || s_players.Length < 0)
+        if (s_players == null || s_players.Length < 1)
         {
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }

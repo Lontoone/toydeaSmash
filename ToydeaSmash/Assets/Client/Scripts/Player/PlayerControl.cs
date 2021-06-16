@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public HitableObj hitable;
 
-    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive,die;
+    public ActionController.mAction idle, walk, hurt, jump_start, jumping, falling, jump_end, doubleJump, dash, duck, stop, hurt_falling, revive, die;
     public ActionController.mAction landing, land_end;
 
     /*control keys*/
@@ -195,7 +195,9 @@ public class PlayerControl : MonoBehaviour
             head = _newHead;
             body = _newBody;
             RpcSetUPParent();
-            _pv.RPC("RpcSetupTeam", RpcTarget.All, (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE]);
+            _pv.RPC("RpcSetupTeam", RpcTarget.All,
+                                    (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_CODE],
+                                    (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.TEAM_LAYER]);
 
             SetKey(0);
 
@@ -210,10 +212,9 @@ public class PlayerControl : MonoBehaviour
         body.GetComponent<PhotonView>().RPC("RpcSetParent", RpcTarget.All, dataIndex);
     }
     [PunRPC]
-    public void RpcSetupTeam(int _colorIndex)
+    public void RpcSetupTeam(int _team_code, int _layerCode)
     {
-        gameObject.layer = LayerMask.NameToLayer("Player" + _colorIndex);
-        int _team_code = _colorIndex;
+        gameObject.layer = LayerMask.NameToLayer("Player" + _layerCode);
         Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
 
         //set team color        
@@ -298,7 +299,8 @@ public class PlayerControl : MonoBehaviour
         {
             DoRpcOnAllOtherPlayers("ReviveAnimation");
         });
-        die.action.AddListener(delegate{
+        die.action.AddListener(delegate
+        {
             DoRpcOnAllOtherPlayers("Die");
         });
     }
@@ -341,7 +343,8 @@ public class PlayerControl : MonoBehaviour
 
 
         //set team Layer
-        gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_CODE]);
+        //gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_CODE]);
+        gameObject.layer = LayerMask.NameToLayer("Player" + _data.playerProperty[CustomPropertyCode.TEAM_LAYER]);
 
         int _team_code = (int)_data.playerProperty[CustomPropertyCode.TEAM_CODE];
         Debug.Log("set Team color " + CustomPropertyCode.TEAMCOLORS[_team_code] + " " + _team_code);
@@ -840,7 +843,8 @@ public class PlayerControl : MonoBehaviour
         }
         PlayAniamtion("Hurt Falling");
     }
-    public void AddDie() {
+    public void AddDie()
+    {
         actionController.AddAction(die);
         //disable control
         hitable.isHitable = false;
@@ -852,7 +856,7 @@ public class PlayerControl : MonoBehaviour
         Debug.Log("玩家死亡");
         SFXManager.instance.PlaySoundInstance(SFXManager.EXPLODE);
         Effect("die disappear", "die disappear");
-        SlowMotionEffector.instance?.DoSlowMotion();      
+        SlowMotionEffector.instance?.DoSlowMotion();
 
         PlayAniamtion("Die");
         Invoke("DestoryObject", 3);
