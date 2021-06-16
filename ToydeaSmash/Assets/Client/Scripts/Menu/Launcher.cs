@@ -137,4 +137,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel(1);
     }
+
+    public void QuitOnline() {
+        PhotonNetwork.Disconnect();
+    }
 }

@@ -178,7 +178,7 @@ public class VersusGamePlay : MonoBehaviourPun
     {
         yield return new WaitForFixedUpdate();
         PlayerControl kpc = _killer.GetComponent<PlayerControl>();
-        
+
         if (kpc == null)
         {
             yield break;
@@ -209,5 +209,14 @@ public class VersusGamePlay : MonoBehaviourPun
     void EndGamePlay()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+    }
+
+    private void SetPlace()
+    {
+        List<int> _sortedPlace = LocalRoomManager.instance.SortPlayerByKillAmount();
+        if (PhotonNetwork.IsConnected)
+        {
+            //int _playerIndex = PhotonNetwork.;
+        }
     }
 }

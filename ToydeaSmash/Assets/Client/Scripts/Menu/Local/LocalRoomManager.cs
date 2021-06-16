@@ -174,4 +174,34 @@ public class LocalRoomManager : MonoBehaviourPunCallbacks
         players.Clear();
         gamePlaySetting.playerProperty.Clear();
     }
+
+    public List<int> SortPlayerByKillAmount()
+    {
+        List<int> _res = new List<int>();
+        List<SortData> _data = GetDamageSortPlayerIndxe();
+        for (int i = 0; i < _data.Count; i++)
+        {
+            _res.Add(_data[i].index);
+        }
+
+        return _res;
+    }
+    List<SortData> GetDamageSortPlayerIndxe()
+    {
+        List<SortData> _res = new List<SortData>();
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            SortData _data = new SortData();
+            _data.index = i;
+            _data.data = LocalRoomManager.instance.players[i].GetValue<int>(GameResultManager.KILL, false);
+            _res.Add(_data);
+        }
+        _res.Sort((x, y) => y.data.CompareTo(x.data));
+        return _res;
+    }
+    private class SortData
+    {
+        public int index;
+        public int data;
+    }
 }

@@ -9,7 +9,7 @@ public class LocalPlayerProperty
 {
     public static event Action<string, object, Player> OnDataUpdate;
     public Dictionary<string, object> playerProperty = new Dictionary<string, object>();
-    public void SetProperty(string _key, object _data)
+    public void SetProperty(string _key, object _data, bool _useUpdate = true)
     {
         Player _playerData = GetValue<Player>("Player");
 
@@ -23,13 +23,16 @@ public class LocalPlayerProperty
             playerProperty.Add(_key, _data);
             Debug.Log("add " + _key + " " + _data);
         }
-        OnDataUpdate?.Invoke(_key, _data, _playerData);
+        if (_useUpdate)
+        {
+            OnDataUpdate?.Invoke(_key, _data, _playerData);
+        }
     }
 
     public T GetValue<T>(string _key, bool _useNetwork = false)
     {
         object data;
-        if (_useNetwork)
+        if (_useNetwork && PhotonNetwork.IsConnected)
         {
             return GetOnlineValue<T>(_key);
         }
@@ -45,7 +48,7 @@ public class LocalPlayerProperty
     }
     public T GetOnlineValue<T>(string _key)
     {
-        Player _playerData = GetValue<Player>("Player");
+        Player _playerData = GetValue<Player>(CustomPropertyCode.PLAYER);
         return (T)_playerData.CustomProperties[_key];
     }
 

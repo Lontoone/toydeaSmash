@@ -64,10 +64,12 @@ public class GameResultManager : MonoBehaviour
         }
     }
 
+    /*
     public void PunRaiseWinLoseEvent()
     {
+
         object[] content = new object[] { new Vector3(10.0f, 2.0f, 5.0f), 1, 2, 5, 10 }; 
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; 
         PhotonNetwork.RaiseEvent(PUN_ON_RESULT_EVENT_CODE, content, raiseEventOptions, SendOptions.SendReliable);
-    }
+    }*/
 }

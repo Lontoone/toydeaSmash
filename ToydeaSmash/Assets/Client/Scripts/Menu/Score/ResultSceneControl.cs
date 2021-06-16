@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,18 @@ public class ResultSceneControl : MonoBehaviour
     public PlayerResultPanel[] playerResultPanels;
     public void Start()
     {
-        GeneratePlayer();
+        if (PhotonNetwork.IsConnected)
+        {
+            List<int> _placeSort = LocalRoomManager.instance.SortPlayerByKillAmount();
+            int _playerIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX];
+            int _playerPlace = (int)_placeSort.IndexOf(_playerIndex);
+
+            GenerateOnlinePlayer(_playerIndex, _playerPlace);
+        }
+        else
+        {
+            GeneratePlayer();
+        }
     }
 
     private void GeneratePlayer()
@@ -28,6 +40,11 @@ public class ResultSceneControl : MonoBehaviour
                 LocalRoomManager.instance.players[i], i);
             _player.transform.position = spawnPoints[i].position;
         }
+    }
+    private void GenerateOnlinePlayer(int _playerIndex, int _place)
+    {
+        PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(_playerIndex);
+        _player.transform.position = _player.transform.position = spawnPoints[_place].position;
     }
 
     public void Back()
