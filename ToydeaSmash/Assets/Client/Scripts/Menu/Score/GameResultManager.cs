@@ -12,7 +12,7 @@ public class GameResultManager : MonoBehaviour
     public const string KILL = "KILL";
     public const string DAMAGE = "DAMAGE";
     public const string DAMAGETAKE = "DAMAGETAKE";
-    public const byte PUN_ON_RESULT_EVENT_CODE =3;
+    public const byte PUN_ON_RESULT_EVENT_CODE = 3;
 
     public void Awake()
     {
@@ -37,13 +37,50 @@ public class GameResultManager : MonoBehaviour
     }
     void AddKillAndDeathCount(GameObject target, GameObject killer)
     {
-        SetProperty(killer.GetComponent<PlayerControl>(), KILL, 1);
-        SetProperty(target.GetComponent<PlayerControl>(), DEATH, 1);
+        PlayerControl _targetPlayer = target.GetComponent<PlayerControl>();
+        PlayerControl _killerPlayer = killer.GetComponent<PlayerControl>();
+        if (PhotonNetwork.IsConnected)
+        {
+            int _index = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX];
+            if (_targetPlayer.dataIndex == _index)
+            {
+                SetProperty(_targetPlayer, DEATH, 1);
+            }
+            if (_killerPlayer.dataIndex == _index)
+            {
+                SetProperty(_killerPlayer, KILL, 1);
+            }
+        }
+        else
+        {
+            SetProperty(_targetPlayer, DEATH, 1);
+            SetProperty(_killerPlayer, KILL, 1);
+        }
+
+
     }
     void AddDamageCount(GameObject t, float d, GameObject s)
     {
-        SetProperty(t.GetComponent<PlayerControl>(), DAMAGETAKE, (int)d);
-        SetProperty(s?.GetComponent<PlayerControl>(), DAMAGE, (int)d);
+        PlayerControl _targetPlayer = t.GetComponent<PlayerControl>();
+        PlayerControl _sourcePlayer = s.GetComponent<PlayerControl>();
+        if (PhotonNetwork.IsConnected)
+        {
+            int _index = (int)PhotonNetwork.LocalPlayer.CustomProperties[CustomPropertyCode.PLAYER_INDEX];
+            if (_targetPlayer.dataIndex == _index)
+            {
+                SetProperty(_targetPlayer, DAMAGETAKE, (int)d);
+            }
+            if (_sourcePlayer.dataIndex == _index)
+            {
+                SetProperty(_sourcePlayer, DAMAGE, (int)d);
+            }
+        }
+        else
+        {
+            //Local
+            SetProperty(_targetPlayer, DAMAGETAKE, (int)d);
+            SetProperty(_sourcePlayer, DAMAGE, (int)d);
+        }
     }
     void SetProperty(PlayerControl player, string _key, int data_to_add)
     {

@@ -74,20 +74,16 @@ public class Launcher : MonoBehaviourPunCallbacks
         //只有host可以開始遊戲按鈕
         StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
-
-
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         //switch host時讓下個host可以開始遊戲
         StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
-
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         errorText.text = "Room create Failed " + message;
         MenuManager.instance.OpenMenu("error");
     }
-
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
@@ -99,13 +95,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(info.Name);
         MenuManager.instance.OpenMenu("loading");
     }
-
-
     public override void OnLeftRoom()
     {
         MenuManager.instance.OpenMenu("title");
     }
-
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (Transform child in roomListContent)
@@ -121,13 +114,10 @@ public class Launcher : MonoBehaviourPunCallbacks
             Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
         }
     }
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
-
-
     //When Players all enter the room
     public void PlayerCustomMenu() {
         //PhotonNetwork.LoadLevel(1);

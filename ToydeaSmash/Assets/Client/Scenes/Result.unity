@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 245057440}
   - component: {fileID: 245057439}
   - component: {fileID: 245057438}
+  - component: {fileID: 245057442}
   m_Layer: 0
   m_Name: Back button (1)
   m_TagString: Untagged
@@ -732,6 +733,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 245057442}
+        m_TargetAssemblyTypeName: LeaveOnline, Assembly-CSharp
+        m_MethodName: QuitOnline
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &245057441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -740,6 +753,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245057436}
   m_CullTransparentMesh: 0
+--- !u!114 &245057442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245057436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b339eea2ca299143a24cd3e70355d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &260889401 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1253914976548010132, guid: 79f8f82a80166fd46ab4d2a6d2254ebe, type: 3}
@@ -6411,7 +6436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &9109665528199581543
 MonoBehaviour:
   m_ObjectHideFlags: 0

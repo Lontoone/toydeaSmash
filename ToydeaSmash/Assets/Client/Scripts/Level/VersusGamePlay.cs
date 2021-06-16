@@ -23,7 +23,8 @@ public class VersusGamePlay : MonoBehaviourPun
         PlayerControl.OnDestory += CheckPlayerRevive;
 
         HitableObj.OnKilled += CheckTeamWinLose;
-        PhotonNetwork.AddCallbackTarget(this);
+        //PhotonNetwork.AddCallbackTarget(this);  // This is not working correctly
+        PhotonNetwork.NetworkingClient.EventReceived += PUNOnLifeStockChangeEvent;
     }
     public void OnDestroy()
     {
@@ -31,7 +32,8 @@ public class VersusGamePlay : MonoBehaviourPun
         PlayerControl.OnDestory -= CheckPlayerRevive;
 
         HitableObj.OnKilled -= CheckTeamWinLose;
-        PhotonNetwork.RemoveCallbackTarget(this);
+        //PhotonNetwork.RemoveCallbackTarget(this);
+        PhotonNetwork.NetworkingClient.EventReceived -= PUNOnLifeStockChangeEvent;
     }
 
 
@@ -46,46 +48,51 @@ public class VersusGamePlay : MonoBehaviourPun
             playerLifeStock.Add(_index, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
 
             //base.photonView.RPC("SetLifeStockColor", RpcTarget.All,_index, _index);
-            PunSendLifeStockChangeEvent(_index);
+            PunSendLifeStockChangeEvent(_index, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
 
             //generate life stock ui item for each player
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
-            SetLifeStockColor( _index);
+            SetLifeStockColor(_index);
         }
     }
 
-    private void PunSendLifeStockChangeEvent(int _index)
+    private void PunSendLifeStockChangeEvent(int _index, int _lifeStock)
     {
-        object[] content = new object[] { _index, _index };
+        if (!PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+        object[] content = new object[] { _index, _lifeStock };
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
         PhotonNetwork.RaiseEvent(PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE, content, raiseEventOptions, SendOptions.SendReliable);
     }
     private void PUNOnLifeStockChangeEvent(EventData photonEvent)
     {
-        if (PhotonNetwork.IsConnected)
+        byte eventCode = photonEvent.Code;
+        if (eventCode == PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE)
         {
-            byte eventCode = photonEvent.Code;
-            if (eventCode == PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE)
-            {
-                object[] data = (object[])photonEvent.CustomData;
-                SetLifeStockColor((int)data[0]);
-            }
+            object[] data = (object[])photonEvent.CustomData;
+
+            lifeStockUI[(int)data[0]].SetLifeCount((int)data[1]);
+            SetLifeStockColor((int)data[0]);
+            Debug.Log("pun event life stock "+ (int)data[1]);
         }
     }
-
-    private void SetLifeStockColor( int _playerIndex)
+    private void SetLifeStockColor(int _playerIndex)
     {
-        lifeStockUI[_playerIndex].SetUp(_playerIndex);
+        lifeStockUI[_playerIndex].SetUpColor(_playerIndex); //Only set up color
+
     }
     public void MinusLifeStock(int _index)
     {
         //update ui and data
         playerLifeStock[_index]--;
-        int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
-        LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
-        SetLifeStockColor( _index); 
-        PunSendLifeStockChangeEvent(_index);
+        //int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
+        //LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
+        LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, playerLifeStock[_index]);
+        SetLifeStockColor(_index);
+        PunSendLifeStockChangeEvent(_index, playerLifeStock[_index]);
         lifeStockUI[_index].TriggerReviveAnimation();
     }
 
