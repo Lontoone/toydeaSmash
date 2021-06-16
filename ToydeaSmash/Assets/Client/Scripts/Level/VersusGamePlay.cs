@@ -8,7 +8,7 @@ using UnityEngine;
 //Versus Game mode
 public class VersusGamePlay : MonoBehaviourPun
 {
-    public const string ISLOSE = "ISLOSE";
+    //public const string ISLOSE = "ISLOSE";
     public const byte PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE = 5;
     //public const string LIFESTOCK = "LIFESTOCK";
     public GameObject lifeStockUIContainer;
@@ -40,20 +40,18 @@ public class VersusGamePlay : MonoBehaviourPun
     {
         if (!playerLifeStock.ContainsKey(_index))
         {
-            LocalRoomManager.instance.players[_index].SetProperty(ISLOSE, false);
+            LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.ISLOSE, false);
             LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
             //int _playerIndex = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.PLAYER_INDEX);
             playerLifeStock.Add(_index, LocalRoomManager.instance.gamePlaySetting.GetValue<int>(GameplaySettingControl.LIFESTOCK_OPT));
 
-
             //base.photonView.RPC("SetLifeStockColor", RpcTarget.All,_index, _index);
             PunSendLifeStockChangeEvent(_index);
-
 
             //generate life stock ui item for each player
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
-            SetLifeStockColor(_index, _index);
+            SetLifeStockColor( _index);
         }
     }
 
@@ -71,14 +69,14 @@ public class VersusGamePlay : MonoBehaviourPun
             if (eventCode == PUN_ONPLAYER_LIFESTOCK_CHANGE_EVENTCODE)
             {
                 object[] data = (object[])photonEvent.CustomData;
-                SetLifeStockColor((int)data[0], (int)data[1]);
+                SetLifeStockColor((int)data[0]);
             }
         }
     }
 
-    private void SetLifeStockColor(int _uiIndex, int _playerIndex)
+    private void SetLifeStockColor( int _playerIndex)
     {
-        lifeStockUI[_uiIndex].SetUp(_playerIndex);
+        lifeStockUI[_playerIndex].SetUp(_playerIndex);
     }
     public void MinusLifeStock(int _index)
     {
@@ -86,11 +84,9 @@ public class VersusGamePlay : MonoBehaviourPun
         playerLifeStock[_index]--;
         int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
-        SetLifeStockColor(_index, _index); //TODO:可能會出錯?
+        SetLifeStockColor( _index); 
         PunSendLifeStockChangeEvent(_index);
         lifeStockUI[_index].TriggerReviveAnimation();
-        //lifeStockUI[_index].revive_animation.SetTrigger("Revive");
-        //lifeStockUI[_index].popup_animation.SetTrigger("Popup");
     }
 
     public void CheckPlayerRevive(int _i)
@@ -104,7 +100,7 @@ public class VersusGamePlay : MonoBehaviourPun
             if ((int)_deadPlayer.CustomProperties[CustomPropertyCode.LIFESTOCK] <= 0)
             {
                 Debug.Log("player " + _i + " lose !");
-                LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
+                LocalRoomManager.instance.players[_i].SetProperty(CustomPropertyCode.ISLOSE, true);
             }
             else
             {
@@ -120,7 +116,7 @@ public class VersusGamePlay : MonoBehaviourPun
             {
                 //player i lose!
                 Debug.Log("player " + _i + " lose !");
-                LocalRoomManager.instance.players[_i].SetProperty(ISLOSE, true);
+                LocalRoomManager.instance.players[_i].SetProperty(CustomPropertyCode.ISLOSE, true);
             }
             else
             {
@@ -211,12 +207,4 @@ public class VersusGamePlay : MonoBehaviourPun
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
 
-    private void SetPlace()
-    {
-        List<int> _sortedPlace = LocalRoomManager.instance.SortPlayerByKillAmount();
-        if (PhotonNetwork.IsConnected)
-        {
-            //int _playerIndex = PhotonNetwork.;
-        }
-    }
 }

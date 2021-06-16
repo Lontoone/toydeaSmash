@@ -14,6 +14,8 @@ public class CustomPropertyCode : MonoBehaviour
     public const string PLAYER_INDEX = "PlayerIndex";
     public const string LIFESTOCK = "LIFESTOCK";
 
+    public const string ISLOSE = "ISLOSE";
+
 
     public static readonly Color32[] TEAMCOLORS = { new Color32(255, 255, 255, 255),new Color32(0,97,253,255),
                                                   new Color32(146,0,0,255),new Color32(255,207,19,255),

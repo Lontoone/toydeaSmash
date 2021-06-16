@@ -45,6 +45,11 @@ public class ResultSceneControl : MonoBehaviour
     {
         PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(_playerIndex);
         _player.transform.position = _player.transform.position = spawnPoints[_place].position;
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            playerResultPanels[i].gameObject.SetActive(true);
+            playerResultPanels[i].SetUp(i);
+        }
     }
 
     public void Back()
