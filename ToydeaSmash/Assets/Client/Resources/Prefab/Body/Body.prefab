@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteMask: {fileID: 11400000, guid: 60b4fd3e41dbdd444b24e668c890d400, type: 2}
+  attackControl: {fileID: 0}
   sp: {fileID: 0}
   _player: {fileID: 0}
   damage: 100
@@ -309,7 +310,7 @@ MonoBehaviour:
   attack:
     description: Attack
     is_in_gap_time_lock: 0
-    gap_time: 0.6
+    gap_time: 0.3
     action:
       m_PersistentCalls:
         m_Calls: []
@@ -318,14 +319,14 @@ MonoBehaviour:
         m_Calls: []
     priority: 50
     force: 1
-    duration: 0.6
+    duration: 0.4
     isLoop: 0
     timeOut: 0
     time_out_counter: 0
   up_attack:
     description: Up Attack
     is_in_gap_time_lock: 0
-    gap_time: 0.7
+    gap_time: 0.4
     action:
       m_PersistentCalls:
         m_Calls: []
@@ -334,7 +335,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 10
     force: 1
-    duration: 0.5
+    duration: 0.3
     isLoop: 0
     timeOut: 2
     time_out_counter: 0
@@ -350,7 +351,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 10
     force: 1
-    duration: 1
+    duration: 0.5
     isLoop: 0
     timeOut: 2
     time_out_counter: 0

@@ -40,7 +40,7 @@ public class HPBarControl : MonoBehaviour
                                         .GetComponent<PlayerControl>().head
                                        .GetComponent<SpriteRenderer>()?.bounds.size.y;
                                        */
-        height_offset =5f;
+        height_offset = 5f;
     }
 
     private void OnEnable()

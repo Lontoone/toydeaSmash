@@ -9,8 +9,6 @@ public class LocalPlayerProperty
 {
     public static event Action<string, object, Player> OnDataUpdate;
     public Dictionary<string, object> playerProperty = new Dictionary<string, object>();
-
-
     public void SetProperty(string _key, object _data)
     {
         Player _playerData = GetValue<Player>("Player");
