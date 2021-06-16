@@ -1,55 +1,64 @@
 fileFormatVersion: 2
-guid: a9a54a5dd6c2742438800543cd02c415
+guid: dbf9ebae1e4541d438d7821a211bc608
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8558602827000154809
-    second: ready fight_0
+      213: -6859192857527970624
+    second: ready fight-1_0
   - first:
-      213: 1231918617549135395
-    second: ready fight_1
+      213: 2702615484591825811
+    second: ready fight-1_1
   - first:
-      213: -4703016900758013644
-    second: ready fight_2
+      213: 2534442625978201186
+    second: ready fight-1_2
   - first:
-      213: 7727181929836393466
-    second: ready fight_3
+      213: 7587411825693513045
+    second: ready fight-1_3
   - first:
-      213: -7637947871849351475
-    second: ready fight_4
+      213: 3354127419000212783
+    second: ready fight-1_4
   - first:
-      213: -4716137745916612771
-    second: ready fight_5
+      213: 1698321664491307357
+    second: ready fight-1_5
   - first:
-      213: 949098046507455591
-    second: ready fight_6
+      213: 2482205403053123207
+    second: ready fight-1_6
   - first:
-      213: -3358058418630603293
-    second: ready fight_7
+      213: 510494329627184770
+    second: ready fight-1_7
   - first:
-      213: -8079433694291476207
-    second: ready fight_8
+      213: 8270315614562422461
+    second: ready fight-1_8
   - first:
-      213: -8128700354186056152
-    second: ready fight_9
+      213: 1757727274009838874
+    second: ready fight-1_9
   - first:
-      213: -6954280541810706496
-    second: ready fight_10
+      213: 4720401633081245181
+    second: ready fight-1_10
   - first:
-      213: 4631785202042788029
-    second: ready fight_11
+      213: -7927377049337055770
+    second: ready fight-1_11
   - first:
-      213: 638707620111729090
-    second: ready fight_12
+      213: -6881662949972250814
+    second: ready fight-1_12
   - first:
-      213: 1740132364530654416
-    second: ready fight_13
+      213: -3269028640614579490
+    second: ready fight-1_13
   - first:
-      213: 1952986460524188176
-    second: ready fight_14
+      213: -2625963281602517461
+    second: ready fight-1_14
   - first:
-      213: -6848006859675481693
-    second: ready fight_15
+      213: -5223202752529473328
+    second: ready fight-1_15
+  - first:
+      213: -353971911493656927
+    second: ready fight-1_16
+  - first:
+      213: -3321923283750553261
+    second: ready fight-1_17
+  - first:
+      213: -3442891309902932242
+    second: ready fight-1_18
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,7 +146,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ready fight_0
+      name: ready fight-1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -151,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ba8ffcfce346c670800000000000000
-      internalID: 8558602827000154809
+      spriteID: 0c4162900704fc0a0800000000000000
+      internalID: -6859192857527970624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_1
+      name: ready fight-1_1
       rect:
         serializedVersion: 2
         x: 640
@@ -172,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32ed437a477a81110800000000000000
-      internalID: 1231918617549135395
+      spriteID: 393e093d67e918520800000000000000
+      internalID: 2702615484591825811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_2
+      name: ready fight-1_2
       rect:
         serializedVersion: 2
         x: 1280
@@ -193,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 439f8a1eb078bbeb0800000000000000
-      internalID: -4703016900758013644
+      spriteID: 264f909e3262c2320800000000000000
+      internalID: 2534442625978201186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_3
+      name: ready fight-1_3
       rect:
         serializedVersion: 2
         x: 1920
@@ -214,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af337ba56077c3b60800000000000000
-      internalID: 7727181929836393466
+      spriteID: 5555f0b0bd6eb4960800000000000000
+      internalID: 7587411825693513045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_4
+      name: ready fight-1_4
       rect:
         serializedVersion: 2
         x: 2560
@@ -235,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc6f77dc0ee800690800000000000000
-      internalID: -7637947871849351475
+      spriteID: f2dc7ecdd114c8e20800000000000000
+      internalID: 3354127419000212783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_5
+      name: ready fight-1_5
       rect:
         serializedVersion: 2
         x: 3200
@@ -256,14 +265,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5f24de05b9ec8eb0800000000000000
-      internalID: -4716137745916612771
+      spriteID: d51ca564e86a19710800000000000000
+      internalID: 1698321664491307357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_6
+      name: ready fight-1_6
       rect:
         serializedVersion: 2
         x: 3840
@@ -277,14 +286,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 764181f05afdb2d00800000000000000
-      internalID: 949098046507455591
+      spriteID: 786698ca9a0927220800000000000000
+      internalID: 2482205403053123207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_7
+      name: ready fight-1_7
       rect:
         serializedVersion: 2
         x: 4480
@@ -298,14 +307,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ed4386f8a7c561d0800000000000000
-      internalID: -3358058418630603293
+      spriteID: 28e874953e3a51700800000000000000
+      internalID: 510494329627184770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_8
+      name: ready fight-1_8
       rect:
         serializedVersion: 2
         x: 5120
@@ -319,14 +328,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1114f699cd510ef80800000000000000
-      internalID: -8079433694291476207
+      spriteID: dbe0c52cb3016c270800000000000000
+      internalID: 8270315614562422461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_9
+      name: ready fight-1_9
       rect:
         serializedVersion: 2
         x: 5760
@@ -340,14 +349,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82ee527781e013f80800000000000000
-      internalID: -8128700354186056152
+      spriteID: a154f5394a3b46810800000000000000
+      internalID: 1757727274009838874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_10
+      name: ready fight-1_10
       rect:
         serializedVersion: 2
         x: 6400
@@ -361,14 +370,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c736fc41be6d7f90800000000000000
-      internalID: -6954280541810706496
+      spriteID: dfd3bf8864c328140800000000000000
+      internalID: 4720401633081245181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_11
+      name: ready fight-1_11
       rect:
         serializedVersion: 2
         x: 7040
@@ -382,14 +391,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db8dbabd918674040800000000000000
-      internalID: 4631785202042788029
+      spriteID: 6e53ead139c4cf190800000000000000
+      internalID: -7927377049337055770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_12
+      name: ready fight-1_12
       rect:
         serializedVersion: 2
         x: 7680
@@ -403,14 +412,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c1481c42352dd800800000000000000
-      internalID: 638707620111729090
+      spriteID: 24fefe2f10c6f70a0800000000000000
+      internalID: -6881662949972250814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_13
+      name: ready fight-1_13
       rect:
         serializedVersion: 2
         x: 8320
@@ -424,14 +433,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dc920a7a21362810800000000000000
-      internalID: 1740132364530654416
+      spriteID: ed2079b75c312a2d0800000000000000
+      internalID: -3269028640614579490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_14
+      name: ready fight-1_14
       rect:
         serializedVersion: 2
         x: 8960
@@ -445,14 +454,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01211b6a6d66a1b10800000000000000
-      internalID: 1952986460524188176
+      spriteID: b26ecdeee44be8bd0800000000000000
+      internalID: -2625963281602517461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ready fight_15
+      name: ready fight-1_15
       rect:
         serializedVersion: 2
         x: 9600
@@ -466,8 +475,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a9ca9d1b0ef6f0a0800000000000000
-      internalID: -6848006859675481693
+      spriteID: 0d063a135c47387b0800000000000000
+      internalID: -5223202752529473328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ready fight-1_16
+      rect:
+        serializedVersion: 2
+        x: 10240
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae54f20c60761bf0800000000000000
+      internalID: -353971911493656927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ready fight-1_17
+      rect:
+        serializedVersion: 2
+        x: 10880
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359f2fcaf5826e1d0800000000000000
+      internalID: -3321923283750553261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ready fight-1_18
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee6d4f848946830d0800000000000000
+      internalID: -3442891309902932242
       vertices: []
       indices: 
       edges: []
