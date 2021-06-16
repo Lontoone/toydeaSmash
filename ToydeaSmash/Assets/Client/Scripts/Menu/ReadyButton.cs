@@ -18,7 +18,7 @@ public class ReadyButton : MonoBehaviourPunCallbacks
 
     //[SerializeField]
     //private bool _isReady = false;
-    static Dictionary<Player, bool> m_playerReadyState = new Dictionary<Player, bool>();
+    private Dictionary<Player, bool> m_playerReadyState = new Dictionary<Player, bool>();
 
     private void Start()
     {

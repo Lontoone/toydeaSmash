@@ -80,7 +80,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     {
         //dict init
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
-        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, current_head);
+        LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.BODY_CODE, current_body);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.TEAM_CODE, current_team);
 
         SetTeam(0);
