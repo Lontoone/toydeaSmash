@@ -989,8 +989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7121bddcb5e98b048931794deee974af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 2
-  lastDuration: 5
+  startDelay: 2.5
+  lastDuration: 5.5
   OnGameStart:
     m_PersistentCalls:
       m_Calls:
