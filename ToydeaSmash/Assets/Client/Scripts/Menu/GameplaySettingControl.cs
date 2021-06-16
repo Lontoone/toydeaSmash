@@ -19,7 +19,7 @@ public class GameplaySettingControl : MonoBehaviour
     private static readonly int[] minutes_opts = new int[] { 3, 5, 10 };
     private static readonly int[] lifeStock_opts = new int[] { 1, 2, 3, 4, 5, 10, 99 };
     private static List<Sprite> s_maps = new List<Sprite>();
-    private static Dictionary<int, int> s_m_teamLayerAssign = new Dictionary<int, int>(); //team code , layer code
+    private Dictionary<int, int> s_m_teamLayerAssign = new Dictionary<int, int>(); //team code , layer code
     private const string mapResPath = "scene selection/";
 
     public TextMeshProUGUI minutesText, lifestockText;
