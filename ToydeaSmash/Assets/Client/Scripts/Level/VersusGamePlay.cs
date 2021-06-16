@@ -88,6 +88,8 @@ public class VersusGamePlay : MonoBehaviourPun
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
         SetLifeStockColor(_index, _index); //TODO:可能會出錯?
         PunSendLifeStockChangeEvent(_index);
+        lifeStockUI[_index].revive_animation.SetTrigger("Revive");
+        lifeStockUI[_index].popup_animation.SetTrigger("Popup");
         //lifeStockUI[_index].lifeStock_number_text.text = playerLifeStock[_index].ToString();
     }
 

@@ -10,6 +10,8 @@ public class PlayerLifeStockControl : MonoBehaviour
 {
     public TextMeshProUGUI lifeStock_number_text;
     public Image panel;
+    public Animator revive_animation;
+    public Animator popup_animation;
     public void SetUp(int _playerIndex)
     {
         int _teamCode = 0;
@@ -45,6 +47,6 @@ public class PlayerLifeStockControl : MonoBehaviour
     public void SetUp(Color _color)
     {
         panel.color = _color;
-        lifeStock_number_text.color = _color;
+        //lifeStock_number_text.color = _color;
     }
 }
