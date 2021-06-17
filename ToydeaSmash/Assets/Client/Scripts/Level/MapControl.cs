@@ -7,6 +7,9 @@ public class MapControl : MonoBehaviour
 {
     public static MapControl instance;
     private const string MAP_DATA_PATH = "Prefab/Maps/";
+    [SerializeField]
+    private Collider2D mapBounds;
+
     public void Awake()
     {
         if (instance == null)
@@ -21,7 +24,16 @@ public class MapControl : MonoBehaviour
     }
     public Vector2 viewWorldCenter
     {
-        get { return Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 1)); }
+        get { return Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.5f)); }
+    }
+    public Vector2 GetMoveablePosition(Vector2 _in)
+    {
+        Vector2 _out = new Vector2(
+            Mathf.Clamp(_in.x, mapBounds.bounds.min.x, mapBounds.bounds.max.x),
+            Mathf.Clamp(_in.y, mapBounds.bounds.min.y, mapBounds.bounds.max.y)
+            );
+
+        return _out;
     }
 
     //load map

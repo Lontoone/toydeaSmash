@@ -88,7 +88,7 @@ public class VersusGamePlay : MonoBehaviourPun
     public void MinusLifeStock(int _index)
     {
         //update ui and data
-        playerLifeStock[_index]--;       
+        playerLifeStock[_index]--;
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, playerLifeStock[_index]);
         SetLifeStockColor(_index);
         PunSendLifeStockChangeEvent(_index, playerLifeStock[_index]);
@@ -160,6 +160,13 @@ public class VersusGamePlay : MonoBehaviourPun
     {
         yield return new WaitForFixedUpdate();
         PlayerControl kpc = _killer.GetComponent<PlayerControl>();
+
+        if ( IsAllPlayerDead()) {
+            //every killed by camera
+            yield return new WaitForSeconds(3);
+            EndGamePlay();
+        }
+
         if (kpc == null)
             yield break;
 
@@ -185,6 +192,18 @@ public class VersusGamePlay : MonoBehaviourPun
             yield return new WaitForSeconds(3);
             EndGamePlay();
         }
+    }
+    private bool IsAllPlayerDead()
+    {
+        for (int i = 0; i < LocalRoomManager.instance.players.Count; i++)
+        {
+            if (LocalRoomManager.instance.players[i].GetValue<int>(CustomPropertyCode.LIFESTOCK) > 1)
+            {
+                return false;
+            }
+        }
+        return true;
+
     }
 
     public IEnumerator CheckOnlineTeamWinLoseCoro(GameObject _target, GameObject _killer)

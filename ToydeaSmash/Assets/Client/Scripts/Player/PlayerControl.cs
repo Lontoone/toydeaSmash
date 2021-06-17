@@ -123,7 +123,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void Start()
-    {        
+    {
         //GCManager.RegisterObject(GCKey, gameObject, true);
     }
     private void OnDestroy()
@@ -505,7 +505,11 @@ public class PlayerControl : MonoBehaviour
     public void Move()
     {
         rigid.velocity = new Vector2(Input.GetAxis(horizontal_axis_name) * speed, rigid.velocity.y);
+        if (MapControl.instance != null)
+        {
+            transform.position = MapControl.instance.GetMoveablePosition(transform.position);
 
+        }
         //左右翻轉:
         //if (_x_input> 0)
         if (rigid.velocity.x > 0)
@@ -886,7 +890,7 @@ public class PlayerControl : MonoBehaviour
             _mainCollider.enabled = true;
         }
         GCManager.Destory(GCKey, gameObject);*/
-        
+
         OnDestory?.Invoke(dataIndex);
         Destroy(gameObject);
         Destroy(actionController);

@@ -141,7 +141,7 @@ public class CameraControl : MonoBehaviour
             if (__playerViewPortPosition.x < 0 || __playerViewPortPosition.x > 1)
             {
                 //TODO: temp using null as soruces and minus 100 pre sec
-                HitableObj.Hit_event_c(s_players[i].gameObject, 100, null);
+                HitableObj.Hit_event_c(s_players[i].gameObject, 100, s_camera.gameObject);
             }
         }
     }
