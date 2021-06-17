@@ -61,6 +61,8 @@ public class GameResultManager : MonoBehaviour
     }
     void AddDamageCount(GameObject t, float d, GameObject s)
     {
+        if (t == null || s == null)
+        { return; }
         PlayerControl _targetPlayer = t.GetComponent<PlayerControl>();
         PlayerControl _sourcePlayer = s.GetComponent<PlayerControl>();
         if (PhotonNetwork.IsConnected)

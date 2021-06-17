@@ -23,14 +23,14 @@ public class CameraControl : MonoBehaviour
 
         //scale between all players
         PlayerControl.OnCreate += GetPlayerList;
-        PlayerControl.OnDestory += GetPlayerList;
+        //PlayerControl.OnDestory += GetPlayerList;
 
         s_c_checkPlayersInSight = StartCoroutine(CheckAllPlayersInSideSightCoro());
     }
     public void OnDestroy()
     {
         PlayerControl.OnCreate -= GetPlayerList;
-        PlayerControl.OnDestory -= GetPlayerList;
+        //PlayerControl.OnDestory -= GetPlayerList;
         StopCoroutine(s_c_checkPlayersInSight);
         s_c_checkPlayersInSight = null;
     }
@@ -77,11 +77,13 @@ public class CameraControl : MonoBehaviour
     {
         if (s_players == null || s_players.Length < 1)
         {
+            GetPlayerList(0);
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
         if (s_players[0] == null)
         {
-            this.enabled = false;
+            GetPlayerList(0);
+            //this.enabled = false;
             return new Vector2[] { Vector2.zero, Vector2.zero };
         }
 
@@ -131,6 +133,7 @@ public class CameraControl : MonoBehaviour
         {
             if (s_players[i] == null)
             {
+                GetPlayerList(0);
                 return;
             }
             //check player's viewport position.
