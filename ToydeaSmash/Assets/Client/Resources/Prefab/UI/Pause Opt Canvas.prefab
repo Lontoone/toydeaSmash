@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 2445726072776532776}
   - component: {fileID: 2445726072776532779}
   - component: {fileID: 2445726072776532783}
+  - component: {fileID: 6605466924877797636}
   m_Layer: 5
   m_Name: Pause Opt Canvas
   m_TagString: Untagged
@@ -724,6 +725,18 @@ MonoBehaviour:
   panel: {fileID: 2445726073599075360}
   resumeConuntDownPanel: {fileID: 1562748745717873060}
   countDownText: {fileID: 5459612595179309124}
+--- !u!114 &6605466924877797636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445726072776532778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b339eea2ca299143a24cd3e70355d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2445726073228220630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,10 +1192,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
@@ -1190,12 +1207,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2445726072776532783}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6605466924877797636}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: QuitOnline
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenuControl, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LeaveOnline, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -1203,6 +1236,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109665527456861877, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9109665527456861878, guid: 76d47b30e1334fa45a78f761e5e18211, type: 3}
