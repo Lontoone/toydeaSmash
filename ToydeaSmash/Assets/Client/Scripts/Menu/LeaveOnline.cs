@@ -9,10 +9,11 @@ public class LeaveOnline : MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.LeaveRoom();
+            //PhotonNetwork.LeaveRoom();
             PhotonNetwork.LeaveLobby();
             PhotonNetwork.Disconnect();
             LocalRoomManager.instance.ClearPlayerDatas();
         }
+       
     }
 }

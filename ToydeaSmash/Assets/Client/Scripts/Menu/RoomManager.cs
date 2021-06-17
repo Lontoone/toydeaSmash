@@ -52,7 +52,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
         else if (scene.name == "Menu") {
             LocalRoomManager.instance.ClearPlayerDatas();
-            PhotonNetwork.Disconnect();
+            //PhotonNetwork.Disconnect();
             Destroy(gameObject);
         }
     }

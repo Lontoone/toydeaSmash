@@ -54,6 +54,7 @@ public class VersusGamePlay : MonoBehaviourPun
             PlayerLifeStockControl _ui = Instantiate(lifeStockItem_prefab, Vector3.zero, Quaternion.identity, lifeStockUIContainer.transform);
             lifeStockUI.Add(_index, _ui);
             SetLifeStockColor(_index);
+            lifeStockUI[_index].SetLifeCount(LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK));
         }
     }
 
@@ -76,7 +77,7 @@ public class VersusGamePlay : MonoBehaviourPun
 
             lifeStockUI[(int)data[0]].SetLifeCount((int)data[1]);
             SetLifeStockColor((int)data[0]);
-            Debug.Log("pun event life stock "+ (int)data[1]);
+            Debug.Log("pun event life stock " + (int)data[1]);
         }
     }
     private void SetLifeStockColor(int _playerIndex)
