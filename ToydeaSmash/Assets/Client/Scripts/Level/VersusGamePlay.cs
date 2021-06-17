@@ -88,12 +88,11 @@ public class VersusGamePlay : MonoBehaviourPun
     public void MinusLifeStock(int _index)
     {
         //update ui and data
-        playerLifeStock[_index]--;
-        //int _lifeStock = LocalRoomManager.instance.players[_index].GetValue<int>(CustomPropertyCode.LIFESTOCK);
-        //LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, _lifeStock - 1);
+        playerLifeStock[_index]--;       
         LocalRoomManager.instance.players[_index].SetProperty(CustomPropertyCode.LIFESTOCK, playerLifeStock[_index]);
         SetLifeStockColor(_index);
         PunSendLifeStockChangeEvent(_index, playerLifeStock[_index]);
+        lifeStockUI[_index].SetLifeCount(playerLifeStock[_index]);
         lifeStockUI[_index].TriggerReviveAnimation();
     }
 
@@ -114,6 +113,11 @@ public class VersusGamePlay : MonoBehaviourPun
             {
                 //create player:
                 PlayerControl _player = LocalRoomManager.instance.InstantiateOnlinePlayer(_i);
+                /*
+                string playerGCKey = "Player" + _i;
+                PlayerControl _player = GCManager.Instantiate(playerGCKey).GetComponent<PlayerControl>();
+                _player.GetComponent<PhotonView>().RPC("SetUpOnline", RpcTarget.All, _i);
+                _player.transform.position = MapControl.instance.viewWorldCenter;*/
                 _player.AddRevive();
             }
         }
@@ -130,6 +134,11 @@ public class VersusGamePlay : MonoBehaviourPun
             {
                 //create player:
                 LocalRoomManager.instance.Revive(_i);
+                /*
+                string playerGCKey = "Player" + _i;
+                PlayerControl _player = GCManager.Instantiate(playerGCKey).GetComponent<PlayerControl>();
+                _player.transform.position = MapControl.instance.viewWorldCenter;
+                _player.AddRevive();*/
             }
         }
     }

@@ -20,6 +20,7 @@ public class Body : MonoBehaviour
     public float damage = 100;
     string _temp_sprite_name;
 
+
     public void Awake()
     {
         SetUpSpriteMaskMatetial();
@@ -27,7 +28,8 @@ public class Body : MonoBehaviour
         attackControl = GetComponent<PlayerAttackControl>();
     }
 
-    private void SetUpSpriteMaskMatetial() {
+    private void SetUpSpriteMaskMatetial()
+    {
 
         sp = GetComponent<SpriteRenderer>();
         _sprite_mat = new Material(Shader.Find("Unlit/SpriteMask"));
@@ -77,15 +79,19 @@ public class Body : MonoBehaviour
     [PunRPC]
     public void RpcSetParent(int _playerIndex)
     {
-        _player = PlayerControl.FindPlayerControlByIndex(_playerIndex);
-        transform.SetParent(_player.transform);
-        GetComponent<PlayerAttackControl>()._player = _player;
-        _player.body = this;
+        PlayerControl _findPlayer = PlayerControl.FindPlayerControlByIndex(_playerIndex);
+        if (_findPlayer != null)
+        {
+            _player = _findPlayer;
+            transform.SetParent(_player.transform);
+            GetComponent<PlayerAttackControl>()._player = _player;
+            _player.body = this;
+        }
     }
 
     public void CreateImageTrail()
     {
-        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale,sp.color);
+        AfterImage.CreateImageTrail(sp.sprite, transform.position, transform.lossyScale, sp.color);
         //AfterImage.CreateImageTrail(body.sp.sprite, body.transform.position, body.transform.lossyScale);
     }
 }

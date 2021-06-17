@@ -34,7 +34,7 @@ public class HPBarControl : MonoBehaviour
         maxHP = hitable.HP;
         hitable.gotHit_event += UpdateHPBar;
         hitable.gotHeel_event += UpdateHPBar;
-        hitable.Die_event += DestorySelfOnDie;
+        //hitable.Die_event += DestorySelfOnDie;
         /*
         height_offset = (float)_hitable.gameObject
                                         .GetComponent<PlayerControl>().head
@@ -49,8 +49,8 @@ public class HPBarControl : MonoBehaviour
 
         maxHP = hitable.HP;
         hitable.gotHit_event += UpdateHPBar;
-        hitable.Die_event += DestorySelfOnDie;
         hitable.gotHeel_event += UpdateHPBar;
+        //hitable.Die_event += DestorySelfOnDie;
 
         inner_bar.transform.localPosition = Vector2.zero;
 
@@ -66,6 +66,7 @@ public class HPBarControl : MonoBehaviour
 
     void DestorySelfOnDie()
     {
+        Debug.Log("HP Bar die "+ hitable.gameObject.name);
         GCManager.Destory(HPBAR_GC_KEY, gameObject);
     }
 
@@ -74,8 +75,15 @@ public class HPBarControl : MonoBehaviour
         //follow gameobject
 
         //TODO: get sprite height offset
-        Vector2 _pos = new Vector2(hitable.transform.position.x, hitable.transform.position.y + height_offset);
-        transform.position = _pos;
+        if (hitable != null)
+        {
+            Vector2 _pos = new Vector2(hitable.transform.position.x, hitable.transform.position.y + height_offset);
+            transform.position = _pos;
+        }
+        else
+        {
+            GCManager.Destory(HPBAR_GC_KEY, gameObject);
+        }
 
     }
 

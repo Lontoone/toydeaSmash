@@ -21,7 +21,7 @@ public class GCManager : MonoBehaviour
     static Dictionary<string, Vector2> registerScale = new Dictionary<string, Vector2>();
 
     static int _db_counter = 0;
-    public static void RegisterObject(string _key, Object _obj)
+    public static void RegisterObject(string _key, Object _obj, bool _setActive = false)
     {
         LinkedList<object> _out;
         if (!dicts.TryGetValue(_key, out _out))
@@ -32,7 +32,7 @@ public class GCManager : MonoBehaviour
 
             registerScale.Add(_key, (_obj as GameObject).transform.localScale);
 
-            (_obj as GameObject).SetActive(false);
+            (_obj as GameObject).SetActive(_setActive);
             Debug.Log("current dict count " + dicts.Count);
         }
         else

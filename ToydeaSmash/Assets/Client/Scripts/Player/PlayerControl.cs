@@ -59,6 +59,15 @@ public class PlayerControl : MonoBehaviour
     private Transform _lastHitSource;
     public Player[] _otherPlayers;
 
+    private bool _hasInited = false;
+    public string GCKey
+    {
+        get
+        {
+            return "Player" + dataIndex;
+        }
+    }
+
     [SerializeField]
     private bool _isHurting = false;
     private Vector2 _footPosition
@@ -114,8 +123,8 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void Start()
-    {
-        //SetUpLocalEvent();
+    {        
+        //GCManager.RegisterObject(GCKey, gameObject, true);
     }
     private void OnDestroy()
     {
@@ -160,6 +169,9 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
+            //if (_hasInited){return;}
+            //_hasInited = true;
+
             rigid = gameObject.GetComponent<Rigidbody2D>();
             listeners = gameObject.GetComponent<PhysicsControlListeners>();
             actionController = gameObject.GetComponent<ActionController>();
@@ -866,6 +878,15 @@ public class PlayerControl : MonoBehaviour
     private void DestoryObject()
     {
         //TODO: Use GC
+        /*
+        if (actionController != null)
+        {
+            //actionController.ClearCurrent();
+            actionController.AddAction(stop);
+            _mainCollider.enabled = true;
+        }
+        GCManager.Destory(GCKey, gameObject);*/
+        
         OnDestory?.Invoke(dataIndex);
         Destroy(gameObject);
         Destroy(actionController);

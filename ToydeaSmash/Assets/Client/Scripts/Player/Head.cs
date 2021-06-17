@@ -82,7 +82,7 @@ public class Head : MonoBehaviour
     [PunRPC]
     public void RpcSetParent(int _playerIndex)
     {
-        Debug.Log("Rpc Set Parent index: " + _playerIndex);
+        Debug.Log("Rpc Set Parent index: " + _playerIndex);     
         _player = PlayerControl.FindPlayerControlByIndex(_playerIndex);
         if (_player != null)
         {

@@ -205,6 +205,10 @@ public class ActionController : MonoBehaviour
         cTimeOutCheck = null;
     }
 
+    public void ClearCurrent()
+    {
+        currentAction = null;
+    }
 
     [System.Serializable]
     public class mAction
