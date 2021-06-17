@@ -306,7 +306,7 @@ MonoBehaviour:
     callbackEvent:
       m_PersistentCalls:
         m_Calls: []
-    priority: 8
+    priority: 7
     force: 1
     duration: 3
     isLoop: 1
@@ -586,7 +586,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-    priority: 3
+    priority: 8
     force: 1
     duration: 5
     isLoop: 1
