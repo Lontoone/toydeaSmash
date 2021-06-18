@@ -228,7 +228,7 @@ MonoBehaviour:
         m_Calls: []
     priority: 9
     force: 1
-    duration: 3
+    duration: 0.25
     isLoop: 1
     timeOut: 1
     time_out_counter: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
     priority: 6
     force: 1
     duration: 1
-    isLoop: 0
+    isLoop: 1
     timeOut: 0
     time_out_counter: 0
   falling:
