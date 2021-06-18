@@ -173,7 +173,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
         //TODO:[BUG] should store int but it is storing name of Resources path.
         //LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, heads_res[current_head].name);
         LocalRoomManager.instance.players[player_index].SetProperty(CustomPropertyCode.HEAD_CDOE, current_head);
-        SetWeapon((int)current_head);
+        SetHead((int)current_head);
 
         /*
         *  FOR FURTURE
@@ -217,6 +217,7 @@ public class PlayerSlot : MonoBehaviourPunCallbacks
     void SetWeapon(int _index)
     {
         current_body = _index;
+
         GameObject _new_body = Instantiate(body_res[current_body], body.transform.position, Quaternion.identity, head.transform.parent).gameObject;
         Destroy(body);
         body = _new_body;
